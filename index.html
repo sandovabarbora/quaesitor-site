@@ -1248,6 +1248,46 @@
       </p>
     </details>
     <details>
+      <summary><span>What makes a query verified?</span></summary>
+      <p>
+        Not that we knew the right answer in advance. On your warehouse nobody
+        does — if somebody did, there would be nothing to audit. Verified means
+        the number has a provenance you can follow, and it is built from three
+        things in this order.
+      </p>
+      <p>
+        <b>The definition comes from you, in writing.</b> We do not decide what
+        revenue means in your company. Whoever owns the metric states it, and
+        the question does not enter the suite until they have. A surprising
+        amount of the value is here: it is often written down nowhere, and two
+        departments answer differently. That disagreement is a finding before a
+        line of SQL exists.
+      </p>
+      <p>
+        <b>The query implements that definition</b>, and the mapping between
+        the two is read through with the person who owns it, clause by clause.
+        What is being checked at this stage is narrow and worth stating: that
+        the query says what the definition says.
+      </p>
+      <p>
+        <b>The result is anchored.</b> It is reconciled against a number you
+        already trust and that was produced independently of us — a closed
+        month, a filed statement, an ERP total, a report somebody signs. Where
+        no such anchor exists, the query is written twice, independently, and
+        the two are compared. If they disagree, that is a finding, and it is
+        settled before the question is used to judge anything.
+      </p>
+      <p>
+        The part that is fair to hold against us: if a verified query is wrong,
+        every finding built on it is wrong, and it looks exactly like one that
+        is right. That is our own silent failure, and there is no clever
+        defence against it — only the suite being yours, in your repository,
+        with every query readable and re-runnable. Being told that a verified
+        query is wrong is the most useful thing anyone can do for this method.
+      </p>
+    </details>
+
+    <details>
       <summary><span>Could we not just run this ourselves?</span></summary>
       <p>
         Yes, and the suite is handed over precisely so you can, every quarter,
@@ -1541,7 +1581,7 @@
     <p>August 2026 &middot; 1,248 measured answers across eight
       languages on the retail pack, 2,313 in total across every
       warehouse in the suite.<br>
-      Page built 2026-08-13 10:48 UTC · 06e3a6c2</p>
+      Page built 2026-08-13 11:03 UTC · 55c99ff4</p>
   </div>
 </footer>
 
