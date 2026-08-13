@@ -451,22 +451,42 @@
     max-width: 12ch;
   }
   .when .kicker { color: rgba(227, 231, 234, 0.85); margin-bottom: 0.9rem; }
+  /* Four moments, any one of which is the reader's. They are alternatives, not
+     steps, so the reader has to be able to scan all four and stop at theirs —
+     which is why this is not a carousel. Set as one tall column at lede size
+     it ran most of a screen; two columns at body size puts all four in view
+     and takes a third of the height. */
   .whens { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
   .whens li {
-    display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: 1rem;
-    padding: 1.05rem 0;
+    display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: 0.9rem;
+    padding: 1rem 0;
     border-top: 1px solid rgba(227, 231, 234, 0.28);
-    font-size: var(--t-lede); line-height: 1.35;
+    font-size: var(--t-body); line-height: 1.45;
   }
   .whens li:last-child { border-bottom: 1px solid rgba(227, 231, 234, 0.28); }
+  @media (min-width: 58rem) {
+    .whens {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: clamp(1.75rem, 3.5vw, 3rem);
+    }
+    /* The rule belongs to the row, not the item: in two columns the last-child
+       bottom rule would underline one cell of the pair and read as a mistake. */
+    .whens li:last-child { border-bottom: 0; }
+    .whens li:nth-last-child(-n + 2) {
+      border-bottom: 1px solid rgba(227, 231, 234, 0.28);
+    }
+  }
   .whens .n {
     font-family: var(--mono); font-size: var(--t-label); font-weight: 700;
     letter-spacing: 0.14em; color: var(--field-lift); padding-top: 0.42rem;
   }
+  /* Set to 54ch under a list that is now two columns wide, this read as a
+     narrow offcut hanging off the left edge of the grid. It closes the
+     section, so it is allowed the width of what it closes. */
   .when-close {
     grid-column: 1 / -1;
-    margin: 0; padding-top: 0.5rem;
-    max-width: 54ch; color: rgba(227, 231, 234, 0.85);
+    margin: 0; padding-top: 1.1rem;
+    max-width: 78ch; color: rgba(227, 231, 234, 0.85);
     font-size: var(--t-small);
   }
 
@@ -913,6 +933,16 @@
     background: var(--paper); color: var(--ink); border-color: var(--paper);
   }
   .legal .cta:hover { background: transparent; color: var(--paper); border-color: var(--paper); }
+  /* A block that spans all three columns but keeps the 42ch measure of a
+     single one leaves two thirds of the row empty. The measure is right for
+     reading, so the text flows into columns of that width instead of being
+     stretched to the full span. */
+  .legal .wide { grid-column: 1 / -1; }
+  @media (min-width: 58rem) {
+    .legal .wide { columns: 3 20rem; column-gap: clamp(2rem, 4vw, 4rem); }
+    .legal .wide h3 { column-span: all; }
+    .legal .wide p { max-width: none; break-inside: avoid; }
+  }
   .legal ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.4rem; }
   .legal li {
     display: grid; grid-template-columns: 0.8rem minmax(0, 1fr); gap: 0.6rem;
@@ -1019,7 +1049,7 @@
   <div class="figs">
     <span><b>26</b> questions</span>
     <span><b>eight</b> languages</span>
-    <span><b>1248</b> measured answers</span>
+    <span><b>1,248</b> measured answers</span>
     <span class="alarm"><b>58%</b> wrong with nothing to show it</span>
   </div>
   <p class="cover-line">A number can look right and still be wrong.</p>
@@ -1294,7 +1324,7 @@
         layers, the test suite handed over in your repository, wired into your CI,
         and a retest after you have remediated. It is the entry audit plus the
         part where the findings actually get closed. The handed-over suite
-        certifies the state as of the handover date — it is yours to run, but it
+        records the state as of the handover date — it is yours to run, but it
         does not cover traps, model versions or schema changes that arrive after.
       </p>
       <p>
@@ -1305,10 +1335,11 @@
         verdict expires and the audit is a photograph with a date on it.
       </p>
       <p>
-        <b>Certification</b> is the annual review against the controls, ending in
-        a written statement carrying a signature — the document you hand to a
-        board, an auditor or a customer who asked. It presumes the suite from the
-        full audit already exists and runs.
+        <b>Annual verification</b> is the yearly review against the controls,
+        ending in a written statement carrying a signature — the document you
+        hand to a board, an auditor or a customer who asked. It is our finding,
+        not an accredited certificate, and it says so on its face. It presumes
+        the suite from the full audit already exists and runs.
       </p>
       <p>
         They stack in that order. Nobody should buy the fourth without the second.
@@ -1379,7 +1410,7 @@
     <div class="tiers">      <div class="tier lead"><span><span class="tier-name">Entry audit</span><span class="tier-dur">3 weeks</span></span><span class="tier-what">Report with findings, priority, and quantified impact</span><span class="tier-price">6,000 to 10,000 EUR</span></div>
       <div class="tier"><span><span class="tier-name">Full audit</span><span class="tier-dur">6 to 8 weeks</span></span><span class="tier-what">Report, test suite, CI integration, retest after remediation</span><span class="tier-price">12,000 to 20,000 EUR</span></div>
       <div class="tier"><span><span class="tier-name">Continuous verification</span><span class="tier-dur">Monthly</span></span><span class="tier-what">Standing coverage against model and schema changes</span><span class="tier-price">1,000 to 2,500 EUR per month</span></div>
-      <div class="tier"><span><span class="tier-name">Certification</span><span class="tier-dur">Yearly</span></span><span class="tier-what">A written statement carrying a signature</span><span class="tier-price">4,000 to 8,000 EUR per year</span></div></div>
+      <div class="tier"><span><span class="tier-name">Annual verification</span><span class="tier-dur">Yearly</span></span><span class="tier-what">A signed, dated verification statement naming what was measured and what it does not cover</span><span class="tier-price">4,000 to 8,000 EUR per year</span></div></div>
     <div class="step">
       <p>
         The first step costs nothing. In thirty minutes you describe what
@@ -1401,9 +1432,9 @@
     <h3>Contact</h3>
     <p>
       Enquiries, the thirty minute call, and any request about your own data all
-      reach the same role address — audit@, not a personal inbox. A booking form
-      on our own server will replace it; until then the button below opens your
-      mail client.
+      reach the same address, and it is answered by the person who signs the
+      work. A booking form on our own server will replace the mail link; until
+      then the button below opens your mail client.
     </p>
     <p>
             <a class="cta" href="mailto:barbora@quaesitor.eu?subject=Entry%20audit%20of%20our%20AI%20over%20the%20warehouse">Book a 30 minute review</a></p>
@@ -1422,8 +1453,8 @@
       so opening it makes no request to anyone but the server that served it.
     </p>
     <p>
-      The contact link is a plain mailto to a role address; nothing leaves this
-      page until you write and send it yourself. When the booking form arrives
+      The contact link is a plain mailto; nothing leaves this page until you
+      write and send it yourself. When the booking form arrives
       it will run on our own server, not a third party's.
     </p>
   </div>
@@ -1444,7 +1475,26 @@
     </ul>
   </div>
 
-  <div style="grid-column: 1 / -1">
+  <div class="wide">
+    <h3>What this is not</h3>
+    <p>
+      This is a technical audit of what an AI system answers over your data. It
+      is not a statutory audit under Act 93/2009 Coll. — we are not registered
+      auditors, and nothing we issue stands in for an auditor's report or an
+      opinion on your financial statements. It is not an accredited
+      certification: no certificate is issued and no accreditation is claimed.
+      Where the AI Act requires a conformity assessment for a high-risk system,
+      that is reserved for a notified body and is not what this is.
+    </p>
+    <p>
+      What we issue is a verification statement: our own finding, signed and
+      dated, naming what was measured, what the result was, and what it does
+      not cover. Its value is that the measurement behind it can be repeated by
+      anyone holding the suite — not that a regulator stands behind it.
+    </p>
+  </div>
+
+  <div class="wide">
     <h3>During an audit</h3>
     <p>
       The suite runs against your warehouse, in your infrastructure, under your
@@ -1478,8 +1528,10 @@
       and says so here because a page about checking claims should not quietly
       make one.
     </p>
-    <p>August 2026 &middot; 1248 measured answers across eight languages.<br>
-      Page built 2026-08-13 09:43 UTC · 2cf51462</p>
+    <p>August 2026 &middot; 1,248 measured answers across eight
+      languages on the retail pack, 2,313 in total across every
+      warehouse in the suite.<br>
+      Page built 2026-08-13 09:55 UTC · e831e98c</p>
   </div>
 </footer>
 
