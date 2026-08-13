@@ -1339,8 +1339,8 @@
       </p>
       <p>
         <b>Full audit</b> is the same work carried through to a fix: all four
-        layers, the test suite handed over in your repository, wired into your CI,
-        and a retest after you have remediated. It is the entry audit plus the
+        layers, the suite handed over in a repository you own, help wiring it
+        into your CI, and one retest after you have remediated. It is the entry audit plus the
         part where the findings actually get closed. The handed-over suite
         records the state as of the handover date — it is yours to run, but it
         does not cover traps, model versions or schema changes that arrive after.
@@ -1348,7 +1348,8 @@
       <p>
         <b>Continuous verification</b> is what keeps that from ageing. Models
         change under you, schemas drift, someone redefines a metric; the suite
-        runs on every change and its coverage is extended each quarter. The
+        is re-run on each change you tell us about, and its coverage is extended
+        each quarter. The
         signature holds only for a suite that is maintained — without it the
         verdict expires and the audit is a photograph with a date on it.
       </p>
@@ -1467,9 +1468,9 @@
   </div>
 
   <div>
-    <div class="tiers">      <div class="tier lead"><span><span class="tier-name">Entry audit</span><span class="tier-dur">3 weeks</span></span><span class="tier-what">Report with findings, priority, and quantified impact</span><span class="tier-price">6,000 to 10,000 EUR</span></div>
-      <div class="tier"><span><span class="tier-name">Full audit</span><span class="tier-dur">6 to 8 weeks</span></span><span class="tier-what">Report, test suite, CI integration, retest after remediation</span><span class="tier-price">12,000 to 20,000 EUR</span></div>
-      <div class="tier"><span><span class="tier-name">Continuous verification</span><span class="tier-dur">Monthly</span></span><span class="tier-what">Standing coverage against model and schema changes</span><span class="tier-price">1,000 to 2,500 EUR per month</span></div>
+    <div class="tiers">      <div class="tier lead"><span><span class="tier-name">Entry audit</span><span class="tier-dur">3 weeks</span></span><span class="tier-what">Report with findings, ranked by what each would cost if it reached a decision</span><span class="tier-price">6,000 to 10,000 EUR</span></div>
+      <div class="tier"><span><span class="tier-name">Full audit</span><span class="tier-dur">6 to 8 weeks</span></span><span class="tier-what">Report, the suite in your repository, help wiring it into your CI, and one retest after you have remediated</span><span class="tier-price">12,000 to 20,000 EUR</span></div>
+      <div class="tier"><span><span class="tier-name">Continuous verification</span><span class="tier-dur">Monthly</span></span><span class="tier-what">The suite re-run on each change you tell us about, and extended each quarter</span><span class="tier-price">1,000 to 2,500 EUR per month</span></div>
       <div class="tier"><span><span class="tier-name">Annual verification</span><span class="tier-dur">Yearly</span></span><span class="tier-what">A signed, dated verification statement naming what was measured and what it does not cover</span><span class="tier-price">4,000 to 8,000 EUR per year</span></div></div>
     <div class="step">
       <p>
@@ -1589,7 +1590,7 @@
     <p>August 2026 &middot; 1,248 measured answers across eight
       languages on the retail pack, 2,313 in total across every
       warehouse in the suite.<br>
-      Page built 2026-08-13 11:12 UTC · 210037c6</p>
+      Page built 2026-08-13 11:17 UTC · 67931b4a</p>
   </div>
 </footer>
 
