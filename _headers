@@ -2,3 +2,11 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN
+
+# Cloudflare served these as bare `text/html`, with no charset. With nosniff
+# set, the browser may not correct that by inspection, so it falls back to a
+# legacy single-byte encoding and every em-dash and curly quote in the copy
+# arrives as mojibake. The documents now declare utf-8 themselves; this states
+# it at the transport layer too, where it outranks the meta tag.
+/*.html
+  Content-Type: text/html; charset=utf-8
