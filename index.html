@@ -143,45 +143,6 @@
   .act.ghost, .cta.quiet { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.5); }
   .act.ghost:hover, .cta.quiet:hover { border-color: #fff; background: rgba(255, 255, 255, 0.12); }
 
-  /* The evidence, stated as plainly as a masthead states a date. */
-  /* The plate now reaches further left, so the figures stop before it rather
-     than being read off an engraving. */
-  .figs {
-    max-width: 56ch;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 2.5rem;
-    margin-top: clamp(1.5rem, 4vw, 3rem);
-    padding-top: 1.1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.35);
-    font-family: var(--mono);
-    font-size: var(--t-label);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.78);
-  }
-  .figs b { color: #fff; font-size: 0.95rem; letter-spacing: 0.04em; }
-  /* Red cannot be type here: on this blue even the palest tint reaches only
-     4.18:1. So the alarm is a mark beside white text, not the text itself. */
-  .figs .alarm { display: inline-flex; align-items: baseline; gap: 0.5rem; }
-  .figs .alarm::before {
-    content: ""; width: 0.5rem; height: 0.5rem; flex: none;
-    background: var(--hazard); box-shadow: 0 0 0 1px rgba(255,255,255,0.6);
-    transform: translateY(-0.05em);
-  }
-
-  .sign {
-    position: absolute;
-    right: var(--gutter);
-    bottom: clamp(1.25rem, 3vw, 2.25rem);
-    z-index: 1;
-    font-family: var(--prose);
-    font-size: clamp(1.1rem, 2.2vw, 1.75rem);
-    letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.85);
-  }
-  @media (max-width: 46rem) { .sign { display: none; } }
-
   /* ---- 2. the finding, at poster scale ---- */
 
   /* Two columns, so the number carries one side and the argument the other.
@@ -685,7 +646,7 @@
       }
 
       /* Rules draw rather than appear. */
-      .figs, .scope-note, .lg-note, .card {
+      .scope-note, .lg-note, .card {
         animation: liftin linear both;
         animation-timeline: view();
         animation-range: entry 25% entry 85%;
@@ -1037,14 +998,7 @@
             <a class="cta" href="mailto:barbora@quaesitor.eu?subject=Entry%20audit%20of%20our%20AI%20over%20the%20warehouse">Book a 30 minute review</a>
     <a class="act ghost" href="#cost">What it costs</a>
   </div>
-  <div class="figs">
-    <span><b>26</b> questions</span>
-    <span><b>eight</b> languages</span>
-    <span><b>1,248</b> measured answers</span>
-    <span class="alarm"><b>58%</b> wrong with nothing to show it</span>
-  </div>
   <p class="cover-line">A number can look right and still be wrong.</p>
-  <p class="sign">Independent audit</p>
 </header>
 
 <section class="answer2" id="answer">
@@ -1520,7 +1474,7 @@
     <p>August 2026 &middot; 1,248 measured answers across eight
       languages on the retail pack, 2,313 in total across every
       warehouse in the suite.<br>
-      Page built 2026-08-13 10:07 UTC · d2cbe3e7</p>
+      Page built 2026-08-13 10:13 UTC · 6895b92f</p>
   </div>
 </footer>
 
