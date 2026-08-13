@@ -122,6 +122,13 @@
     font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--ink-3);
   }
   .sign b { color: var(--ink); letter-spacing: 0.16em; text-transform: uppercase; }
+  /* The report carries the same fresco as the landing page and used to credit
+     nothing at all. Public domain owes no attribution; the page owes it. */
+  .rep-credit {
+    margin: 1rem 0 0; max-width: 62ch;
+    font-family: var(--mono); font-size: 0.68rem; line-height: 1.7;
+    letter-spacing: 0.04em; color: var(--ink-3);
+  }
   .todo { color: var(--hazard); }
   a { color: inherit; }
   .back {
@@ -700,17 +707,17 @@ WHERE exposed IS DISTINCT FROM verified;</code></pre>
   </p>
   <div class="fp-doc">
     <div class="fp-head"><span>Run fingerprint</span><span>Verbatim</span></div>
-      <div class="fp-row"><span class="fp-k">Model requested</span><span class="fp-v">ollama:llama3.1</span></div>
-      <div class="fp-row"><span class="fp-k">Model that actually answered</span><span class="fp-v">llama3.1</span></div>
-      <div class="fp-row"><span class="fp-k">Tool version</span><span class="fp-v">ollama ollama version is 0.31.1</span></div>
+      <div class="fp-row"><span class="fp-k">Model requested</span><span class="fp-v">opus</span></div>
+      <div class="fp-row"><span class="fp-k">Model that actually answered</span><span class="fp-v">claude-opus-5</span></div>
+      <div class="fp-row"><span class="fp-k">Tool version</span><span class="fp-v">claude 2.1.228 (Claude Code)</span></div>
       <div class="fp-row"><span class="fp-k">Questions, SHA-256</span><span class="fp-v">06ba10ccfbc8</span></div>
       <div class="fp-row"><span class="fp-k">Warehouse, SHA-256</span><span class="fp-v">2721daf1d050</span></div>
       <div class="fp-row"><span class="fp-k">System prompt, SHA-256</span><span class="fp-v">b07cf35e9ef0</span></div>
-      <div class="fp-row"><span class="fp-k">Input context, median</span><span class="fp-v">not reported</span></div>
-      <div class="fp-row"><span class="fp-k">Repeats per question</span><span class="fp-v">1</span></div>
-      <div class="fp-row"><span class="fp-k">Model calls</span><span class="fp-v">10</span></div>
-      <div class="fp-row"><span class="fp-k">Started, UTC</span><span class="fp-v">2026-08-13T08:09:16+00:00</span></div>
-      <div class="fp-row"><span class="fp-k">Cost of the run</span><span class="fp-v">—</span></div>
+      <div class="fp-row"><span class="fp-k">Input context, median</span><span class="fp-v">30,418 tokens, of which our prompt ~1,819</span></div>
+      <div class="fp-row"><span class="fp-k">Repeats per question</span><span class="fp-v">3</span></div>
+      <div class="fp-row"><span class="fp-k">Model calls</span><span class="fp-v">30</span></div>
+      <div class="fp-row"><span class="fp-k">Started, UTC</span><span class="fp-v">2026-08-13T08:04:12+00:00</span></div>
+      <div class="fp-row"><span class="fp-k">Cost of the run</span><span class="fp-v">1.91 USD</span></div>
   </div>
 
   <h2><span class="n">6.</span> What we would recommend</h2>
@@ -754,10 +761,14 @@ WHERE exposed IS DISTINCT FROM verified;</code></pre>
   <div class="sign">
     <b>Quaesitor</b>
     <span>Independent audit of AI answers over a data warehouse</span>
-    <span>Report generated 2026-08-13 09:55 UTC · b76222ab &middot; run of August 2026</span>
+    <span>Report generated 2026-08-13 10:07 UTC · f8ba4080 &middot; run of August 2026</span>
     <span>Ing. Barbora Šandová, MFDA &middot; IČ 17423830</span>
     <span>Fyzická osoba podnikající dle živnostenského zákona</span>
   </div>
+  <p class="rep-credit">
+    The garden fresco is from the Villa of Livia, public domain. Type set in
+    JetBrains Mono under the SIL Open Font License 1.1.
+  </p>
 </div>
 
 <script>
