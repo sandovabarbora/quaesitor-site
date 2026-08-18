@@ -1,0 +1,9 @@
+# quaesitor.eu
+# Everything here is meant to be read, quoted and checked, including by
+# AI crawlers: the argument travels further as a citation than as a visit.
+# That is a decision, not an omission — restrict a bot here if it changes.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://quaesitor.eu/sitemap.xml
