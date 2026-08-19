@@ -264,6 +264,14 @@
 
   .wordmark { font-weight: 700; letter-spacing: -0.01em; }
   .wordmark em { font-style: normal; color: var(--verified); }
+
+  /* A report is mostly tables and SQL, and both are wider than a phone. Each
+     gets its own scroll container so the page itself never moves sideways;
+     measured at 320, 390, 768 and 1280. */
+  table { display: block; max-width: 100%; overflow-x: auto; }
+  pre, .f-sql { max-width: 100%; overflow-x: auto; }
+  code { overflow-wrap: anywhere; }
+  .f-q, .f-fix, .fp-v, .rl-label { overflow-wrap: anywhere; }
 </style>
 
 <div class="modebar">
@@ -765,7 +773,7 @@ WHERE exposed IS DISTINCT FROM verified;</code></pre>
   <div class="sign">
     <span class="wordmark">qu<em>æ</em>sitor<em>*</em></span>
     <span>Independent review of AI answers over a data warehouse</span>
-    <span>Report generated 2026-08-19 18:57 UTC · 0176d559 &middot; run of August 2026</span>
+    <span>Report generated 2026-08-19 19:11 UTC · e10a23c4 &middot; run of August 2026</span>
     <span>Ing. Barbora Šandová, MFDA &middot; Company ID (IČO) 17423830</span>
     <span>Sole trader registered in the Czech Trade Licensing Register</span>
   </div>
