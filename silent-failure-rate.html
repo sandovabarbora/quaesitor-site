@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Silent-failure rate — Quaesitor</title>
+<meta name="description" content="Two frontier models, the same number of right answers, opposite failure behaviour. A measurement of silent failures in text-to-SQL over five data warehouses.">
+<link rel="canonical" href="https://quaesitor.eu/silent-failure-rate">
+<style>
+  :root{
+    --ink:#1a1a1a; --paper:#fbfaf7; --muted:#6b6b6b;
+    --line:#e4e1da; --bad:#a3341f; --accent:#1a1a1a;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--ink:#e9e7e2;--paper:#141414;--muted:#9a968e;--line:#2a2a2a;--bad:#e0714f;}
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font:17px/1.6 Georgia,"Iowan Old Style",serif;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:64px 24px 96px}
+  h1{font-size:2.1rem;line-height:1.15;letter-spacing:-.02em;margin:0 0 .2em;font-family:system-ui,sans-serif}
+  h2{font-size:1.3rem;margin:2.6em 0 .6em;letter-spacing:-.01em;font-family:system-ui,sans-serif}
+  .lede{font-size:1.15rem;color:var(--muted);margin:.4em 0 0}
+  p{margin:1em 0}
+  strong{font-weight:700}
+  .def{border-left:3px solid var(--ink);padding:.1em 0 .1em 1em;margin:1.8em 0;font-size:1.05rem}
+  table{width:100%;border-collapse:collapse;margin:1.4em 0;font-size:.9rem;font-family:system-ui,sans-serif}
+  th,td{text-align:left;padding:.5em .5em;border-bottom:1px solid var(--line)}
+  th{font-weight:600;color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+  td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .bad{color:var(--bad);font-weight:700}
+  .decl{font-weight:700}
+  code{font-family:var(--mono);font-size:.86em;background:rgba(128,128,128,.12);padding:.1em .35em;border-radius:3px}
+  pre{background:rgba(128,128,128,.10);padding:1em;border-radius:6px;overflow:auto;font-family:var(--mono);font-size:.82rem;line-height:1.5}
+  .note{font-size:.85rem;color:var(--muted);margin-top:.4em}
+  footer{margin-top:4em;padding-top:1.4em;border-top:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+  a{color:inherit}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <h1>Silent-failure rate</h1>
+  <p class="lede">Two frontier models, the same number of right answers, opposite failure behaviour. What 650 questions over five warehouses say about text-to-SQL you can trust.</p>
+
+  <p class="def"><strong>A silent failure</strong> is an answer that runs without error, looks plausible, and is wrong &mdash; with nothing downstream carrying the signal that it should not be trusted. The <strong>silent-failure rate</strong> is the share of answers that fail this way. It is not accuracy. It gets worse as models improve, because trust grows faster than correctness does.</p>
+
+  <p>Every benchmark of text-to-SQL reports accuracy. Accuracy is the number that gets quoted and put in datasheets. For anyone actually deploying one of these systems, it is close to useless on its own &mdash; because it collapses two very different failures, declining and being confidently wrong, into the same "not correct".</p>
+
+  <h2>Two models, same correctness, opposite behaviour</h2>
+  <p>Two frontier models (A and B), the same business questions over a warehouse, a hand-written verified query behind every one. Eight languages, three repeats each.</p>
+
+  <table>
+    <thead>
+      <tr><th>Pack</th><th>Model</th><th class="n">Answers</th><th class="n">Correct</th><th class="n">Silently wrong</th><th class="n">Declined</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Retail</td><td>A</td><td class="n">208</td><td class="n">13</td><td class="n bad">146</td><td class="n decl">0</td></tr>
+      <tr><td>Retail</td><td>B</td><td class="n">208</td><td class="n">15</td><td class="n bad">108</td><td class="n decl">59</td></tr>
+      <tr><td>Subscriptions</td><td>A</td><td class="n">72</td><td class="n">23</td><td class="n bad">48</td><td class="n decl">1</td></tr>
+      <tr><td>Subscriptions</td><td>B</td><td class="n">72</td><td class="n">23</td><td class="n bad">29</td><td class="n decl">20</td></tr>
+    </tbody>
+  </table>
+
+  <p>Read the <strong>Correct</strong> column first. On subscriptions the two models are identical, 23 each. On retail they are within two answers, 13 against 15. Whatever these models know about reading a warehouse, they know roughly the same amount of it.</p>
+  <p>Now the last column. One model declined <strong>once in 280 questions</strong>. The other declined <strong>79 times</strong>. The models do not differ in what they know. They differ in what they do when they don't know: one answers anyway, the other stops.</p>
+  <p>That is the whole point. A model that declines produces a visible non-answer &mdash; someone notices and escalates; the cost is friction. A model that answers anyway produces a number that looks exactly like a right answer, and flows into a slide, a board pack, a decision. Choosing the "better" model does not fix this. It relocates it.</p>
+
+  <h2>Five warehouses, and the pattern that only shows up across them</h2>
+  <p>The fair objection is that we designed those two warehouses and planted those traps. So the same method was run against a standard schema and against data nobody designed at all.</p>
+
+  <table>
+    <thead>
+      <tr><th>Warehouse</th><th>What it is</th><th class="n">Silently wrong (A / B)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Retail</td><td>traps we planted</td><td class="n bad">70% / 52%</td></tr>
+      <tr><td>Subscriptions</td><td>traps we planted</td><td class="n bad">67% / 40%</td></tr>
+      <tr><td>TPC-DS</td><td>standard schema, generated data</td><td class="n bad">30%</td></tr>
+      <tr><td>NYC taxi</td><td>real operations, 2.96M trips</td><td class="n bad">80% / 80%</td></tr>
+      <tr><td>CRM + ERP</td><td>two systems disagreeing</td><td class="n bad">50% / 20%</td></tr>
+    </tbody>
+  </table>
+  <p class="note">A / B are the same two models as above. Retail and subscriptions ran in eight languages (200+ answers each); TPC-DS, taxi and CRM+ERP ran in Czech only and rest on ~30 answers each &mdash; directional, not like-for-like. Nothing about the three public warehouses is ours except the questions.</p>
+
+  <p><strong>The cleaner and more designed the data, the better the models look.</strong> On TPC-DS &mdash; a schema a committee standardised in the 1990s, generated by DuckDB with one command &mdash; 30% silently wrong, and that number has no excuse attached. On a live taxi meter, 80%, both models identically, and the cautious one that declined 59 times on our retail pack declined <em>zero</em> times here. The synthetic warehouse was not unfairly hard. It was easier than reality.</p>
+
+  <h2>The one worth sitting with</h2>
+  <p>On the taxi data, asked for the average tip:</p>
+  <pre>SELECT AVG(tip_amount) FROM trips   -- averages over cash trips, where the tip is structurally 0</pre>
+  <p>Tips do not exist for the 439,191 cash journeys &mdash; the meter never sees them. "What is the average tip?" is not a hard question. It is an <strong>unanswerable</strong> one, and both models answered it, with a clean number and no warning.</p>
+
+  <h2>Honest limits</h2>
+  <p>This measures <strong>bare models</strong> given a schema and a question &mdash; no semantic layer, no tools, no retrieval, no retry. A deployed product (Genie, Cortex Analyst, a curated internal assistant) sits on exactly the scaffolding this test omits, and should score considerably better. That does not make the finding go away; it moves it. "15% silently wrong in a production tool" is a <em>stronger</em> claim than 70% on a bare model, because it has no excuse attached &mdash; and measuring that needs the vendor's account, not mine.</p>
+  <p>Two of the packs' traps were found to be absent from the data during construction, which would have scored a wrong query as correct. Both are now checked by tests rather than by intention. A benchmark whose gold answers cannot be challenged is just a different kind of confident number.</p>
+
+  <h2>Check it</h2>
+  <p>Three of the five warehouses are public and named. TPC-DS is generated by DuckDB with one command; the NYC taxi records are published by the city's Taxi and Limousine Commission; the CRM and ERP extracts come from a public medallion project. Anyone can stand them up and ask their own model the same questions. The suite &mdash; the questions, both queries behind each one, the builders, and the runs with their fingerprints &mdash; is what a client is handed at the end of an audit. If you find a verified query that is wrong, that is the most useful thing you could tell us; it has happened, and where it did, the fix is in the material.</p>
+
+  <footer>
+    <p>Quaesitor audits AI systems that answer business questions over data warehouses &mdash; independently, with the verified queries written by hand, and a signature on the result. The measurement above is what an audit does to your own warehouse instead of a synthetic one. <a href="https://quaesitor.eu">quaesitor.eu</a></p>
+  </footer>
+
+</main>
+</body>
+</html>

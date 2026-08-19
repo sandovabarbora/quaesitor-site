@@ -11,6 +11,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://quaesitor.eu/silent-failure-rate</loc>
+    <lastmod>2026-08-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://quaesitor.eu/report-built.html</loc>
     <lastmod>2026-08-18</lastmod>
     <priority>0.6</priority>
