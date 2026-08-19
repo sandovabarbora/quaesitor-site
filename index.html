@@ -1263,6 +1263,29 @@
       </p>
     </details>
     <details>
+      <summary><span>We already have an AI governance or observability tool.</span></summary>
+      <p>
+        Those measure how AI is used: who asked what, whether a prompt broke a
+        policy, whether data left the building, latency and cost. Necessary, and
+        a different question. None of them decides whether the number that came
+        back is the right one, because that needs the metric's definition, the
+        grain and the data model, not the traffic. They tell you the assistant
+        stayed within the rules. They do not tell you the answer was true.
+      </p>
+    </details>
+    <details>
+      <summary><span>We're putting a semantic layer in front of it.</span></summary>
+      <p>
+        Good; it is the best single thing you can do. A semantic layer turns some
+        silent failures into visible ones, because a question it has no definition
+        for comes back as a refusal instead of a plausible wrong number. It does
+        not close the gap, it moves it up a level: nobody has checked that the
+        definitions in the layer match the data, or that the model used the metric
+        it was handed instead of writing its own SQL around it. The layer is a
+        claim about meaning. This is whether the claim is true.
+      </p>
+    </details>
+    <details>
       <summary><span>Our vendor has benchmarked it.</span></summary>
       <p>
         In English, on a warehouse that is not yours, by the party being measured.
@@ -1596,7 +1619,7 @@
       A technical audit of what an AI system answers over your data: not a
       statutory audit under Act 93/2009 Coll., not an accredited certification,
       and not a conformity assessment under the AI Act. What we issue is a
-      verification statement: our own finding, signed and dated.
+      verification statement: our own finding, signed and dated. It is the kind of independent evidence an accuracy-and-robustness control (NIST AI RMF, ISO 42001) expects to see; not the certificate, and it does not pretend to be.
     </p>
     <p><a class="more" href="/privacy">Privacy and legal &rarr;</a></p>
   </div>
