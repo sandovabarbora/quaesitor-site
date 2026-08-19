@@ -25,4 +25,14 @@
     <lastmod>2026-08-18</lastmod>
     <priority>0.2</priority>
   </url>
+  <url>
+    <loc>https://quaesitor.eu/why</loc>
+    <lastmod>2026-08-19</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://quaesitor.eu/documentation-finding</loc>
+    <lastmod>2026-08-19</lastmod>
+    <priority>0.7</priority>
+  </url>
 </urlset>
