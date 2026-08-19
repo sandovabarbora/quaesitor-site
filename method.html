@@ -105,6 +105,8 @@ section{padding:clamp(3rem,6vw,5rem) 1.5rem; border-bottom:1px solid var(--rule)
    fades in over the plate it was built from reads as the plate resolving,
    which is the one transition worth having here. */
 .hero-canvas{opacity:0; transition:opacity 900ms ease; will-change:transform}
+.hero-canvas.is-live{opacity:1}
+.hero-statue.is-replaced{visibility:hidden}
 .hero-body{position:relative; display:flex; flex-direction:column; gap:1.5rem;
   max-width:640px}
 .price-line{font-family:var(--mono); font-size:var(--t-label);
@@ -349,10 +351,10 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
   .navlinks .cta{flex:1 1 100%; text-align:center; margin-top:0.5rem}
   .nav{gap:0.75rem}
 
-  /* The plate ran under the headline. Pushed out of the text column and
-     dropped in weight, it stays a presence without competing with the one
-     sentence the page exists to land. */
-  .hero-statue,.hero-canvas{width:64vw; right:-24%; top:-7%; opacity:0.42}
+  /* No plate on a phone. There is one column, the headline and the lede fill
+     it, and anything behind them is either invisible or in the way. It was in
+     the way. The mark in the nav carries the identity here. */
+  .hero-statue,.hero-canvas{display:none}
   .hero-body{gap:1.25rem}
 }
 </style>
@@ -593,7 +595,7 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
       <div class="fp-row"><span class="fp-k">Cost of the run</span><span class="fp-v">4.73 USD</span></div></div>
     </div>
   </div>
-  <p class="footnote">Page built 2026-08-19 19:43 UTC · 235c56cc · © 2026 Ing. Barbora Šandová, MFDA</p>
+  <p class="footnote">Page built 2026-08-19 19:52 UTC · 2355995d · © 2026 Ing. Barbora Šandová, MFDA</p>
 </footer>
 
 </div>
