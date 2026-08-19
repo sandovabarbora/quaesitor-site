@@ -98,15 +98,15 @@ section{padding:clamp(3rem,6vw,5rem) 1.5rem; border-bottom:1px solid var(--rule)
 /* Anchored to the top of the band, not hung off the bottom: the head is the
    part of the plate worth seeing, and bottom-anchoring pushed it out of frame
    and left the drapery filling the corner. */
-.hero-statue,.hero-canvas{position:absolute; right:-40px; top:-4%;
-  width:min(460px,52vw); aspect-ratio:1/1.42; pointer-events:none}
-.hero-statue{opacity:0.92; will-change:transform; height:auto}
-/* Transparent until the point cloud has something to show. A canvas that
-   fades in over the plate it was built from reads as the plate resolving,
-   which is the one transition worth having here. */
-.hero-canvas{opacity:0; transition:opacity 900ms ease; will-change:transform}
-.hero-canvas.is-live{opacity:1}
-.hero-statue.is-replaced{visibility:hidden}
+/* The plate itself. A point cloud was built from these pixels and rendered in
+   WebGL; it read as dotted noise rather than as the engraving, so the
+   illustration is simply the illustration. */
+.hero-statue{position:absolute; right:-40px; top:-4%; width:min(460px,52vw);
+  height:auto; pointer-events:none; opacity:0.92; will-change:transform;
+  /* The plate ends on a straight horizontal cut. Faded, it reads as the figure
+     leaving the frame rather than as an image that ran out. */
+  -webkit-mask-image:linear-gradient(to bottom, #000 68%, transparent 97%);
+  mask-image:linear-gradient(to bottom, #000 68%, transparent 97%)}
 .hero-body{position:relative; display:flex; flex-direction:column; gap:1.5rem;
   max-width:640px}
 .price-line{font-family:var(--mono); font-size:var(--t-label);
@@ -354,7 +354,7 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
   /* No plate on a phone. There is one column, the headline and the lede fill
      it, and anything behind them is either invisible or in the way. It was in
      the way. The mark in the nav carries the identity here. */
-  .hero-statue,.hero-canvas{display:none}
+  .hero-statue{display:none}
   .hero-body{gap:1.25rem}
 }
 </style>
@@ -574,7 +574,7 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
       <div class="fp-row"><span class="fp-k">Cost of the run</span><span class="fp-v">4.73 USD</span></div></div>
     </div>
   </div>
-  <p class="footnote">Page built 2026-08-19 19:52 UTC · 7503a9a4 · © 2026 Ing. Barbora Šandová, MFDA</p>
+  <p class="footnote">Page built 2026-08-19 20:27 UTC · 91cebd86 · © 2026 Ing. Barbora Šandová, MFDA</p>
 </footer>
 
 </div>
