@@ -11,6 +11,8 @@ degrades the type rather than the page.
 | File | What it is |
 |---|---|
 | `index.html` | the landing page |
+| `method.html` | the four layers, the packs, the languages finding |
+| `faq.html` | the thirteen objections |
 | `report-built.html` | the sample review report it links to |
 | `privacy.html` | privacy and legal notice |
 | `documentation-finding.html` | published measurement: documentation made the errors smaller, not rarer |
@@ -31,8 +33,8 @@ the root document.
 
 ## Updating
 
-`index.html`, `privacy.html`, `report-built.html` and
-`documentation-finding.html` are generated from templates in the private
+`index.html`, `method.html`, `faq.html`, `privacy.html`, `report-built.html`
+and `documentation-finding.html` are generated from templates in the private
 project repository (`site/build.py` and `site/finding.py`), which read the
 measured run outputs so no figure on a page can drift from the run that
 produced it. The build fails rather than publish a sentence its runs no longer
