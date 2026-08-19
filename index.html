@@ -174,14 +174,22 @@ section{padding:clamp(3rem,6vw,5rem) 1.5rem; border-bottom:1px solid var(--rule)
 /* Languages ------------------------------------------------------------ */
 .bars{background:var(--slate); color:var(--parchment); padding:2rem 1.5rem}
 .bars h2,.bars h3{color:var(--parchment)}
-.lg-row{display:flex; align-items:center; gap:0.75rem;
-  font-family:var(--mono); font-size:12px; padding:0.25rem 0}
-.lg-lang{width:2.5rem; color:#9EAFAB; flex:none}
-.lg-model{width:5rem; color:#9EAFAB; flex:none}
-.lg-bar{height:16px; background:#9EAFAB; transform-origin:left;
-  animation:growX 0.9s ease both}
-.lg-bar.bad{background:#C97B6A}
-.lg-n{font-variant-numeric:tabular-nums}
+/* .lg-model is a header above the rows, not a cell inside one, and .lg-bar is
+   a track whose <i> carries the width. Styling them as cells wrapped the model
+   name into a four-line column and painted every bar full width. */
+.lg-model{display:flex; justify-content:space-between; gap:1rem;
+  font-family:var(--mono); font-size:var(--t-micro); letter-spacing:0.14em;
+  text-transform:uppercase; color:#9EAFAB; padding:1.25rem 0 0.5rem;
+  border-bottom:1px solid rgba(239,235,223,0.18); margin-bottom:0.5rem}
+.lg-row{display:grid; grid-template-columns:2rem 1fr 2.5rem 1fr 3rem;
+  align-items:center; gap:0.5rem; font-family:var(--mono); font-size:12px;
+  padding:0.2rem 0}
+.lg-lang{color:#9EAFAB}
+.lg-bar{display:block; height:14px; width:100%;
+  background:rgba(158,175,171,0.22)}
+.lg-bar i{display:block; height:100%; background:#9EAFAB; transform-origin:left}
+.lg-bar.bad i{background:#C97B6A}
+.lg-n{font-variant-numeric:tabular-nums; text-align:right}
 .lg-n.bad{color:#C97B6A}
 
 /* Docs strip ----------------------------------------------------------- */
@@ -294,7 +302,7 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
   @media (prefers-reduced-motion: no-preference){
     .reveal{animation:fadeUp linear both; animation-timeline:view();
       animation-range:entry 0% entry 45%}
-    .lg-bar{animation:growX 0.9s ease both; animation-timeline:view();
+    .lg-bar i{animation:growX 0.9s ease both; animation-timeline:view();
       animation-range:entry 0% entry 60%}
     .tier{animation:fadeUp linear both; animation-timeline:view();
       animation-range:entry 0% entry 50%}
@@ -863,7 +871,7 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
       <div class="fp-row"><span class="fp-k">Cost of the run</span><span class="fp-v">4.73 USD</span></div></div>
     </div>
   </div>
-  <p class="footnote">Page built 2026-08-19 19:30 UTC · ac483e31 · © 2026 Ing. Barbora Šandová, MFDA</p>
+  <p class="footnote">Page built 2026-08-19 19:31 UTC · 43e16eeb · © 2026 Ing. Barbora Šandová, MFDA</p>
 </footer>
 
 </div>
