@@ -241,6 +241,46 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
 .entity{font-family:var(--mono); font-size:var(--t-micro); line-height:1.9}
 .fingerprint .fp-row{padding:0.125rem 0}
 
+/* Ordered lists that carry meaning: the four layers are a sequence and the
+   moments are a count, so the numeral is content, not decoration. */
+.ord-list{list-style:none; margin:0; padding:0; display:grid; gap:1.25rem}
+.ord-list li{display:grid; grid-template-columns:2.75rem 1fr;
+  column-gap:1rem; row-gap:0.25rem}
+.ord{grid-column:1; grid-row:1 / span 2; font-family:var(--mono);
+  font-size:var(--t-micro); letter-spacing:0.16em; color:var(--blue);
+  padding-top:0.2rem}
+.ord-h{grid-column:2; font-weight:700}
+.ord-p{grid-column:2; font-size:var(--t-small); color:var(--ink-2)}
+.moments .ord{grid-row:1}
+.moments .ord-p{grid-row:1}
+.chip{font-family:var(--mono); font-size:var(--t-label);
+  background:var(--paper-raised); border:1px solid var(--rule);
+  padding:0.2rem 0.5rem}
+
+.packs{display:grid; gap:1rem; grid-template-columns:1fr}
+.pack{background:var(--paper-raised); border:1px solid var(--rule);
+  padding:1.25rem 1.375rem}
+.pack h3{font-size:var(--t-body)}
+.pack-n{font-family:var(--mono); font-size:var(--t-sub); font-weight:700}
+.pack-lab{display:block; font-family:var(--mono); font-size:var(--t-micro);
+  letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-2)}
+.pack-sub{font-size:var(--t-small); color:var(--ink-2)}
+.pack-tr{font-family:var(--mono); font-size:var(--t-micro); color:var(--blue)}
+.traps-wrap{font-size:var(--t-small); color:var(--ink-2)}
+.traps{margin:0; padding:0; list-style:none; display:grid; gap:0.75rem}
+.traps dfn{font-style:normal; font-family:var(--mono);
+  font-size:var(--t-label); color:var(--ink)}
+
+#faq .method{border-top:1px solid var(--rule); border-bottom:0}
+#faq .method:last-of-type{border-bottom:1px solid var(--rule)}
+
+@media (min-width:48rem){
+  .packs{grid-template-columns:repeat(2,1fr)}
+}
+@media (min-width:64rem){
+  .packs{grid-template-columns:repeat(4,1fr)}
+}
+
 @keyframes fadeUp{from{opacity:0; transform:translateY(28px)} to{opacity:1; transform:none}}
 @keyframes growX{from{transform:scaleX(0)} to{transform:scaleX(1)}}
 @keyframes blink{0%,49%{opacity:1} 50%,100%{opacity:0}}
@@ -286,10 +326,11 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
     <span class="wordmark">qu<em>æ</em>sitor<em>*</em></span>
   </span>
   <span class="navlinks">
+    <a href="#scope">Method</a>
     <a href="#report">Findings</a>
     <a href="#pricing">Pricing</a>
-    <a href="#languages">Languages</a>
-    <a href="#limits">What we do not claim</a>
+    <a href="#free">Open source</a>
+    <a href="#faq">FAQ</a>
     <a class="cta" href="mailto:barbora@quaesitor.eu?subject=Entry%20audit%20of%20our%20AI%20over%20the%20warehouse">Book a 30 minute review</a>
   </span>
 </nav>
@@ -389,38 +430,25 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
             </li>
             <p class="rl-verdict"><span>Five of these six numbers are wrong. Not one of them failed, and every report built on them inherits the error.</span></p>
     </div>
-    <details class="method">
-      <summary><span class="kicker">Method</span>
-        <span>What makes a query verified?</span></summary>
-      <div class="stack-tight">
-        <p>Not that we knew the right answer in advance. On your warehouse
-        nobody does, and if somebody did there would be nothing to review.
-        Verified means the number has a provenance you can follow, built from
-        three things in this order.</p>
-        <p><b>The definition comes from you, in writing.</b> We do not decide
-        what revenue means in your company. Whoever owns the metric states it,
-        and the question does not enter the suite until they have. A surprising
-        amount of the value is here: it is often written down nowhere, and two
-        departments answer differently. That disagreement is a finding before a
-        line of SQL exists.</p>
-        <p><b>The query implements that definition</b>, and the mapping between
-        the two is read through with the person who owns it, clause by clause.
-        What is checked at this stage is narrow and worth stating: that the
-        query says what the definition says.</p>
-        <p><b>The result is anchored.</b> It is reconciled against a number you
-        already trust and that was produced independently of us: a closed
-        month, a filed statement, an ERP total, a report somebody signs. Where
-        no such anchor exists, the query is written twice, independently, and
-        the two are compared. If they disagree, that is a finding, and it is
-        settled before the question is used to judge anything.</p>
-        <p>The part that is fair to hold against us:
-        <b>if a verified query is wrong</b>, every finding built on it is
-        wrong, and it looks exactly
-        like one that is right. That is our own silent failure, and there is no
-        clever defence against it. Only the suite being yours, in your
-        repository, with every query readable and re-runnable.</p>
-      </div>
-    </details>
+
+  </div>
+</section>
+
+<section id="scope">
+  <div class="stack reveal">
+    <p class="kicker">What gets inspected</p>
+    <h2>Four layers, in this order.</h2>
+    <p class="note">The entry review covers the first two and outlines the third.
+    Each layer answers a different question, and they are ordered by how
+    expensive the failure is to discover late.</p>
+    <ol class="ord-list">
+      <li><span class="ord">I</span><span class="ord-h">Is the answer right?</span><span class="ord-p">Verified SQL written independently for every question, then the same question in five wordings. Five different numbers means the system is unreliable even if one of them is correct.</span></li>
+      <li><span class="ord">II</span><span class="ord-h">Was that person allowed to see it?</span><span class="ord-p">Row security bypassed through a join path, an individual recovered from an aggregate, a masked column derived from a computed one, identity taken from the prompt instead of from authentication.</span></li>
+      <li><span class="ord">III</span><span class="ord-h">Can it be talked around?</span><span class="ord-p">Instructions planted in the question, and instructions planted in the data itself. Query results come back into the model's context, so a row in a table can carry an instruction.</span></li>
+      <li><span class="ord">IV</span><span class="ord-h">Does it still hold next quarter?</span><span class="ord-p">The suite from the first three layers is frozen and run on every change to a prompt, a model, a schema or a definition. Without this a review is a photograph, not a control.</span></li>
+    </ol>
+    <p class="note">Layer one is where the money is. Layer four is why it stays
+    found. A review that is not repeated is a rumour with a date on it.</p>
   </div>
 </section>
 
@@ -437,6 +465,22 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
       <div class="tier"><span><span class="tier-name">Continuous verification</span><span class="tier-dur">Monthly</span></span><span class="tier-what">The suite re-run on each change you tell us about, and extended each quarter</span><span class="tier-price">By arrangement</span></div>
       <div class="tier"><span><span class="tier-name">Annual verification</span><span class="tier-dur">Yearly</span></span><span class="tier-what">A signed, dated verification statement naming what was measured and what it does not cover</span><span class="tier-price">By arrangement</span></div>
     </div>
+  </div>
+</section>
+
+<section id="when">
+  <div class="stack reveal">
+    <p class="kicker">When teams call us</p>
+    <h2>Usually at one of these moments.</h2>
+    <ol class="ord-list moments">
+      <li><span class="ord">01</span><span class="ord-p">Someone asked where a number came from, and putting the answer together took three days.</span></li>
+      <li><span class="ord">02</span><span class="ord-p">You are about to open the assistant to everyone, not just the people who can read SQL.</span></li>
+      <li><span class="ord">03</span><span class="ord-p">An auditor, a regulator or a customer asked how you know the figures are right, and you would like a better answer than trust.</span></li>
+      <li><span class="ord">04</span><span class="ord-p">You want to be sure a wrong number would be caught before it reaches a report, a forecast or an invoice.</span></li>
+    </ol>
+    <p class="note">None of these means anything is broken. They are all the
+    same gap: the answer arrives without anything attached that would let you
+    check it. That gap is new, and it is closeable.</p>
   </div>
 </section>
 
@@ -496,6 +540,108 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
   </div>
 </section>
 
+<section id="packs">
+  <div class="stack reveal">
+    <p class="kicker">The traps</p>
+    <h2>The traps are not the same in every business.</h2>
+    <p class="note">Five packs, each written against a warehouse of a
+    different shape, because a trap that bites a retailer is not the one that
+    bites a subscription business. Measured on the subscription pack across eight languages: one model declined 20 of 72 questions rather than answer them. The other declined 1, and 48 of its 72 answers were wrong with nothing in the answer to show it. Both got the same number right. The difference between them is not what they know, it is what they do when they do not know.</p>
+    <div class="packs">  <div class="pack">
+    <p class="pack-n">26</p>
+    <p class="pack-lab">failure modes</p>
+    <h3>Orders and retail</h3>
+    <p class="pack-sub">Orders, items, returns, currencies, late-arriving rows</p>
+    <p class="pack-tr">among them: active customer, cohort definition, currency mixing</p>
+  </div>
+  <div class="pack">
+    <p class="pack-n">10</p>
+    <p class="pack-lab">failure modes</p>
+    <h3>Two systems that disagree</h3>
+    <p class="pack-sub">CRM against ERP: one customer in three key formats, one country in three spellings</p>
+    <p class="pack-tr">among them: dirty categories, dirty categories count, encoding mismatch</p>
+  </div>
+  <div class="pack">
+    <p class="pack-n">9</p>
+    <p class="pack-lab">failure modes</p>
+    <h3>Subscriptions and SaaS</h3>
+    <p class="pack-sub">Plans, invoices, seats, trials, cancellations, plan changes</p>
+    <p class="pack-tr">among them: account vs subscription, annual not amortised, cancel at period end</p>
+  </div>
+  <div class="pack">
+    <p class="pack-n">10</p>
+    <p class="pack-lab">failure modes</p>
+    <h3>Transport and mobility</h3>
+    <p class="pack-sub">Real trip records: disputed fares, zero-distance journeys, tips a cash meter never sees</p>
+    <p class="pack-tr">among them: impossible duration, null semantics, outlier contamination</p>
+  </div>
+  <div class="pack">
+    <p class="pack-n">10</p>
+    <p class="pack-lab">failure modes</p>
+    <h3>The TPC-DS standard</h3>
+    <p class="pack-sub">Three sales channels, snowflake dimensions, type-2 history</p>
+    <p class="pack-tr">among them: active customer, fan out join, grain mismatch</p>
+  </div></div>
+    <details class="method">
+      <summary><span class="kicker">Catalogue</span>
+        <span>Twenty-six traps, and what each one is</span></summary>
+      <div class="traps-wrap">        <details class="traps-wrap">
+          <summary><b>26 traps</b> active customer, cohort definition, currency mixing, dirty categories, duplicate facts, fan out join, filter before aggregate, fx rate date, grain mismatch, inclusive bounds, late arriving data, null in filter, null semantics, partial returns, percent units, ratio of means, returns ignored, scd duplicates, shipping currency, soft delete, test accounts, timezone, trailing vs calendar, unknown member, week numbering, wrong denominator</summary>
+          <ul class="traps">
+            <li><dfn>active customer</dfn><span>Defined one way in one department and another way elsewhere</span></li>
+            <li><dfn>cohort definition</dfn><span>First purchase against registration against first visit</span></li>
+            <li><dfn>currency mixing</dfn><span>Currencies summed together without conversion</span></li>
+            <li><dfn>dirty categories</dfn><span>The same category written three ways</span></li>
+            <li><dfn>duplicate facts</dfn><span>A batch loaded twice, so every sum is a little too big</span></li>
+            <li><dfn>fan out join</dfn><span>Rows multiplied across a one to many join, inflating the sum</span></li>
+            <li><dfn>filter before aggregate</dfn><span>Filtered per row when the condition belongs after the sum</span></li>
+            <li><dfn>fx rate date</dfn><span>Today's rate applied to last year's transactions</span></li>
+            <li><dfn>grain mismatch</dfn><span>Counted per line when the question asked per order</span></li>
+            <li><dfn>inclusive bounds</dfn><span>Inclusive against exclusive edges of a period</span></li>
+            <li><dfn>late arriving data</dfn><span>A query over a period that is not closed yet</span></li>
+            <li><dfn>null in filter</dfn><span>Comparison with null is unknown, so the row quietly leaves</span></li>
+            <li><dfn>null semantics</dfn><span>A null inside an aggregate against a null inside a filter</span></li>
+            <li><dfn>partial returns</dfn><span>Whole lines counted as returned when only part came back</span></li>
+            <li><dfn>percent units</dfn><span>A percentage stored as whole numbers, read as a fraction</span></li>
+            <li><dfn>ratio of means</dfn><span>The average of ratios instead of the ratio of sums</span></li>
+            <li><dfn>returns ignored</dfn><span>Revenue counted before returns are deducted</span></li>
+            <li><dfn>scd duplicates</dfn><span>Repeated records from history tables or from reprocessing</span></li>
+            <li><dfn>shipping currency</dfn><span>Items converted, shipping left in the original currency</span></li>
+            <li><dfn>soft delete</dfn><span>Cancelled rows that were flagged rather than removed</span></li>
+            <li><dfn>test accounts</dfn><span>Internal and test orders never filtered out of the totals</span></li>
+            <li><dfn>timezone</dfn><span>UTC against local time on a daily grain</span></li>
+            <li><dfn>trailing vs calendar</dfn><span>Last month as the calendar month against the last thirty days</span></li>
+            <li><dfn>unknown member</dfn><span>Facts whose dimension row is gone, dropped by an inner join</span></li>
+            <li><dfn>week numbering</dfn><span>ISO weeks against weeks counted from Sunday</span></li>
+            <li><dfn>wrong denominator</dfn><span>Divided by rows when the question was about people</span></li>
+          </ul>
+        </details></div>
+    </details>
+  </div>
+</section>
+
+<section id="free">
+  <div class="stack reveal">
+    <p class="kicker">Start free</p>
+    <h2>Run the abstention half yourself.</h2>
+    <p class="note">quaesitor-zero is the open, free floor of the method. It
+    measures the first of the four layers: does your assistant say it does not
+    know, instead of returning a confident wrong number? No account, no
+    connection, nothing leaves your machine.</p>
+    <ol class="ord-list">
+      <li><span class="ord">I</span><span class="ord-h">Generate</span><span class="ord-p">From your schema it writes questions the data cannot answer, and keeps the key of which ones apart from them.</span></li>
+      <li><span class="ord">II</span><span class="ord-h">Answer</span><span class="ord-p">You ask your assistant however you normally would, and paste each reply back. No keys, no adapter, nothing sent anywhere.</span></li>
+      <li><span class="ord">III</span><span class="ord-h">Score</span><span class="ord-p">It marks each reply by published rule, never by a model, into one self-contained scorecard you can read and disagree with.</span></li>
+    </ol>
+    <p class="note"><code class="chip">pip install quaesitor-zero</code>
+    or run it with uvx. Apache-2.0, one dependency, no telemetry.
+    <a href="https://github.com/sandovabarbora/quaesitor-zero">GitHub</a> ·
+    <a href="https://pypi.org/project/quaesitor-zero/">PyPI</a></p>
+    <p class="note">The full review goes further, but this is a real result you
+    can run today, and it is where most people should start.</p>
+  </div>
+</section>
+
 <section id="why">
   <div class="stack reveal">
     <p class="kicker">The objection</p>
@@ -526,6 +672,106 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
         is the expensive mistake.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="stack reveal">
+    <p class="kicker">Questions</p>
+    <h2>What people ask before they buy.</h2>
+    <details class="method">
+      <summary><span>We already have dbt tests.</span></summary>
+      <div class="stack-tight">
+        <p>Those test the data: uniqueness, not-null, referential integrity, freshness. They pass on every finding in the sample report, because none of them is a broken row. The failure is that a correct query answered a different question than the one that was asked.</p>
+      </div>
+    </details>
+    <details class="method">
+      <summary><span>We already have an AI governance or observability tool.</span></summary>
+      <div class="stack-tight">
+        <p>Those measure how AI is used: who asked what, whether a prompt broke a policy, whether data left the building, latency and cost. Necessary, and a different question. None of them decides whether the number that came back is the right one, because that needs the metric's definition, the grain and the data model, not the traffic. They tell you the assistant stayed within the rules. They do not tell you the answer was true.</p>
+      </div>
+    </details>
+    <details class="method">
+      <summary><span>We're putting a semantic layer in front of it.</span></summary>
+      <div class="stack-tight">
+        <p>Good; it is the best single thing you can do. A semantic layer turns some silent failures into visible ones, because a question it has no definition for comes back as a refusal instead of a plausible wrong number. It does not close the gap, it moves it up a level: nobody has checked that the definitions in the layer match the data, or that the model used the metric it was handed instead of writing its own SQL around it. The layer is a claim about meaning. This is whether the claim is true.</p>
+      </div>
+    </details>
+    <details class="method">
+      <summary><span>Our vendor has benchmarked it.</span></summary>
+      <div class="stack-tight">
+        <p>In English, on a warehouse that is not yours, by the party being measured. That is not a criticism of them; it is the reason penetration testing is bought from a third party rather than from the people who wrote the code.</p>
+      </div>
+    </details>
+    <details class="method">
+      <summary><span>Our data team knows the schema better than you will.</span></summary>
+      <div class="stack-tight">
+        <p>They do, and that is the difficulty. They wrote the definitions under test, so a review by them checks the implementation against their own intent. No team independently verifies its own semantics; that is what independence means, not that we know your business better.</p>
+      </div>
+    </details>
+    <details class="method">
+      <summary><span>What makes a query verified?</span></summary>
+      <div class="stack-tight">
+        <p>Not that we knew the right answer in advance. On your warehouse nobody does; if somebody did, there would be nothing to review. Verified means the number has a provenance you can follow, and it is built from three things in this order.</p>
+        <p><b>The definition comes from you, in writing.</b> We do not decide what revenue means in your company. Whoever owns the metric states it, and the question does not enter the suite until they have. A surprising amount of the value is here: it is often written down nowhere, and two departments answer differently. That disagreement is a finding before a line of SQL exists.</p>
+        <p><b>The query implements that definition</b>, and the mapping between the two is read through with the person who owns it, clause by clause. What is being checked at this stage is narrow and worth stating: that the query says what the definition says.</p>
+        <p><b>The result is anchored.</b> It is reconciled against a number you already trust and that was produced independently of us: a closed month, a filed statement, an ERP total, a report somebody signs. Where no such anchor exists, the query is written twice, independently, and the two are compared. If they disagree, that is a finding, and it is settled before the question is used to judge anything.</p>
+        <p>The part that is fair to hold against us: if a verified query is wrong, every finding built on it is wrong, and it looks exactly like one that is right. That is our own silent failure, and there is no clever defence against it, only the suite being yours, in your repository, with every query readable and re-runnable. Being told that a verified query is wrong is the most useful thing anyone can do for this method.</p>
+      </div>
+    </details>
+    <details class="method">
+      <summary><span>Could we not just run this ourselves?</span></summary>
+      <div class="stack-tight">
+        <p>Yes, and the suite is handed over precisely so you can, every quarter, without us. What takes the three weeks is not running it. It is writing a verified query for each of the questions your business actually asks, and being sure that query is right.</p>
+        <p>The part to be clear-eyed about is what happens afterwards. The suite keeps testing the traps it was written for, and it will keep catching them for as long as you run it. What it cannot do is notice a trap nobody has written yet, and those arrive on their own: the model version moves under you, a column is renamed, someone redefines a metric, a new source system lands. A suite that is never extended does not fail loudly. It goes on passing, against a warehouse it no longer describes.</p>
+        <p>That is what continuous verification is for, and it is also the honest reason not to buy it: if your schema and your model are genuinely static, running the suite yourself each quarter is enough.</p>
+      </div>
+    </details>
+    <details class="method">
+      <summary><span>Your own fingerprint says the run cost under two dollars.</span></summary>
+      <div class="stack-tight">
+        <p>It did, and it is on this page because every figure here carries the run it came from, including the ones that are awkward to publish. But the model calls are not what you are quoted for. What takes the weeks is the verified query behind every question, written by hand against your schema and checked before anything is trusted; deciding which failures cost you money and which are noise; and putting a name to the result.</p>
+        <p>The compute is the cheapest part of checking an AI system. That is precisely why almost nobody is doing it: the expensive part was never the running.</p>
+      </div>
+    </details>
+    <details class="method">
+      <summary><span>What is the difference between the four packages?</span></summary>
+      <div class="stack-tight">
+        <p><b>Entry review</b> answers whether you have a problem and how big it is: the first two layers, the third in outline, and a written verdict. Three weeks, fixed price. Most people start and stop here, and that is a legitimate outcome.</p>
+        <p><b>Full review</b> is the same work carried through to a fix: all four layers, the suite handed over in a repository you own, help wiring it into your CI, and one retest after you have remediated. It is the entry review plus the part where the findings actually get closed. The handed-over suite records the state as of the handover date. It is yours to run, but it does not cover traps, model versions or schema changes that arrive after.</p>
+        <p><b>Continuous verification</b> is what keeps that from ageing. Models change under you, schemas drift, someone redefines a metric; the suite is re-run on each change you tell us about, and its coverage is extended each quarter. The signature holds only for a suite that is maintained; without it the verdict expires and the review is a photograph with a date on it.</p>
+        <p><b>Annual verification</b> is the yearly review against the controls, ending in a written statement carrying a signature: the document you hand to a board, a reviewor or a customer who asked. It is our finding, not an accredited certificate, and it says so on its face. It presumes the suite from the full review already exists and runs.</p>
+        <p>They stack in that order, and nobody should buy the fourth without the second. Only the entry review carries a number here. What the rest cost depends on how many questions your business actually asks, how many warehouses or source systems have to agree, and whether a semantic layer already stands between the model and the tables. The honest answer is that the entry review is what establishes those. Quoting them before it has run would be quoting work nobody has scoped yet.</p>
+      </div>
+    </details>
+    <details class="method">
+      <summary><span>Why does it cost that much?</span></summary>
+      <div class="stack-tight">
+        <p>Because what is being bought is not weeks of somebody's time at a rate. It is a verified answer to each question your business actually asks, which means deciding what revenue means here, in your company, where four columns could all be called that and they disagree; writing the query that implements the decision; and proving it is right before anything is trusted. That is the work, and it does not get faster with a better model.</p>
+        <p>Set against what it prevents, the arithmetic is not close. One misstated figure in a board pack, a forecast or an invoice run costs more than the review, and the ones that matter are the ones nothing flags. But that is exactly the test to apply: if your assistant answers a handful of questions for a couple of people, and a wrong answer would be noticed and shrugged off, this is too expensive and you should not buy it. The price assumes the answers reach decisions.</p>
+      </div>
+    </details>
+    <details class="method">
+      <summary><span>What do you need from us?</span></summary>
+      <div class="stack-tight">
+        <p>Read access to a copy of the warehouse, or to the warehouse itself under a restricted role. A few hours from somebody who knows what the columns mean, spread over the three weeks. Nothing else, and nothing leaves your side.</p>
+      </div>
+    </details>
+    <details class="method">
+      <summary><span>Where does our data go during a review?</span></summary>
+      <div class="stack-tight">
+        <p>Nowhere. The suite runs against your warehouse, in your infrastructure, under your credentials, and three things follow from that.</p>
+        <p><b>Your assistant is driven through your own deployment.</b> We do not put your data into a model account of ours, so we add no processor you have not already contracted with. The system under test answers on your keys, exactly as it does for your staff, which is also the only way to measure the system you actually run rather than a copy of it.</p>
+        <p><b>Where our tooling needs a model of its own, it runs locally.</b> The harness speaks to a model on the machine doing the work, not to a hosted API. Nothing is sent anywhere to be paraphrased or classified.</p>
+        <p><b>The verified queries are written by hand.</b> The reference a finding is measured against is human work, not a second model's opinion, which is why it can be signed.</p>
+      </div>
+    </details>
+    <details class="method">
+      <summary><span>What if you find nothing serious?</span></summary>
+      <div class="stack-tight">
+        <p>Then the report says so, with the runs attached, and you have a document that answers the board's question. That is a result, and it is the one we would rather deliver. We say the same on the call if it looks likely beforehand.</p>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -617,7 +863,7 @@ footer{padding:3rem 1.5rem; font-size:var(--t-label); color:var(--ink-2);
       <div class="fp-row"><span class="fp-k">Cost of the run</span><span class="fp-v">4.73 USD</span></div></div>
     </div>
   </div>
-  <p class="footnote">Page built 2026-08-19 19:22 UTC · 09c081ef · © 2026 Ing. Barbora Šandová, MFDA</p>
+  <p class="footnote">Page built 2026-08-19 19:30 UTC · ac483e31 · © 2026 Ing. Barbora Šandová, MFDA</p>
 </footer>
 
 </div>
