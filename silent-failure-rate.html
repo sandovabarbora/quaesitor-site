@@ -424,18 +424,11 @@ main.article .kicker{text-align:left; hyphens:manual}
 <p>Every benchmark of text-to-SQL reports accuracy. For anyone deploying one of these systems it is close to useless on its own, because it collapses two very different failures (declining, and being confidently wrong) into the same &ldquo;not correct&rdquo;.</p>
 
 <h2>Two models, same correctness, opposite behaviour</h2>
-<p>Two frontier models (A and B), the same questions over a warehouse, a hand-written verified query behind every one. Eight languages, three repeats each.</p>
+<p>Two frontier models (A and B), the same questions over a warehouse, a hand-written verified query behind every one. fifteen languages, three repeats each.</p>
 
-<table class="tbl">
-<thead><tr><th>Pack</th><th>Model</th><th class="n">Answers</th><th class="n">Correct</th><th class="n">Silently wrong</th><th class="n">Declined</th></tr></thead>
-<tbody>
-<tr><td>Retail</td><td>A</td><td class="n">208</td><td class="n">13</td><td class="n sw">146</td><td class="n">0</td></tr>
-<tr><td>Retail</td><td>B</td><td class="n">208</td><td class="n">15</td><td class="n sw">108</td><td class="n">59</td></tr>
-<tr><td>Subscriptions</td><td>A</td><td class="n">72</td><td class="n">23</td><td class="n sw">48</td><td class="n">1</td></tr>
-<tr><td>Subscriptions</td><td>B</td><td class="n">72</td><td class="n">23</td><td class="n sw">29</td><td class="n">20</td></tr>
-</tbody></table>
+<div class="scroller"><table class="tbl"><thead><tr><th>Pack</th><th>Model</th><th class="n">Answers</th><th class="n">Correct</th><th class="n">Silently wrong</th><th class="n">Declined</th></tr></thead><tbody><tr><td>Subscriptions</td><td>opus</td><td class="n">135</td><td class="n">41</td><td class="n sw">54</td><td class="n">40</td></tr><tr><td>Subscriptions</td><td>sonnet</td><td class="n">135</td><td class="n">41</td><td class="n sw">91</td><td class="n">3</td></tr><tr><td>Retail</td><td>opus</td><td class="n">390</td><td class="n">40</td><td class="n sw">227</td><td class="n">55</td></tr><tr><td>Retail</td><td>sonnet</td><td class="n">390</td><td class="n">28</td><td class="n sw">271</td><td class="n">0</td></tr></tbody></table></div>
 
-<p>Read the correct column first: identical on subscriptions (23 each), within two on retail (13 vs 15). Now the last column: one model declined <strong>once in 280 questions</strong>, the other <strong>79 times</strong>. They do not differ in what they know. They differ in what they do when they don&rsquo;t: one answers anyway, the other stops.</p>
+<p>Read the correct column first: the two models land within a few answers of each other on both packs, and on one of them they are level. Now read the last column. One of them declines 55 times and the other 0. They do not differ in what they know. They differ in what they do when they do not know it: one answers anyway, the other stops.</p>
 
 <p>A declined answer is visible friction: someone notices and escalates. A confident wrong one is a number that looks exactly right and walks straight into a slide, a board pack, a decision. Choosing the &ldquo;better&rdquo; model does not fix this. It relocates it.</p>
 
