@@ -115,7 +115,7 @@ html { scroll-behavior: smooth; }
 
 /* A container is not guaranteed: this block is spliced into nine templates by
    token, and on the landing it landed outside the page wrapper once already. */
-.reading{max-width:1200px; margin-left:auto; margin-right:auto;
+.reading{max-width:1360px; margin-left:auto; margin-right:auto;
   padding-left:max(1.25rem, env(safe-area-inset-left));
   padding-right:max(1.25rem, env(safe-area-inset-right))}
 
@@ -134,7 +134,7 @@ html { scroll-behavior: smooth; }
    display size and struck through in hazard red, which is the one thing that
    colour is allowed to mean. The bar is a pseudo-element rather than
    line-through so it can be the right weight and animate. */
-.sim{margin:0 0 2.75rem; max-width:26ch}
+.sim{margin:0 0 2.75rem; max-width:34ch}
 .sim-case{min-height:7.5rem; transition:opacity .3s}
 .sim-q{font:400 14px/1.6 'JetBrains Mono',ui-monospace,monospace;
   color:#6B655C; margin-bottom:.75rem}
@@ -172,16 +172,25 @@ html { scroll-behavior: smooth; }
 /* The verdict reads as a turn in a conversation: the mark, then who is
    speaking, then the figure and the reason. Light, not a messenger. */
 .sim-verdict{display:grid; grid-template-columns:auto 1fr; gap:.9rem;
-  align-items:start; border-left:0; padding:0; max-width:46ch}
+  align-items:start; border-left:0; padding:0; max-width:52ch}
 .sim-avatar{width:34px; height:34px; border-radius:50%; flex:none;
   border:1px solid rgba(28,26,23,.2)}
 .sim-said{display:grid; gap:.3rem; background:#F6F4EE; border:1px solid #DAD6CC;
   padding:.75rem .9rem}
 .sim-said .sim-who{color:#4657D9}
-.sim-said .sim-truth{font-size:clamp(1.15rem,1.8vw,1.45rem)}</style>
+.sim-said .sim-truth{font-size:clamp(1.15rem,1.8vw,1.45rem)}
+
+/* The cases share one grid cell, so the block is always as tall as the longest
+   and the call to action below it never moves. Only the live one is painted. */
+.sim-case{grid-area:1/1; opacity:0; visibility:hidden; transition:opacity .3s}
+.sim-case.is-on{opacity:1; visibility:visible}
+.sim{display:grid}
+.sim > .sim-case{grid-area:1/1}
+.sim-dots{grid-area:2/1; align-self:end}
+.sim-dots li.on{background:#9A3324}</style>
 <div style="min-height:100vh; padding-bottom:80px">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(230,226,214,.92); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
-    <div style="max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">
+    <div style="max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">
       <a href="/" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:#1C1A17">
         <span style="display:inline-block; width:36px; height:36px; border-radius:50%; overflow:hidden; background:#33424A"><span class="q-avatar" role="img" aria-label="Quaesitor mark"></span></span>
         <span style="font-weight:700; font-size:21px; letter-spacing:-.01em">qu<em style="font-style:normal; color:#4657D9">æ</em>sitor<em style="font-style:normal; color:#4657D9">*</em></span>
@@ -251,38 +260,32 @@ html { scroll-behavior: smooth; }
 (function () {
   var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // The hero simulation. Three cases, because one reads as bad luck.
+  // The hero simulation. Every case is in the DOM, stacked in one grid cell,
+  // so rotating them cannot change the block's height and nothing below it
+  // moves. Rewriting one element's text used to swing the block by 137px and
+  // push the call to action off the fold on the tallest case.
   var cases = [{"trap": "fan_out_join", "short": "Orders that shipped in more than one parcel are counted once per parcel, so every split shipment adds its whole value again.", "q": "How much revenue did we make in 2025 in CZK, including shipping?", "said": "118,522,101", "note": "in revenue for 2025", "truth": "110,793,738", "why": "Orders that shipped in more than one parcel are counted once per parcel, so every split shipment adds its whole value again. Nothing errored, the number is the right size, and every report downstream inherits it."}, {"trap": "test_accounts", "short": "Internal test accounts were never flagged as internal.", "q": "How many customers do we have in total?", "said": "3,000", "note": "customers in total", "truth": "2,914", "why": "Internal test accounts were never flagged as internal. They sit in the customer table and get counted like anyone who ever paid you."}, {"trap": "inclusive_bounds", "short": "The range ends at the first of July and excludes it, and the last day of June leaves with it.", "q": "How many customers bought from us in June 2026?", "said": "684", "note": "customers who bought in June", "truth": "702", "why": "The range ends at the first of July and excludes it, and the last day of June leaves with it. This one undercounts, which is why nobody queries it."}, {"trap": "cohort_definition", "short": "The cohort is anchored on the registration date instead of the first purchase, so the window opens before the customer ever bought.", "q": "How many customers made a second purchase within 30 days of the first?", "said": "95", "note": "customers who bought again within 30 days", "truth": "621", "why": "The cohort is anchored on the registration date instead of the first purchase, so the window opens before the customer ever bought. Both queries run, both return a whole number, and only one of them answers the question that was asked."}];
   var box = document.querySelector("[data-sim]");
-  if (box && cases && cases.length > 1 && !reduced) {
-    var body = box.querySelector(".sim-case");
+  if (box && !reduced) {
+    var panes = box.querySelectorAll(".sim-case");
     var dots = box.querySelectorAll(".sim-dots li");
     var at = 0;
-    var timer = setInterval(function () {
-      // Nothing to show while the box is off screen, and a setInterval that
-      // keeps swapping text nobody can see still forces layout on every tick.
-      var r = box.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > innerHeight) return;
-      body.style.opacity = "0";
-      setTimeout(function () {
-        at = (at + 1) % cases.length;
-        var c = cases[at];
-        body.querySelector(".sim-q").textContent = 'Q: "' + c.q + '"';
-        body.querySelector(".sim-val").textContent = c.said;
-        body.querySelector(".sim-truth").textContent = c.truth;
-        body.querySelector(".sim-why").textContent = c.short;
-        // restart the strike and the verdict, which are CSS animations:
-        // reassigning text does not replay them on its own.
-        var stage = body.querySelector(".sim-case") || body;
-        stage.classList.remove("sim-play");
-        void stage.offsetWidth;
-        stage.classList.add("sim-play");
-        body.querySelector(".sim-n").textContent = "\u2514 " + c.note;
-        dots.forEach(function (d, i) { d.classList.toggle("on", i === at); });
-        body.style.opacity = "1";
-      }, 400);
-    }, 4600);
-    addEventListener("pagehide", function () { clearInterval(timer); });
+    if (panes.length > 1) {
+      var timer = setInterval(function () {
+        // Nothing to show while the box is off screen.
+        var r = box.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > innerHeight) return;
+        panes[at].classList.remove("is-on");
+        if (dots[at]) dots[at].classList.remove("on");
+        at = (at + 1) % panes.length;
+        var pane = panes[at];
+        pane.classList.remove("sim-play");
+        void pane.offsetWidth;
+        pane.classList.add("is-on", "sim-play");
+        if (dots[at]) dots[at].classList.add("on");
+      }, 5200);
+      addEventListener("pagehide", function () { clearInterval(timer); });
+    }
   }
 
   // Parallax on the plate. The previous version called requestAnimationFrame
