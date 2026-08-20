@@ -251,7 +251,19 @@ html { scroll-behavior: smooth; }
    than interface copy. Hyphenation is not optional here, since justified text
    without it opens rivers between the words. */
 .wrap p, main > p, .essay p{text-align:justify; hyphens:auto; -webkit-hyphens:auto}
-.dek, .note, .srcnote, .stamp, .caught-foot{text-align:left; hyphens:manual}</style>
+.dek, .note, .srcnote, .stamp, .caught-foot{text-align:left; hyphens:manual}
+
+/* The published finding. Its own classes mapped onto this palette, so the
+   argument and its figures are untouched and only the identity moves. */
+.figures{display:grid; gap:1rem; margin:1.5rem 0}
+.cell{background:#F6F4EE; border:1px solid #DAD6CC; padding:1rem 1.25rem}
+.label{font:500 11px/1.3 'JetBrains Mono',ui-monospace,monospace;
+  letter-spacing:.18em; text-transform:uppercase; color:#6B655C}
+.legend{font-size:13px; color:#6B655C}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.hazard{color:#9A3324}
+.lede{font-size:19px; line-height:1.5; color:#6B655C; margin:0 0 2rem}
+.scroller{overflow-x:auto; -webkit-overflow-scrolling:touch}</style>
 <div style="min-height:100vh">
 <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
     <div style="max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">
