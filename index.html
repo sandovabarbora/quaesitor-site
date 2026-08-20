@@ -63,6 +63,9 @@ html { scroll-behavior: smooth; }
    the page is readable without scripts and a reader finds their own chair. */
 .personas{display:grid; gap:1.5rem; margin:2rem 0}
 .persona{padding-bottom:1.5rem; border-bottom:1px solid #DAD6CC}
+/* [hidden] only sets display:none in the UA sheet, and every explicit
+   display below beats it. Without this the script hid nothing. */
+.persona[hidden],.personas [hidden]{display:none}
 .persona:last-child{border-bottom:0; padding-bottom:0}
 .persona-kicker{font:500 11px/1.3 'JetBrains Mono',ui-monospace,monospace;
   letter-spacing:.18em; text-transform:uppercase; color:#6B655C; margin:0 0 .5rem}
@@ -108,7 +111,45 @@ html { scroll-behavior: smooth; }
 .caught-foot{font-size:13px; color:#6B655C; padding-top:.75rem}
 .n{font-family:'JetBrains Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums}
 .right{text-align:right}
-.wrong{color:#9A3324}</style>
+.wrong{color:#9A3324}
+
+/* A container is not guaranteed: this block is spliced into nine templates by
+   token, and on the landing it landed outside the page wrapper once already. */
+.reading{max-width:1200px; margin-left:auto; margin-right:auto;
+  padding-left:max(1.25rem, env(safe-area-inset-left));
+  padding-right:max(1.25rem, env(safe-area-inset-right))}
+
+/* Chairs. The row is hidden until the script unhides it, so without JavaScript
+   every persona stays on the page and nothing is behind a control that does
+   not work. */
+.chairs{display:flex; flex-wrap:wrap; gap:.5rem; margin:0 0 2rem}
+.chairs[hidden]{display:none}
+.chair{font:500 13px/1 'JetBrains Mono',ui-monospace,monospace;
+  padding:.6rem 1rem; border:1px solid #DAD6CC; background:transparent;
+  color:#6B655C; cursor:pointer}
+.chair:hover{border-color:#4657D9; color:#1C1A17}
+.chair[aria-current="true"]{background:#1C1A17; border-color:#1C1A17; color:#EFEBDF}
+
+/* The hero exhibit, as the design had it: the assistant's figure is stated at
+   display size and struck through in hazard red, which is the one thing that
+   colour is allowed to mean. The bar is a pseudo-element rather than
+   line-through so it can be the right weight and animate. */
+.sim{margin:0 0 2.75rem; max-width:26ch}
+.sim-case{min-height:7.5rem; transition:opacity .3s}
+.sim-q{font:400 14px/1.6 'JetBrains Mono',ui-monospace,monospace;
+  color:#6B655C; margin-bottom:.75rem}
+.sim-a{font:700 clamp(1.7rem,3.2vw,2.7rem)/1.2 'Space Grotesk',sans-serif;
+  letter-spacing:-.015em; color:#1C1A17}
+.sim-val{position:relative; display:inline-block}
+.sim-val::after{content:""; position:absolute; left:-2%; right:-2%; top:52%;
+  height:.07em; border-radius:2px; background:#9A3324;
+  transform:scaleX(0); transform-origin:left; animation:strikeIn .45s ease-out .5s forwards}
+.sim-n{font:400 14px/1.6 'JetBrains Mono',ui-monospace,monospace;
+  color:#6B655C; margin-top:.75rem}
+@keyframes strikeIn{to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){
+  .sim-val::after{animation:none; transform:scaleX(1)}
+}</style>
 <div style="min-height:100vh; overflow-x:clip">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
     <div style="max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">
@@ -135,7 +176,7 @@ html { scroll-behavior: smooth; }
       <div class="sim" data-sim>
         <div class="sim-case">
           <div class="sim-q">Q: "How much revenue did we make in 2025 in CZK, including shipping?"</div>
-          <div class="sim-a">A: 118,522,101</div>
+          <div class="sim-a">A: <span class="sim-val">118,522,101</span></div>
           <div class="sim-n">&#x2514; in revenue for 2025</div>
         </div>
         <ul class="sim-dots"><li class="on"></li><li></li><li></li><li></li></ul>
@@ -259,6 +300,20 @@ html { scroll-behavior: smooth; }
     </div>
   </section>
 
+  <div style="max-width:1200px; margin:0 auto; padding:0 3rem"><section class="reading" aria-labelledby="reading-h">
+  <p class="reading-kicker">Reading</p>
+  <h2 id="reading-h">Published measurements, and the argument behind them.</h2>
+  <ul class="reading-list">
+    <li><a href="/documentation-finding">Documentation made the errors smaller, not rarer</a>
+      <span>a measurement, with the test stated and the p-values it actually earns</span></li>
+    <li><a href="/silent-failure-rate">Silent-failure rate: two models, opposite failure behaviour</a>
+      <span>identical correct counts, and nothing alike about how they fail</span></li>
+    <li><a href="/silent-failures/">What it does when it does not know</a>
+      <span>the longer piece on abstention</span></li>
+    <li><a href="/why">Trust grows faster than accuracy</a>
+      <span>why this exists</span></li>
+  </ul>
+</section></div>
   <footer>
     <div style="max-width:1200px; margin:0 auto; padding:2.5rem 3rem 3rem; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap">
       <div style="display:flex; align-items:center; gap:12px">
@@ -276,23 +331,7 @@ html { scroll-behavior: smooth; }
     </div>
   </footer>
 </div>
-<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#4657D9"></rect><text x="50" y="66" text-anchor="middle" font-family="Georgia, serif" font-size="44" fill="#F5F3EE">æ*</text></svg></template>
-
-<section class="reading" aria-labelledby="reading-h">
-  <p class="reading-kicker">Reading</p>
-  <h2 id="reading-h">Published measurements, and the argument behind them.</h2>
-  <ul class="reading-list">
-    <li><a href="/documentation-finding">Documentation made the errors smaller, not rarer</a>
-      <span>a measurement, with the test stated and the p-values it actually earns</span></li>
-    <li><a href="/silent-failure-rate">Silent-failure rate: two models, opposite failure behaviour</a>
-      <span>identical correct counts, and nothing alike about how they fail</span></li>
-    <li><a href="/silent-failures/">What it does when it does not know</a>
-      <span>the longer piece on abstention</span></li>
-    <li><a href="/why">Trust grows faster than accuracy</a>
-      <span>why this exists</span></li>
-  </ul>
-</section>
-    <script>
+<script>
 (function () {
   var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -313,7 +352,7 @@ html { scroll-behavior: smooth; }
         at = (at + 1) % cases.length;
         var c = cases[at];
         body.querySelector(".sim-q").textContent = 'Q: "' + c.q + '"';
-        body.querySelector(".sim-a").textContent = "A: " + c.said;
+        body.querySelector(".sim-val").textContent = c.said;
         body.querySelector(".sim-n").textContent = "\u2514 " + c.note;
         dots.forEach(function (d, i) { d.classList.toggle("on", i === at); });
         body.style.opacity = "1";
@@ -345,6 +384,29 @@ html { scroll-behavior: smooth; }
     place();
   }
 
+
+  // For you: five chairs. Every persona is in the HTML, so the page reads
+  // without this; the row of buttons is hidden until we are here to run it,
+  // and only then does hiding four of them become an improvement.
+  var chairs = document.querySelector("[data-chairs]");
+  if (chairs) {
+    var people = document.querySelectorAll("[data-persona]");
+    var show = function (want) {
+      people.forEach(function (el) {
+        el.hidden = el.getAttribute("data-persona") !== want;
+      });
+      chairs.querySelectorAll(".chair").forEach(function (b) {
+        if (b.getAttribute("data-chair") === want) b.setAttribute("aria-current", "true");
+        else b.removeAttribute("aria-current");
+      });
+    };
+    chairs.hidden = false;
+    show("0");
+    chairs.addEventListener("click", function (e) {
+      var b = e.target.closest(".chair");
+      if (b) show(b.getAttribute("data-chair"));
+    });
+  }
 })();
 </script>
 </html>
