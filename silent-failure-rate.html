@@ -241,11 +241,17 @@ html { scroll-behavior: smooth; }
 .z-note{color:#6B655C; font-style:italic}
 .z-hit{color:#E0736A; padding-left:1.1rem; font-weight:500}
 .z-hit::before{content:"\2192  "; color:#9A3324}
-.zero-demo > *,
+/* Visible unless something is actively animating them. The previous version
+   hid every line with a class the script added and relied on an observer to
+   put them back; when that did not fire the section was simply blank, which
+   is the worst way for a demonstration to fail. */
 .zero-demo span{opacity:1}
-.zero-demo.z-arm span{opacity:0}
-.zero-demo.z-run span{animation:zLine .01s linear forwards}
-@keyframes zLine{to{opacity:1}}
+/* both, not backwards: the end state has to be stated, not inherited. */
+.zero-demo.z-run span{animation:zLine .35s ease-out both}
+@keyframes zLine{from{opacity:0; transform:translateY(3px)}to{opacity:1; transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .zero-demo.z-run span{animation:none}
+}
 
 /* The essays set justified, which is what they are: printed argument rather
    than interface copy. Hyphenation is not optional here, since justified text
@@ -474,7 +480,6 @@ ol.zero-demo .z-cmd{display:block; margin-bottom:.25rem}</style>
   var zero = document.querySelector("[data-zero]");
   if (zero && !reduced && "IntersectionObserver" in window) {
     var lines = zero.querySelectorAll("span");
-    zero.classList.add("z-arm");
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
