@@ -315,25 +315,42 @@ ol.zero-demo .z-cmd{display:block; margin-bottom:.25rem}
 .c-implausible{color:#D9A441}
 .c-invalid{color:#6B655C}
 .finding .nav,.masthead,.bust{display:none}
-.wordmark,.brandmark{font-weight:600}</style>
+.wordmark,.brandmark{font-weight:600}
+
+/* One header for every article, whatever page it came from. The essays arrived
+   from three hand-written pages and the finding from a fourth, each with its
+   own type scale: 32px headings on one, 48px on the next. A reader moving
+   between them should not be able to tell they were ever separate documents. */
+main.article{max-width:820px}
+main.article h1{font-weight:700; font-size:clamp(2rem,3.4vw,2.75rem);
+  line-height:1.12; letter-spacing:-.02em; margin:0 0 .75rem}
+main.article h2{font-weight:600; font-size:clamp(1.35rem,2.1vw,1.6rem);
+  line-height:1.25; letter-spacing:-.01em; margin:2.5rem 0 .75rem}
+main.article h3{font-weight:600; font-size:1.15rem; margin:2rem 0 .5rem}
+main.article > p, main.article .wrap > p{font-size:17px; line-height:1.7;
+  margin:0 0 1.1rem}
+main.article .lede,main.article .dek{font-size:19px; line-height:1.5;
+  color:#6B655C; margin:0 0 2.5rem; text-align:left; hyphens:manual}
+main.article .kicker{margin-bottom:1rem}</style>
 <div style="min-height:100vh">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
-    <div style="max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 40px">
-      <a href="/" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:#1C1A17">
-        <span style="display:inline-block; width:34px; height:34px; border-radius:50%; overflow:hidden; background:#33424A"><span class="q-avatar" role="img" aria-label="Quaesitor mark"></span></span>
-        <span style="font-weight:700; font-size:21px">qu<em style="font-style:normal; color:#4657D9">æ</em>sitor<em style="font-style:normal; color:#4657D9">*</em></span>
+    <div style="max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">
+      <a href="#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:#1C1A17">
+        <span style="display:inline-block; width:36px; height:36px; border-radius:50%; overflow:hidden; background:#33424A"><span class="q-avatar" role="img" aria-label="Quaesitor mark"></span></span>
+        <span style="font-weight:700; font-size:21px; letter-spacing:-.01em">qu<em style="font-style:normal; color:#4657D9">æ</em>sitor<em style="font-style:normal; color:#4657D9">*</em></span>
       </a>
-      <div style="display:flex; align-items:center; gap:24px; font-size:14px">
-        <a data-mq="hide" href="/for-you" style="color:#1C1A17; font-weight:700">For you</a>
+      <div style="display:flex; align-items:center; gap:26px; font-size:14px">
+        <a data-mq="hide" href="/for-you" style="color:#1C1A17">For you</a>
         <a data-mq="hide" href="/faq" style="color:#1C1A17">FAQ</a>
         <a data-mq="hide" href="/method" style="color:#1C1A17">The method</a>
-        <a href="mailto:barbora@quaesitor.eu" style="background:#1C1A17; color:#EFEBDF; padding:10px 22px; font-weight:500; font-size:14px" style-hover="text-decoration:none">Book a scoping call</a>
+        <a data-mq="hide" href="#pricing" style="color:#1C1A17">Pricing</a>
+        <a href="mailto:barbora@quaesitor.eu" style="background:#4657D9; color:#F5F3EE; padding:10px 22px; font-weight:500; font-size:15px" style-hover="text-decoration:none; transform:translateY(-2px)">Book a scoping call</a>
       </div>
     </div>
   </nav>
-  <main style="max-width:1200px; margin:0 auto; padding:clamp(3rem,7vh,5rem) 40px 80px">
+  <main class="article" style="max-width:820px; margin:0 auto; padding:clamp(3rem,7vh,5rem) 40px 80px">
     <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#4657D9; margin-bottom:16px">What it means for you</div>
-    <h1 style="font-weight:700; font-size:clamp(2.2rem,4vw,3rem); line-height:1.08; letter-spacing:-.02em; margin:0 0 10px">The same review reads differently<br>depending on the chair you sit in.</h1>
+    <h1 style="margin:0 0 10px">The same review reads differently<br>depending on the chair you sit in.</h1>
     <p style="margin:0 0 30px; color:#6B655C; max-width:52ch">Find yours.</p>
     <div class="chairs" data-chairs hidden>
       <button type="button" class="chair" data-chair="0" aria-current="true">Head of Data</button>
@@ -371,7 +388,7 @@ ol.zero-demo .z-cmd{display:block; margin-bottom:.25rem}
     </div>
       <div data-mq="cols" style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:56px; align-items:start">
       <div>
-        <h2 style="font-weight:700; font-size:clamp(1.5rem,2.6vw,1.9rem); letter-spacing:-.015em; margin:0 0 22px">Three questions decide.</h2>
+        <h2 style="margin:0 0 22px">Three questions decide.</h2>
         <div style="display:grid; gap:16px; max-width:46ch">
           <div style="border-left:2px solid #4657D9; padding:2px 0 2px 16px"><b>Do the answers reach decisions?</b><br><span style="font-size:14px; color:#6B655C">A slide, a forecast, an invoice, a budget. If they die in Slack, the review is not worth it, and we say so on the call.</span></div>
           <div style="border-left:2px solid #4657D9; padding:2px 0 2px 16px"><b>Do people who cannot check SQL ask it?</b><br><span style="font-size:14px; color:#6B655C">Ten analysts who can read the query are one product. Two hundred people from sales are another. Silent-failure risk grows with every user who cannot verify.</span></div>

@@ -315,45 +315,64 @@ ol.zero-demo .z-cmd{display:block; margin-bottom:.25rem}
 .c-implausible{color:#D9A441}
 .c-invalid{color:#6B655C}
 .finding .nav,.masthead,.bust{display:none}
-.wordmark,.brandmark{font-weight:600}</style>
+.wordmark,.brandmark{font-weight:600}
+
+/* One header for every article, whatever page it came from. The essays arrived
+   from three hand-written pages and the finding from a fourth, each with its
+   own type scale: 32px headings on one, 48px on the next. A reader moving
+   between them should not be able to tell they were ever separate documents. */
+main.article{max-width:820px}
+main.article h1{font-weight:700; font-size:clamp(2rem,3.4vw,2.75rem);
+  line-height:1.12; letter-spacing:-.02em; margin:0 0 .75rem}
+main.article h2{font-weight:600; font-size:clamp(1.35rem,2.1vw,1.6rem);
+  line-height:1.25; letter-spacing:-.01em; margin:2.5rem 0 .75rem}
+main.article h3{font-weight:600; font-size:1.15rem; margin:2rem 0 .5rem}
+main.article > p, main.article .wrap > p{font-size:17px; line-height:1.7;
+  margin:0 0 1.1rem}
+main.article .lede,main.article .dek{font-size:19px; line-height:1.5;
+  color:#6B655C; margin:0 0 2.5rem; text-align:left; hyphens:manual}
+main.article .kicker{margin-bottom:1rem}</style>
 <div style="min-height:100vh">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
     <div style="max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">
-      <a href="/" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:#1C1A17">
+      <a href="#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:#1C1A17">
         <span style="display:inline-block; width:36px; height:36px; border-radius:50%; overflow:hidden; background:#33424A"><span class="q-avatar" role="img" aria-label="Quaesitor mark"></span></span>
         <span style="font-weight:700; font-size:21px; letter-spacing:-.01em">qu<em style="font-style:normal; color:#4657D9">æ</em>sitor<em style="font-style:normal; color:#4657D9">*</em></span>
       </a>
-      <div style="display:flex; gap:26px; font-size:14px">
-        <a href="/" style="color:#1C1A17">← Back</a>
-        <a data-mq="hide" href="/report-built" style="color:#1C1A17">Sample report</a>
+      <div style="display:flex; align-items:center; gap:26px; font-size:14px">
+        <a data-mq="hide" href="/for-you" style="color:#1C1A17">For you</a>
+        <a data-mq="hide" href="/faq" style="color:#1C1A17">FAQ</a>
+        <a data-mq="hide" href="/method" style="color:#1C1A17">The method</a>
+        <a data-mq="hide" href="#pricing" style="color:#1C1A17">Pricing</a>
+        <a href="mailto:barbora@quaesitor.eu" style="background:#4657D9; color:#F5F3EE; padding:10px 22px; font-weight:500; font-size:15px" style-hover="text-decoration:none; transform:translateY(-2px)">Book a scoping call</a>
       </div>
     </div>
   </nav>
-  <main style="max-width:820px; margin:0 auto; padding:clamp(3rem,6vw,5rem) 3rem">
+  <main class="article" style="max-width:820px; margin:0 auto; padding:clamp(3rem,6vw,5rem) 3rem">
     <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#4657D9; margin-bottom:18px">The method</div>
-    <h1 style="font-weight:700; font-size:clamp(2.25rem,4vw,3rem); line-height:1.08; letter-spacing:-.02em; margin:0 0 18px">How a question becomes a verified one</h1>
+    <h1 style="margin:0 0 18px">How a question becomes a verified one</h1>
     <p style="font-size:19px; color:#1C1A17; margin:0 0 10px; max-width:52ch">Running the suite takes minutes and costs about a dollar. Deciding what the right answer is, and being able to defend it, is the work.</p>
     <p style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#6B655C; margin:0 0 52px">"verified" does not mean proved true from first principles. it means the number has a provenance you can follow.</p>
 
     <section style="margin-bottom:44px; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-      <h2 style="font-size:21px; font-weight:700; margin:0 0 10px"><span style="color:#4657D9">1 ·</span> The definition comes from the business, in writing</h2>
+      <h2 style="margin:0 0 10px"><span style="color:#4657D9">1 ·</span> The definition comes from the business, in writing</h2>
       <p style="margin:0 0 12px">We do not decide what revenue means in your company. Whoever owns the metric states it, and the question does not enter the suite until they have. Frequently it is written down nowhere and two departments answer differently, which is itself the finding, and usually a larger one than anything the model gets wrong.</p>
       <div style="border-left:2px solid #4657D9; background:#F6F4EE; padding:12px 18px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#6B655C">if nobody owns a definition and nobody wants to, the protocol cannot run. we say so rather than inventing an owner.</div>
     </section>
 
     <section style="margin-bottom:44px; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-      <h2 style="font-size:21px; font-weight:700; margin:0 0 10px"><span style="color:#4657D9">2 ·</span> The query implements that definition</h2>
+      <h2 style="margin:0 0 10px"><span style="color:#4657D9">2 ·</span> The query implements that definition</h2>
       <p style="margin:0">The verified query is read against the written definition with the person who owns it, clause by clause. What is checked is narrow and worth stating plainly: that the query says what the definition says. Not that either matches reality. Keeping the claim this small is what makes it survivable.</p>
     </section>
 
     <section style="margin-bottom:44px; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-      <h2 style="font-size:21px; font-weight:700; margin:0 0 10px"><span style="color:#4657D9">3 ·</span> The result is anchored</h2>
+      <h2 style="margin:0 0 10px"><span style="color:#4657D9">3 ·</span> The result is anchored</h2>
       <p style="margin:0 0 12px">The number is reconciled against a figure the business already trusts and that was produced independently of us: a closed month, a filed statement, an ERP total, a report somebody signs. Where no anchor exists, the query is written twice, independently, and the two are compared. A disagreement is a finding, settled before the question judges anything.</p>
       <div style="border-left:2px solid #4657D9; background:#F6F4EE; padding:12px 18px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#6B655C">whether an anchor exists is the single biggest driver of what an engagement costs. ask early.</div>
     </section>
 
     <section style="margin-bottom:44px; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-      <h2 style="font-size:21px; font-weight:700; margin:0 0 10px">The naive query</h2>
+      <h2 style="margin:0 0 10px">The naive query</h2>
       <p style="margin:0 0 12px">Every question also carries the query a competent person would write first, without knowing the trap. The two differ in exactly one place, so a measured divergence can be attributed to that trap rather than to a mixture of mistakes. This is enforced, not intended:</p>
       <div style="background:#1C1A17; color:#EFEBDF; padding:16px 20px; font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.8">
         <div>test_every_trap_is_silent</div>
@@ -362,12 +381,12 @@ ol.zero-demo .z-cmd{display:block; margin-bottom:.25rem}
     </section>
 
     <section style="margin-bottom:44px; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-      <h2 style="font-size:21px; font-weight:700; margin:0 0 10px">The limit on trap isolation</h2>
+      <h2 style="margin:0 0 10px">The limit on trap isolation</h2>
       <p style="margin:0">The verified query must not be wrong on the literal wording of the question. If it asks "in CZK", the right answer converts currency, whatever trap is being tested. Discovered by running, not reasoning: a question that does not fix its reference date cannot test anything else. In one case, three quarters of the measured error turned out to be the calendar rather than the trap. The question was wrong, not the model.</p>
     </section>
 
     <section style="margin-bottom:60px; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-      <h2 style="font-size:21px; font-weight:700; margin:0 0 10px">When a verified query is wrong</h2>
+      <h2 style="margin:0 0 10px">When a verified query is wrong</h2>
       <p style="margin:0">Every finding built on it is wrong, and it looks exactly like one that is right. That is this method's own silent failure, and there is no clever defence: only that the queries are handed over to be read, and that being told about one is treated as the most useful thing anyone can do. One such correction is stated in a customer's report before they could find it. That is the standard.</p>
     </section>
 
