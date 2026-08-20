@@ -223,7 +223,35 @@ html { scroll-behavior: smooth; }
   .sim-a{font-size:1.15rem}
   .sim-n{display:none}
   .sim{margin-bottom:.5rem}
-}</style>
+}
+
+/* The open-source step-through. A terminal that types itself once when it is
+   reached, because the argument is a sequence: you run it, you paste what your
+   own assistant said, it tells you how often the assistant made something up.
+   Every line comes from the example the package ships, so this is a recording
+   and not a mock-up. */
+.zero-demo{display:grid; gap:1.1rem}
+.z-step{display:grid; gap:.15rem}
+.z-cmd{color:#EFEBDF}
+.z-cmd::before{content:"$ "; color:#6B655C}
+.z-out{color:#9EAFAB; padding-left:1.1rem}
+.z-out::before{content:"\2192  "; color:#4657D9}
+.z-dim{color:#6B655C}
+.z-dim::before{content:"   "}
+.z-note{color:#6B655C; font-style:italic}
+.z-hit{color:#E0736A; padding-left:1.1rem; font-weight:500}
+.z-hit::before{content:"\2192  "; color:#9A3324}
+.zero-demo > *,
+.zero-demo span{opacity:1}
+.zero-demo.z-arm span{opacity:0}
+.zero-demo.z-run span{animation:zLine .01s linear forwards}
+@keyframes zLine{to{opacity:1}}
+
+/* The essays set justified, which is what they are: printed argument rather
+   than interface copy. Hyphenation is not optional here, since justified text
+   without it opens rivers between the words. */
+.wrap p, main > p, .essay p{text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+.dek, .note, .srcnote, .stamp, .caught-foot{text-align:left; hyphens:manual}</style>
 <div style="min-height:100vh; padding-bottom:80px">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(230,226,214,.92); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
     <div style="max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">
@@ -391,6 +419,27 @@ html { scroll-behavior: smooth; }
       var b = e.target.closest(".chair");
       if (b) show(b.getAttribute("data-chair"));
     });
+  }
+
+  // The open-source step-through types itself out once, when it is reached.
+  // Once, not on a loop: it is a demonstration, and a terminal that keeps
+  // replaying reads as decoration. Without JavaScript, or with reduced motion,
+  // every line is simply already there.
+  var zero = document.querySelector("[data-zero]");
+  if (zero && !reduced && "IntersectionObserver" in window) {
+    var lines = zero.querySelectorAll("span");
+    zero.classList.add("z-arm");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        io.disconnect();
+        zero.classList.add("z-run");
+        lines.forEach(function (el, i) {
+          el.style.animationDelay = (i * 260) + "ms";
+        });
+      });
+    }, { threshold: 0.35 });
+    io.observe(zero);
   }
 })();
 </script>
