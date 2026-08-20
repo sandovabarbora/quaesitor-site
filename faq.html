@@ -167,7 +167,18 @@ html { scroll-behavior: smooth; }
 @keyframes verdictIn{from{opacity:0; transform:translateY(4px)}to{opacity:1; transform:none}}
 @media (prefers-reduced-motion:reduce){
   .sim-case .sim-verdict{opacity:1; animation:none}
-}</style>
+}
+
+/* The verdict reads as a turn in a conversation: the mark, then who is
+   speaking, then the figure and the reason. Light, not a messenger. */
+.sim-verdict{display:grid; grid-template-columns:auto 1fr; gap:.9rem;
+  align-items:start; border-left:0; padding:0; max-width:46ch}
+.sim-avatar{width:34px; height:34px; border-radius:50%; flex:none;
+  border:1px solid rgba(28,26,23,.2)}
+.sim-said{display:grid; gap:.3rem; background:#F6F4EE; border:1px solid #DAD6CC;
+  padding:.75rem .9rem}
+.sim-said .sim-who{color:#4657D9}
+.sim-said .sim-truth{font-size:clamp(1.15rem,1.8vw,1.45rem)}</style>
 <div style="min-height:100vh">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
     <div style="max-width:1080px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 40px">
@@ -204,7 +215,7 @@ html { scroll-behavior: smooth; }
     <details style="border-top:1px solid #DAD6CC; padding:14px 0"><summary style="font-size:16px; font-weight:700; cursor:pointer">What if you find nothing?</summary><p style="font-size:14.5px; color:#6B655C; margin:10px 0 0">Then you have a signed document saying so, a test suite to re-run after every model swap, and metric definitions in writing, which in most engagements did not exist before. A clean result is a result, not a refund case. And if the review is not worth it for your setup, we say so on the scoping call, before any money moves.</p></details>
     <details style="border-top:1px solid #DAD6CC; padding:14px 0"><summary style="font-size:16px; font-weight:700; cursor:pointer">Can't we just pick the model that declines more?</summary><p style="font-size:14.5px; color:#6B655C; margin:10px 0 0">Declining is not knowing. On one warehouse we measured, the careful model gave up 21 points of coverage and bought nothing: its error rate on what it did answer was within half a point of the model that answered everything. On another warehouse, abstention bought back 25 points. Whether "I don't know" means anything is a property of your warehouse, not of the model: it cannot be looked up, only measured.</p></details>
     <details style="border-top:1px solid #DAD6CC; padding:14px 0"><summary style="font-size:16px; font-weight:700; cursor:pointer">Does the EU AI Act require this?</summary><p style="font-size:14.5px; color:#6B655C; margin:10px 0 0">Mostly not yet, and we will not sell you regulatory fear. The high-risk obligations were postponed to December 2027; what applies now is transparency (telling people they are talking to AI) and AI literacy. A data assistant over your warehouse is typically not high-risk at all. The honest reason to review it is that people act on its answers, and a voluntary, signed review is more credible in front of procurement precisely because nobody forced you.</p></details>
-    <details style="border-top:1px solid #DAD6CC; padding:14px 0"><summary style="font-size:16px; font-weight:700; cursor:pointer">Do our languages make it worse?</summary><p style="font-size:14.5px; color:#6B655C; margin:10px 0 0">We tested fifteen languages, two models, 58 runs. Failure rates span 38–73%, and the matched test finds no language effect: the verdict travels with the model, not the tongue. We publish the power calculation and do not sell you a language problem we could not detect.</p></details>
+    <details style="border-top:1px solid #DAD6CC; padding:14px 0"><summary style="font-size:16px; font-weight:700; cursor:pointer">Do our languages make it worse?</summary><p style="font-size:14.5px; color:#6B655C; margin:10px 0 0">We tested fifteen languages, two models, 58 runs. Failure rates span 46–73%, and the matched test finds no language effect: the verdict travels with the model, not the tongue. We publish the power calculation and do not sell you a language problem we could not detect.</p></details>
     <details style="border-top:1px solid #DAD6CC; padding:14px 0"><summary style="font-size:16px; font-weight:700; cursor:pointer">What happens to our data?</summary><p style="font-size:14.5px; color:#6B655C; margin:10px 0 0">Read-only access on a copy or under a limited role; we refuse admin. Everything runs on your keys, in your infrastructure, and review material is deleted 90 days after delivery. Details in <a href="/privacy">privacy</a>.</p></details>
     <details style="border-top:1px solid #DAD6CC; border-bottom:1px solid #DAD6CC; padding:14px 0"><summary style="font-size:16px; font-weight:700; cursor:pointer">Can we test something before paying anyone?</summary><p style="font-size:14.5px; color:#6B655C; margin:10px 0 0">Yes, today: <b>quaesitor-zero</b> is open source (Apache-2.0), has no network code and no telemetry, and scores whether your assistant says "I don't know" when it cannot know. If the scorecard makes someone nervous, that is what the review is for.</p></details>
 

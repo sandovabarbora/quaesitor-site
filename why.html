@@ -167,7 +167,18 @@ html { scroll-behavior: smooth; }
 @keyframes verdictIn{from{opacity:0; transform:translateY(4px)}to{opacity:1; transform:none}}
 @media (prefers-reduced-motion:reduce){
   .sim-case .sim-verdict{opacity:1; animation:none}
-}</style>
+}
+
+/* The verdict reads as a turn in a conversation: the mark, then who is
+   speaking, then the figure and the reason. Light, not a messenger. */
+.sim-verdict{display:grid; grid-template-columns:auto 1fr; gap:.9rem;
+  align-items:start; border-left:0; padding:0; max-width:46ch}
+.sim-avatar{width:34px; height:34px; border-radius:50%; flex:none;
+  border:1px solid rgba(28,26,23,.2)}
+.sim-said{display:grid; gap:.3rem; background:#F6F4EE; border:1px solid #DAD6CC;
+  padding:.75rem .9rem}
+.sim-said .sim-who{color:#4657D9}
+.sim-said .sim-truth{font-size:clamp(1.15rem,1.8vw,1.45rem)}</style>
 <div style="min-height:100vh">
 <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
     <div style="max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">
