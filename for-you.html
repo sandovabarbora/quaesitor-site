@@ -105,10 +105,20 @@ html { scroll-behavior: smooth; }
 .cta{display:inline-block; background:#1C1A17; color:#EFEBDF;
   padding:13px 26px; font-weight:500; font-size:15px; text-decoration:none}
 .cta:hover{color:#EFEBDF}
-.caught{width:100%; border-collapse:collapse; margin:1.5rem 0; font-size:14px}
-.caught-row td,.caught td,.caught th{border-bottom:1px solid #DAD6CC;
-  padding:.75rem .75rem .75rem 0; vertical-align:top; text-align:left}
-.caught-foot{font-size:13px; color:#6B655C; padding-top:.75rem}
+/* .caught is a stack of two-column rows built from divs and spans, not a
+   table: the label sits left and the figure right, and without this they ran
+   together into "The assistant answered95". */
+.caught{margin:1.5rem 0; font-size:15px; border-top:1px solid #DAD6CC}
+.caught-row,.caught-foot{display:flex; justify-content:space-between;
+  align-items:baseline; gap:1.5rem; padding:.7rem 0;
+  border-bottom:1px solid #DAD6CC}
+.caught-row > span:last-child,.caught-foot > span:last-child{
+  font-family:'JetBrains Mono',ui-monospace,monospace; text-align:right;
+  white-space:nowrap; font-variant-numeric:tabular-nums}
+.caught-foot{font-size:13px; color:#6B655C; border-bottom:0}
+.caught table{width:100%; border-collapse:collapse}
+.caught td,.caught th{border-bottom:1px solid #DAD6CC;
+  padding:.7rem .75rem .7rem 0; vertical-align:top; text-align:left}
 .n{font-family:'JetBrains Mono',ui-monospace,monospace; font-variant-numeric:tabular-nums}
 .right{text-align:right}
 .wrong{color:#9A3324}
