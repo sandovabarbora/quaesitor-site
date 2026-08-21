@@ -414,7 +414,25 @@ main.article .kicker{text-align:left; hyphens:manual}
    is the whole point of the verdict, so it gets the width instead. */
 .sim{max-width:48ch}
 .sim-a{max-width:none}
-.sim-verdict{max-width:none}</style>
+.sim-verdict{max-width:none}
+
+/* Justify the prose wherever it sits, not only where it happens to be a direct
+   child of main: two paragraphs were inside a section and missed the rule. The
+   short labels in the pack cards and the reading list stay ranged left, since
+   justifying four words opens gaps rather than closing them. */
+main.article p{text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+main.article .pack p,
+main.article .pack-sub,
+main.article .pack-tr,
+main.article .pack-lab,
+main.article .reading p,
+main.article .reading-list span,
+main.article .lede,
+main.article .dek,
+main.article .note,
+main.article .kicker,
+main.article .traps li,
+main.article figcaption{text-align:left; hyphens:manual}</style>
 <div style="min-height:100vh">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
     <div style="max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">

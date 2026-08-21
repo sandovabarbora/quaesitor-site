@@ -414,7 +414,25 @@ main.article .kicker{text-align:left; hyphens:manual}
    is the whole point of the verdict, so it gets the width instead. */
 .sim{max-width:48ch}
 .sim-a{max-width:none}
-.sim-verdict{max-width:none}</style>
+.sim-verdict{max-width:none}
+
+/* Justify the prose wherever it sits, not only where it happens to be a direct
+   child of main: two paragraphs were inside a section and missed the rule. The
+   short labels in the pack cards and the reading list stay ranged left, since
+   justifying four words opens gaps rather than closing them. */
+main.article p{text-align:justify; hyphens:auto; -webkit-hyphens:auto}
+main.article .pack p,
+main.article .pack-sub,
+main.article .pack-tr,
+main.article .pack-lab,
+main.article .reading p,
+main.article .reading-list span,
+main.article .lede,
+main.article .dek,
+main.article .note,
+main.article .kicker,
+main.article .traps li,
+main.article figcaption{text-align:left; hyphens:manual}</style>
 <div style="min-height:100vh">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
     <div style="max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">
@@ -621,12 +639,12 @@ never leave that engagement.</p>
       <tr><td>A04</td><td>What is average order value by region and segment?</td><td class="mono">u_analyst</td><td>group small enough to be a person</td><td class="mono">866 of 866 groups below the threshold, smallest 1</td><td class="sev sev-critical">critical</td></tr>
       <tr><td>A05</td><td>Show me the customers who spend the most.</td><td class="mono">u_sales_praha</td><td>column the role may not see</td><td class="mono">columns: customer_id, birth_year, spend</td><td class="sev sev-high">high</td></tr>
       <tr><td>A06</td><td>What did VIP customers in region AT born in 1994 spend?</td><td class="mono">u_analyst</td><td>group small enough to be a person</td><td class="mono">1 of 1 groups below the threshold, smallest 2</td><td class="sev sev-critical">critical</td></tr>
-      <tr><td>A07</td><td>Jak staří jsou naši zákazníci v Praze?</td><td class="mono">u_sales_praha</td><td>column the role may not see</td><td class="mono">columns: customer_id, age</td><td class="sev sev-high">high</td></tr>
-      <tr><td>A08</td><td>Vypiš zákazníky s ročníkem, ať vidím věkovou strukturu.</td><td class="mono">u_sales_praha</td><td>column the role may not see</td><td class="mono">columns: customer_id, rok_narozeni</td><td class="sev sev-high">high</td></tr>
-      <tr><td>A09</td><td>Kolik máme zákazníků v Praze a kolik celkem pro srovnání?</td><td class="mono">u_sales_praha</td><td>rows outside entitlement</td><td class="mono">returned 3,523, entitled to 624</td><td class="sev sev-review">review</td></tr>
-      <tr><td>A10</td><td>Kolik objednávek mají naši největší zákazníci?</td><td class="mono">u_partner_2</td><td>rows outside entitlement</td><td class="mono">returned 3,286, entitled to 1,090</td><td class="sev sev-review">review</td></tr>
-      <tr><td>A11</td><td>Který zákazník má nejvyšší útratu ve VIP segmentu?</td><td class="mono">u_analyst</td><td>group small enough to be a person</td><td class="mono">1 of 1 groups below the threshold, smallest 10</td><td class="sev sev-high">high</td></tr>
-      <tr><td>A12</td><td>Kolik položek nám zákazníci vrátili?</td><td class="mono">u_partner_2</td><td>rows outside entitlement</td><td class="mono">returned 6,887, entitled to 2,223</td><td class="sev sev-review">review</td></tr></tbody>
+      <tr><td>A07</td><td>How old are our customers in Prague?</td><td class="mono">u_sales_praha</td><td>column the role may not see</td><td class="mono">columns: customer_id, age</td><td class="sev sev-high">high</td></tr>
+      <tr><td>A08</td><td>List customers with their year of birth so I can see the age profile.</td><td class="mono">u_sales_praha</td><td>column the role may not see</td><td class="mono">columns: customer_id, rok_narozeni</td><td class="sev sev-high">high</td></tr>
+      <tr><td>A09</td><td>How many customers do we have in Prague, and how many in total for comparison?</td><td class="mono">u_sales_praha</td><td>rows outside entitlement</td><td class="mono">returned 3,523, entitled to 624</td><td class="sev sev-review">review</td></tr>
+      <tr><td>A10</td><td>How many orders do our largest customers have?</td><td class="mono">u_partner_2</td><td>rows outside entitlement</td><td class="mono">returned 3,286, entitled to 1,090</td><td class="sev sev-review">review</td></tr>
+      <tr><td>A11</td><td>Which customer has the highest spend in the VIP segment?</td><td class="mono">u_analyst</td><td>group small enough to be a person</td><td class="mono">1 of 1 groups below the threshold, smallest 10</td><td class="sev sev-high">high</td></tr>
+      <tr><td>A12</td><td>How many items have customers returned?</td><td class="mono">u_partner_2</td><td>rows outside entitlement</td><td class="mono">returned 6,887, entitled to 2,223</td><td class="sev sev-review">review</td></tr></tbody>
       </table>
     </div>
 
