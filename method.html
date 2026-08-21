@@ -433,29 +433,76 @@ main.article .kicker{text-align:left; hyphens:manual}
   </nav>
   <main class="article" style="max-width:820px; margin:0 auto; padding:clamp(3rem,6vw,5rem) 3rem">
     <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#4657D9; margin-bottom:18px">The method</div>
-    <h1 style="margin:0 0 18px">How a question becomes a verified one</h1>
-    <p style="font-size:19px; color:#1C1A17; margin:0 0 10px; max-width:52ch">Running the suite takes minutes and costs about a dollar. Deciding what the right answer is, and being able to defend it, is the work.</p>
-    <p style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#6B655C; margin:0 0 52px">"verified" does not mean proved true from first principles. it means the number has a provenance you can follow.</p>
+    <h1>Methodology</h1>
 
-    <section style="margin-bottom:44px; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-      <h2 style="margin:0 0 10px"><span style="color:#4657D9">1 ·</span> The definition comes from the business, in writing</h2>
-      <p style="margin:0 0 12px">We do not decide what revenue means in your company. Whoever owns the metric states it, and the question does not enter the suite until they have. Frequently it is written down nowhere and two departments answer differently, which is itself the finding, and usually a larger one than anything the model gets wrong.</p>
-      <div style="border-left:2px solid #4657D9; background:#F6F4EE; padding:12px 18px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#6B655C">if nobody owns a definition and nobody wants to, the protocol cannot run. we say so rather than inventing an owner.</div>
-    </section>
+<p>Okay, so here's the thing. It's not in our hands to make AI deterministic,
+but we can give you the foundation that will make your AI assistant more
+predictable. The real work doesn't lie within running queries or prompts: it
+lies deep within your company, among your people, in the processes that
+determine the metrics your AI relies on. The aim is to get it written down and
+defensible.</p>
 
-    <section style="margin-bottom:44px; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-      <h2 style="margin:0 0 10px"><span style="color:#4657D9">2 ·</span> The query implements that definition</h2>
-      <p style="margin:0">The verified query is read against the written definition with the person who owns it, clause by clause. What is checked is narrow and worth stating plainly: that the query says what the definition says. Not that either matches reality. Keeping the claim this small is what makes it survivable.</p>
-    </section>
+<p>Say your assistant tells you how many monthly active users you had last
+month. Nobody can prove that number is true, and we are not going to pretend
+otherwise: the data is yours, the definition is yours, and the only people who
+could say what active actually means are the ones already sitting in your
+building.</p>
 
-    <section style="margin-bottom:44px; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-      <h2 style="margin:0 0 10px"><span style="color:#4657D9">3 ·</span> The result is anchored</h2>
-      <p style="margin:0 0 12px">The number is reconciled against a figure the business already trusts and that was produced independently of us: a closed month, a filed statement, an ERP total, a report somebody signs. Where no anchor exists, the query is written twice, independently, and the two are compared. A disagreement is a finding, settled before the question judges anything.</p>
-      <div style="border-left:2px solid #4657D9; background:#F6F4EE; padding:12px 18px; font-family:'JetBrains Mono',monospace; font-size:12px; color:#6B655C">whether an anchor exists is the single biggest driver of what an engagement costs. ask early.</div>
-    </section>
+<p>What we can do is make that number followable. We don't know how you count
+monthly active users, and we're not going to pretend we do: we could guess, and
+the guess might even be right, but a guess is not something you put in front of
+a board. With your definition written down we can be certain. The query gets
+read against that sentence clause by clause, and the total gets reconciled
+against something your business already trusts, a closed month or a total out
+of your ERP.</p>
 
-    <section style="margin-bottom:44px; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-      <h2 style="margin:0 0 10px">The naive query</h2>
+<h2>The definition comes from you and is written down</h2>
+
+<p>We will not decide what active means in your company. Whoever owns that
+metric writes it down, and it has to be written well enough that somebody from
+outside can implement it without coming back to ask what was meant. That test
+is the whole point: if we cannot turn your sentence into SQL without guessing,
+neither can your assistant, and it will guess silently.</p>
+
+<p>This is the step that pays for itself before a single query is written,
+because the definition usually lives nowhere, and when two departments write it
+down separately they often turn out to have been answering different questions
+for years. That is a finding, and normally a bigger one than anything your
+assistant gets wrong. If nobody owns a definition and nobody wants to, we say
+so rather than quietly inventing an owner.</p>
+
+<h2>The query implements that definition</h2>
+
+<p>We read it against the sentence you wrote, clause by clause, with you in the
+room. What gets checked here is narrow and worth saying out loud: that the
+query says what the definition says. Not that either one matches reality, and
+not that the definition is a good one. Keeping the promise that small is what
+makes it possible to keep at all.</p>
+
+<h2>The number gets anchored</h2>
+
+<p>We reconcile it against a figure your business already trusts and that was
+produced without us: a closed month, a filed statement, a total out of the ERP,
+something a person signs. Where no such anchor exists, the query gets written
+twice, independently, and the two get compared. If they disagree, that is a
+finding in itself, and it gets settled before the question is allowed to judge
+anything.</p>
+
+<p>Whether an anchor exists is the single biggest thing that decides what a
+review costs, which is why we ask about it on the first call.</p>
+
+<h2>On confidentiality</h2>
+
+<p>An NDA is assumed, not a negotiation: send us yours and we sign it. What
+matters more is what we ask for and what we refuse. Access is read-only, on a
+copy or under a limited role. We refuse admin access to production, because it
+does not improve a single finding. Everything runs on your keys and inside your
+infrastructure. Review material is deleted when the engagement ends, or kept
+for as long as a continuous or annual review runs, because otherwise there
+would be nothing left to re-run. Your data, your figures and your findings
+never leave that engagement.</p>
+
+<h2 style="margin:0 0 10px">The naive query</h2>
       <p style="margin:0 0 12px">Every question also carries the query a competent person would write first, without knowing the trap. The two differ in exactly one place, so a measured divergence can be attributed to that trap rather than to a mixture of mistakes. This is enforced, not intended:</p>
       <div style="background:#1C1A17; color:#EFEBDF; padding:16px 20px; font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.8">
         <div>test_every_trap_is_silent</div>
@@ -509,7 +556,17 @@ main.article .kicker{text-align:left; hyphens:manual}
     Across every silently wrong answer we have measured, the median divergence
     is around ten per cent and nearly half fall below it.</p>
 
-    <div class="scroller"><table class="tbl"><thead><tr><th>Trap</th><th>What it does</th><th class="n">Median error</th><th class="n">Runs</th></tr></thead><tbody><tr><td><b>active customer</b></td><td>Defined one way in one department and another way elsewhere</td><td class="n">74.1%</td><td class="n">17</td></tr><tr><td><b>cohort definition</b></td><td>First purchase against registration against first visit</td><td class="n">10.1%</td><td class="n">34</td></tr><tr><td><b>currency mixing</b></td><td>Currencies summed together without conversion</td><td class="n">86.3%</td><td class="n">2</td></tr><tr><td><b>dirty categories</b></td><td>The same category written three ways</td><td class="n">94.4%</td><td class="n">35</td></tr><tr><td><b>duplicate facts</b></td><td>A batch loaded twice, so every sum is a little too big</td><td class="n">1.2%</td><td class="n">19</td></tr><tr><td><b>fan out join</b></td><td>Rows multiplied across a one to many join, inflating the sum</td><td class="n">72.3%</td><td class="n">3</td></tr><tr><td><b>filter before aggregate</b></td><td>Filtered per row when the condition belongs after the sum</td><td class="n">100.0%</td><td class="n">29</td></tr><tr><td><b>fx rate date</b></td><td>Today&#x27;s rate applied to last year&#x27;s transactions</td><td class="n">6.6%</td><td class="n">4</td></tr><tr><td><b>grain mismatch</b></td><td>Counted per line when the question asked per order</td><td class="n">69.1%</td><td class="n">5</td></tr><tr><td><b>inclusive bounds</b></td><td>Inclusive against exclusive edges of a period</td><td class="n">6.4%</td><td class="n">29</td></tr><tr><td><b>late arriving data</b></td><td>A query over a period that is not closed yet</td><td class="n">not yet measured</td><td class="n"></td></tr><tr><td><b>null in filter</b></td><td>Comparison with null is unknown, so the row quietly leaves</td><td class="n">91.5%</td><td class="n">34</td></tr><tr><td><b>null semantics</b></td><td>A null inside an aggregate against a null inside a filter</td><td class="n">232.4%</td><td class="n">35</td></tr><tr><td><b>partial returns</b></td><td>Whole lines counted as returned when only part came back</td><td class="n">35.0%</td><td class="n">2</td></tr><tr><td><b>percent units</b></td><td>A percentage stored as whole numbers, read as a fraction</td><td class="n">13.0%</td><td class="n">3</td></tr><tr><td><b>ratio of means</b></td><td>The average of ratios instead of the ratio of sums</td><td class="n">9916.6%</td><td class="n">30</td></tr><tr><td><b>returns ignored</b></td><td>Revenue counted before returns are deducted</td><td class="n">72.9%</td><td class="n">2</td></tr><tr><td><b>scd duplicates</b></td><td>Repeated records from history tables or from reprocessing</td><td class="n">94.1%</td><td class="n">35</td></tr><tr><td><b>shipping currency</b></td><td>Items converted, shipping left in the original currency</td><td class="n">8.3%</td><td class="n">31</td></tr><tr><td><b>soft delete</b></td><td>Cancelled rows that were flagged rather than removed</td><td class="n">8.6%</td><td class="n">34</td></tr><tr><td><b>test accounts</b></td><td>Internal and test orders never filtered out of the totals</td><td class="n">3.0%</td><td class="n">24</td></tr><tr><td><b>timezone</b></td><td>UTC against local time on a daily grain</td><td class="n">5.9%</td><td class="n">34</td></tr><tr><td><b>trailing vs calendar</b></td><td>Last month as the calendar month against the last thirty days</td><td class="n">8.4%</td><td class="n">34</td></tr><tr><td><b>unknown member</b></td><td>Facts whose dimension row is gone, dropped by an inner join</td><td class="n">1.0%</td><td class="n">28</td></tr><tr><td><b>week numbering</b></td><td>ISO weeks against weeks counted from Sunday</td><td class="n">6.7%</td><td class="n">29</td></tr><tr><td><b>wrong denominator</b></td><td>Divided by rows when the question was about people</td><td class="n">94.4%</td><td class="n">34</td></tr></tbody></table></div>
+    <div class="scroller"><table class="tbl"><thead><tr><th>Trap</th><th>What it does</th><th class="n">Median error</th><th class="n">Runs</th></tr></thead><tbody><tr><td><b>active customer</b></td><td>Defined one way in one department and another way elsewhere</td><td class="n">74.1%</td><td class="n">17</td></tr><tr><td><b>cohort definition</b></td><td>First purchase against registration against first visit</td><td class="n">10.1%</td><td class="n">34</td></tr><tr><td><b>currency mixing</b></td><td>Currencies summed together without conversion</td><td class="n">86.3%</td><td class="n">2</td></tr><tr><td><b>dirty categories</b></td><td>The same category written three ways</td><td class="n">94.4%</td><td class="n">35</td></tr><tr><td><b>duplicate facts</b></td><td>A batch loaded twice, so every sum is a little too big</td><td class="n">1.2%</td><td class="n">19</td></tr><tr><td><b>fan out join</b></td><td>Rows multiplied across a one to many join, inflating the sum</td><td class="n">72.3%</td><td class="n">3</td></tr><tr><td><b>filter before aggregate</b></td><td>Filtered per row when the condition belongs after the sum</td><td class="n">100.0%</td><td class="n">29</td></tr><tr><td><b>fx rate date</b></td><td>Today&#x27;s rate applied to last year&#x27;s transactions</td><td class="n">6.6%</td><td class="n">4</td></tr><tr><td><b>grain mismatch</b></td><td>Counted per line when the question asked per order</td><td class="n">69.1%</td><td class="n">5</td></tr><tr><td><b>inclusive bounds</b></td><td>Inclusive against exclusive edges of a period</td><td class="n">6.4%</td><td class="n">29</td></tr><tr><td><b>late arriving data</b></td><td>A query over a period that is not closed yet</td><td class="n">not a magnitude</td><td class="n"></td></tr><tr><td><b>null in filter</b></td><td>Comparison with null is unknown, so the row quietly leaves</td><td class="n">91.5%</td><td class="n">34</td></tr><tr><td><b>null semantics</b></td><td>A null inside an aggregate against a null inside a filter</td><td class="n">232.4%</td><td class="n">35</td></tr><tr><td><b>partial returns</b></td><td>Whole lines counted as returned when only part came back</td><td class="n">35.0%</td><td class="n">2</td></tr><tr><td><b>percent units</b></td><td>A percentage stored as whole numbers, read as a fraction</td><td class="n">13.0%</td><td class="n">3</td></tr><tr><td><b>ratio of means</b></td><td>The average of ratios instead of the ratio of sums</td><td class="n">9916.6%</td><td class="n">30</td></tr><tr><td><b>returns ignored</b></td><td>Revenue counted before returns are deducted</td><td class="n">72.9%</td><td class="n">2</td></tr><tr><td><b>scd duplicates</b></td><td>Repeated records from history tables or from reprocessing</td><td class="n">94.1%</td><td class="n">35</td></tr><tr><td><b>shipping currency</b></td><td>Items converted, shipping left in the original currency</td><td class="n">8.3%</td><td class="n">31</td></tr><tr><td><b>soft delete</b></td><td>Cancelled rows that were flagged rather than removed</td><td class="n">8.6%</td><td class="n">34</td></tr><tr><td><b>test accounts</b></td><td>Internal and test orders never filtered out of the totals</td><td class="n">3.0%</td><td class="n">24</td></tr><tr><td><b>timezone</b></td><td>UTC against local time on a daily grain</td><td class="n">5.9%</td><td class="n">34</td></tr><tr><td><b>trailing vs calendar</b></td><td>Last month as the calendar month against the last thirty days</td><td class="n">8.4%</td><td class="n">34</td></tr><tr><td><b>unknown member</b></td><td>Facts whose dimension row is gone, dropped by an inner join</td><td class="n">1.0%</td><td class="n">28</td></tr><tr><td><b>week numbering</b></td><td>ISO weeks against weeks counted from Sunday</td><td class="n">6.7%</td><td class="n">29</td></tr><tr><td><b>wrong denominator</b></td><td>Divided by rows when the question was about people</td><td class="n">94.4%</td><td class="n">34</td></tr></tbody></table></div>
+
+    <p class="note">Two entries need a word. Ratio of means reads as an
+    enormous divergence because the answer is itself a percentage: the verified
+    figure is 5.3% and the assistant returns the same quantity in the wrong
+    unit, consistently, across thirty runs. That is a units failure rather than
+    an arithmetic one, and it is the kind that survives review because the
+    digits look familiar. Late arriving data has no percentage beside it
+    because its answer is a count of days, and a count of days has no magnitude
+    to diverge by; it was measured, and it was wrong seven times in
+    thirty-five.</p>
 
     <h2>The packs, and why the warehouse travels with them</h2>
     <p>Traps are not the same in every business, and the warehouse is bound to
