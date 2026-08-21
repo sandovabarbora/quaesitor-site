@@ -496,38 +496,20 @@ main.article .kicker{text-align:left; hyphens:manual}
     <h2>The traps, all of them</h2>
     <p>These are the failure modes the retail pack tests, one per question. They
     are not hypotheses: each is a trap planted in a warehouse we built, with a
-    verified query and a naive one that differ in exactly that place.</p>
-            <details class="traps-wrap">
-          <summary><b>26 traps</b> active customer, cohort definition, currency mixing, dirty categories, duplicate facts, fan out join, filter before aggregate, fx rate date, grain mismatch, inclusive bounds, late arriving data, null in filter, null semantics, partial returns, percent units, ratio of means, returns ignored, scd duplicates, shipping currency, soft delete, test accounts, timezone, trailing vs calendar, unknown member, week numbering, wrong denominator</summary>
-          <ul class="traps">
-            <li><dfn>active customer</dfn><span>Defined one way in one department and another way elsewhere</span></li>
-            <li><dfn>cohort definition</dfn><span>First purchase against registration against first visit</span></li>
-            <li><dfn>currency mixing</dfn><span>Currencies summed together without conversion</span></li>
-            <li><dfn>dirty categories</dfn><span>The same category written three ways</span></li>
-            <li><dfn>duplicate facts</dfn><span>A batch loaded twice, so every sum is a little too big</span></li>
-            <li><dfn>fan out join</dfn><span>Rows multiplied across a one to many join, inflating the sum</span></li>
-            <li><dfn>filter before aggregate</dfn><span>Filtered per row when the condition belongs after the sum</span></li>
-            <li><dfn>fx rate date</dfn><span>Today's rate applied to last year's transactions</span></li>
-            <li><dfn>grain mismatch</dfn><span>Counted per line when the question asked per order</span></li>
-            <li><dfn>inclusive bounds</dfn><span>Inclusive against exclusive edges of a period</span></li>
-            <li><dfn>late arriving data</dfn><span>A query over a period that is not closed yet</span></li>
-            <li><dfn>null in filter</dfn><span>Comparison with null is unknown, so the row quietly leaves</span></li>
-            <li><dfn>null semantics</dfn><span>A null inside an aggregate against a null inside a filter</span></li>
-            <li><dfn>partial returns</dfn><span>Whole lines counted as returned when only part came back</span></li>
-            <li><dfn>percent units</dfn><span>A percentage stored as whole numbers, read as a fraction</span></li>
-            <li><dfn>ratio of means</dfn><span>The average of ratios instead of the ratio of sums</span></li>
-            <li><dfn>returns ignored</dfn><span>Revenue counted before returns are deducted</span></li>
-            <li><dfn>scd duplicates</dfn><span>Repeated records from history tables or from reprocessing</span></li>
-            <li><dfn>shipping currency</dfn><span>Items converted, shipping left in the original currency</span></li>
-            <li><dfn>soft delete</dfn><span>Cancelled rows that were flagged rather than removed</span></li>
-            <li><dfn>test accounts</dfn><span>Internal and test orders never filtered out of the totals</span></li>
-            <li><dfn>timezone</dfn><span>UTC against local time on a daily grain</span></li>
-            <li><dfn>trailing vs calendar</dfn><span>Last month as the calendar month against the last thirty days</span></li>
-            <li><dfn>unknown member</dfn><span>Facts whose dimension row is gone, dropped by an inner join</span></li>
-            <li><dfn>week numbering</dfn><span>ISO weeks against weeks counted from Sunday</span></li>
-            <li><dfn>wrong denominator</dfn><span>Divided by rows when the question was about people</span></li>
-          </ul>
-        </details>
+    verified query and a naive one that differ in exactly that place. The last
+    two columns are measured, not estimated: how far wrong the answer went when
+    the assistant fell into that trap, and how many finished runs that figure
+    comes from.</p>
+
+    <p>Read the median error column and notice that these are two different
+    animals. A null inside an aggregate moves the answer by 232%, and somebody
+    will catch that. An unknown dimension member moves it by 1%, a duplicated
+    batch by 1.2%, unfiltered test accounts by 3%. Those are the expensive ones,
+    because nothing about a number that is 3% wrong invites a second look.
+    Across every silently wrong answer we have measured, the median divergence
+    is around ten per cent and nearly half fall below it.</p>
+
+    <div class="scroller"><table class="tbl"><thead><tr><th>Trap</th><th>What it does</th><th class="n">Median error</th><th class="n">Runs</th></tr></thead><tbody><tr><td><b>active customer</b></td><td>Defined one way in one department and another way elsewhere</td><td class="n">74.1%</td><td class="n">17</td></tr><tr><td><b>cohort definition</b></td><td>First purchase against registration against first visit</td><td class="n">10.1%</td><td class="n">34</td></tr><tr><td><b>currency mixing</b></td><td>Currencies summed together without conversion</td><td class="n">86.3%</td><td class="n">2</td></tr><tr><td><b>dirty categories</b></td><td>The same category written three ways</td><td class="n">94.4%</td><td class="n">35</td></tr><tr><td><b>duplicate facts</b></td><td>A batch loaded twice, so every sum is a little too big</td><td class="n">1.2%</td><td class="n">19</td></tr><tr><td><b>fan out join</b></td><td>Rows multiplied across a one to many join, inflating the sum</td><td class="n">72.3%</td><td class="n">3</td></tr><tr><td><b>filter before aggregate</b></td><td>Filtered per row when the condition belongs after the sum</td><td class="n">100.0%</td><td class="n">29</td></tr><tr><td><b>fx rate date</b></td><td>Today&#x27;s rate applied to last year&#x27;s transactions</td><td class="n">6.6%</td><td class="n">4</td></tr><tr><td><b>grain mismatch</b></td><td>Counted per line when the question asked per order</td><td class="n">69.1%</td><td class="n">5</td></tr><tr><td><b>inclusive bounds</b></td><td>Inclusive against exclusive edges of a period</td><td class="n">6.4%</td><td class="n">29</td></tr><tr><td><b>late arriving data</b></td><td>A query over a period that is not closed yet</td><td class="n">not yet measured</td><td class="n"></td></tr><tr><td><b>null in filter</b></td><td>Comparison with null is unknown, so the row quietly leaves</td><td class="n">91.5%</td><td class="n">34</td></tr><tr><td><b>null semantics</b></td><td>A null inside an aggregate against a null inside a filter</td><td class="n">232.4%</td><td class="n">35</td></tr><tr><td><b>partial returns</b></td><td>Whole lines counted as returned when only part came back</td><td class="n">35.0%</td><td class="n">2</td></tr><tr><td><b>percent units</b></td><td>A percentage stored as whole numbers, read as a fraction</td><td class="n">13.0%</td><td class="n">3</td></tr><tr><td><b>ratio of means</b></td><td>The average of ratios instead of the ratio of sums</td><td class="n">9916.6%</td><td class="n">30</td></tr><tr><td><b>returns ignored</b></td><td>Revenue counted before returns are deducted</td><td class="n">72.9%</td><td class="n">2</td></tr><tr><td><b>scd duplicates</b></td><td>Repeated records from history tables or from reprocessing</td><td class="n">94.1%</td><td class="n">35</td></tr><tr><td><b>shipping currency</b></td><td>Items converted, shipping left in the original currency</td><td class="n">8.3%</td><td class="n">31</td></tr><tr><td><b>soft delete</b></td><td>Cancelled rows that were flagged rather than removed</td><td class="n">8.6%</td><td class="n">34</td></tr><tr><td><b>test accounts</b></td><td>Internal and test orders never filtered out of the totals</td><td class="n">3.0%</td><td class="n">24</td></tr><tr><td><b>timezone</b></td><td>UTC against local time on a daily grain</td><td class="n">5.9%</td><td class="n">34</td></tr><tr><td><b>trailing vs calendar</b></td><td>Last month as the calendar month against the last thirty days</td><td class="n">8.4%</td><td class="n">34</td></tr><tr><td><b>unknown member</b></td><td>Facts whose dimension row is gone, dropped by an inner join</td><td class="n">1.0%</td><td class="n">28</td></tr><tr><td><b>week numbering</b></td><td>ISO weeks against weeks counted from Sunday</td><td class="n">6.7%</td><td class="n">29</td></tr><tr><td><b>wrong denominator</b></td><td>Divided by rows when the question was about people</td><td class="n">94.4%</td><td class="n">34</td></tr></tbody></table></div>
 
     <h2>The packs, and why the warehouse travels with them</h2>
     <p>Traps are not the same in every business, and the warehouse is bound to
