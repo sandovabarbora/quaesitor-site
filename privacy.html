@@ -416,7 +416,7 @@ main.article .kicker{text-align:left; hyphens:manual}
 .sim-a{max-width:none}
 .sim-verdict{max-width:none}</style>
 <div style="min-height:100vh">
-  <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
+<nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
     <div style="max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">
       <a href="/" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:#1C1A17">
         <span style="display:inline-block; width:36px; height:36px; border-radius:50%; overflow:hidden; background:#33424A"><span class="q-avatar" role="img" aria-label="Quaesitor mark"></span></span>
@@ -432,18 +432,150 @@ main.article .kicker{text-align:left; hyphens:manual}
     </div>
   </nav>
   <main class="article" style="max-width:820px; margin:0 auto; padding:clamp(3rem,6vw,5rem) 3rem">
-    <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#4657D9; margin-bottom:18px">Privacy &amp; confidentiality</div>
-    <h1 style="margin:0 0 40px">What we see, we keep sealed.</h1>
-    <div style="display:grid; gap:30px">
-      <div><h2 style="margin:0 0 6px">Review material</h2><p style="font-size:15px; color:#1C1A17; margin:0">Question packs, verified queries, and system outputs are processed in an isolated per-client environment and deleted 90 days after report delivery unless you instruct otherwise. Findings are never reused across clients.</p></div>
-      <div><h2 style="margin:0 0 6px">Your users' data</h2><p style="font-size:15px; margin:0">We review systems, not people. Where production transcripts are in scope, personal data is pseudonymised by you before transfer under our data processing agreement.</p></div>
-      <div><h2 style="margin:0 0 6px">Publication</h2><p style="font-size:15px; margin:0">Aggregated, anonymised failure statistics are published only with written consent per engagement. The sample report on this site is an anonymised composite.</p></div>
-      <div><h2 style="margin:0 0 6px">quaesitor-zero</h2><p style="font-size:15px; margin:0">The open-source tool has no network code, no telemetry, and no model access. Nothing you run through it is sent anywhere.</p></div>
-      <div><h2 style="margin:0 0 6px">This website</h2><p style="font-size:15px; margin:0">No analytics, no cookies, no third-party trackers. The typefaces load from Google Fonts; that is the site's only external request.</p></div>
-      <div><h2 style="margin:0 0 6px">Contact</h2><p style="font-size:15px; margin:0">Data protection queries: <a href="mailto:barbora@quaesitor.eu">barbora@quaesitor.eu</a>. We reply within five working days.</p></div>
-    </div>
-    <div style="margin-top:56px; padding-top:22px; border-top:1px solid #DAD6CC; font-family:'JetBrains Mono',monospace; font-size:12px; color:#6B655C">Ing. Barbora Šandová, MFDA · IČO 17423830 · Prague, CZ · veritas non in machinis · proba omnia</div>
-  <section class="reading" aria-labelledby="reading-h">
+<!-- credits-page -->
+<div class="wrap">
+  <a class="back" href="/">&larr; qu&aelig;sitor</a>
+
+  <h1>Privacy, and what this practice is not.</h1>
+  <p class="stand">
+    Two different things live on this page. What happens to your data — on the
+    site and during an engagement — and what our verdict does and does not
+    stand for. Both are short, because there is not much to declare.
+  </p>
+
+  <section>
+    <h2>Who we are</h2>
+    <p class="entity">
+      Ing. Barbora Šandová, MFDA<br>
+      Company ID (IČO) 17423830<br>
+      Prague, Czech Republic<br>
+      Sole trader registered in the Czech Trade Licensing Register
+    </p>
+    <p>
+      Enquiries, the thirty minute call, and any request about your own data
+      all reach <a href="mailto:barbora@quaesitor.eu">barbora@quaesitor.eu</a>, and
+      it is answered by the person who signs the work. We are the controller
+      for anything you send there.
+    </p>
+  </section>
+
+  <section>
+    <h2>What the website collects</h2>
+    <p>
+      Nothing. There are no cookies, no analytics, no tracking pixels and no
+      embedded third parties. Every font, image and script is inside the page
+      file, so opening it makes no request to anyone but the server that served
+      it. There is no form to submit, so there is nothing here that could
+      collect anything by accident either.
+    </p>
+    <p>
+      Our host records the requests it serves, as any web server does. We do
+      not read those logs to build a picture of who visited, and nothing on the
+      page adds to them.
+    </p>
+  </section>
+
+  <section>
+    <h2>If you write to us</h2>
+    <p>
+      What you send by email is processed to answer you, on the basis of our
+      legitimate interest in replying to an enquiry (GDPR Art. 6(1)(f)). It
+      arrives in a mailbox on this domain with no scheduling service in
+      between, so who asks for a call is not visible to a third party. Kept
+      while the conversation is live and up to two years after, then deleted.
+    </p>
+    <ul>
+      <li>Access, correction, erasure, restriction, objection and portability</li>
+      <li>Complaint to the Czech Data Protection Authority (ÚOOÚ)</li>
+      <li>No profiling, no automated decisions, no sale or transfer</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>During a review</h2>
+    <p>
+      The suite runs against your warehouse, in your infrastructure, under your
+      credentials, and no data of yours reaches a model account of ours. Where
+      an engagement puts us in contact with personal data it runs under a
+      processing agreement signed before any access is granted, and every
+      sub-processor is named in it.
+    </p>
+    <p>
+      What we keep afterwards is the questions, the queries and the results —
+      the material the report is built from. If any of it carries personal
+      data, the processing agreement says how long it is held and when it is
+      destroyed, and that agreement takes precedence over this page.
+    </p>
+  </section>
+
+  <section>
+    <h2>What this is not</h2>
+    <p>
+      This is a technical review of what an AI system answers over your data. It
+      is not a statutory audit under Act 93/2009 Coll. — we are not registered
+      auditors, and nothing we issue stands in for an auditor's report or an
+      opinion on your financial statements. It is not an accredited
+      certification: no certificate is issued and no accreditation is claimed.
+      Where the AI Act requires a conformity assessment for a high-risk system,
+      that is reserved for a notified body and is not what this is.
+    </p>
+    <p>
+      What we issue is a verification statement: our own finding, signed and
+      dated, naming what was measured, what the result was, and what it does
+      not cover. Its value is that the measurement behind it can be repeated by
+      anyone holding the suite — not that a regulator stands behind it.
+    </p>
+  </section>
+
+  <section>
+    <h2>Credits</h2>
+    <p>
+      The garden fresco is from the Villa of Livia, public domain. Type is set
+      in Archivo and JetBrains Mono, both under the SIL Open Font License 1.1.
+      The figure on the cover of the front page is generated, not photographed,
+      and says so there because a site about checking claims should not quietly
+      make one.
+    </p>
+  </section>
+
+  <section>
+    <h2>Copyright</h2>
+    <p>
+      © 2026 Ing. Barbora Šandová, MFDA. All rights reserved. The text, design and
+      code of this site are ours; the fresco and the other plates are public
+      domain and the typefaces are licensed as above. Rights in the deliverables
+      of an engagement — the report, the queries, the suite — are set by the
+      contract for that engagement and not by this page.
+    </p>
+  </section>
+
+  <section>
+    <h2>The figures published here</h2>
+    <p>
+      Every figure on this site comes from a run whose fingerprint is recorded
+      with it, and the report they come from is published. They describe the
+      models, warehouses and question sets named, on the dates given. They are
+      not a statement about any other deployment, including one running the same
+      model, and nothing here is advice about what to do with yours.
+    </p>
+    <p>
+      If you find that a verified query behind one of them is wrong, tell us.
+      That is the most useful thing anyone can do for this method, and it will
+      be corrected in public.
+    </p>
+  </section>
+
+  <section>
+    <h2>Governing law</h2>
+    <p>
+      This page and its use are governed by Czech law. An engagement is
+      governed by its own contract, which prevails over anything written here.
+    </p>
+  </section>
+
+  <p class="stamp">© 2026 Ing. Barbora Šandová, MFDA · Page built 2026-08-21 12:31 UTC · 085c8575</p>
+</div>
+<section class="reading" aria-labelledby="reading-h">
   <p class="reading-kicker">Reading</p>
   <h2 id="reading-h">Published measurements, and the argument behind them.</h2>
   <ul class="reading-list">
@@ -457,7 +589,7 @@ main.article .kicker{text-align:left; hyphens:manual}
       <span>why this exists</span></li>
   </ul>
 </section>
-    </main>
+  </main>
 </div>
 <script>
 (function () {
