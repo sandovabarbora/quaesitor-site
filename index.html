@@ -474,6 +474,24 @@ main.article figcaption{text-align:left; hyphens:manual}
   .extract{grid-template-columns:max-content 1fr; row-gap:.35rem}
   .ex-v{justify-self:start}
   .ex-why{grid-column:1/-1; margin:0 0 .5rem}
+}
+
+
+/* Who else says this. Rows rather than a paragraph, because it is a list and
+   gets read as one; the source is the first thing because that is what the
+   reader is checking. */
+.lit{display:grid; gap:1px; background:#DAD6CC; border:1px solid #DAD6CC}
+.lit-row{display:grid; grid-template-columns:minmax(0,14rem) minmax(0,1fr);
+  column-gap:1.5rem; row-gap:.35rem; background:#F6F4EE; padding:1rem 1.25rem;
+  text-decoration:none; color:#1C1A17; transition:background .15s}
+.lit-row:hover{background:#EFEBDF}
+.lit-src{font:400 11px/1.4 'JetBrains Mono',ui-monospace,monospace;
+  letter-spacing:.1em; text-transform:uppercase; color:#4657D9; align-self:start}
+.lit-t{font-weight:600; font-size:16px}
+.lit-n{grid-column:2; font-size:14px; line-height:1.5; color:#5E6259}
+@media (max-width:48rem){
+  .lit-row{grid-template-columns:1fr}
+  .lit-n{grid-column:1}
 }</style>
 <div style="min-height:100vh; overflow-x:clip">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
@@ -540,7 +558,7 @@ main.article figcaption{text-align:left; hyphens:manual}
           </div>
           <p style="font-size:14px; color:#6B655C; margin:18px 0 0; max-width:44ch">Every number here is reproducible from our repository. The fix names the exact line of SQL that has to change, and the retest is included.</p>
         </div>
-        <div style="position:absolute; right:-26px; bottom:-40px; width:104px; height:104px; border-radius:50%; background:#4657D9; color:#F5F3EE; display:flex; flex-direction:column; align-items:center; justify-content:center; transform:rotate(-8deg); font-weight:700; font-size:15px">REVIEWED<small style="font-family:'JetBrains Mono',monospace; font-size:8px; color:#C9CFF5; font-weight:400">Q·MMXXVI</small></div>
+        <div style="position:absolute; right:18px; bottom:16px; width:72px; height:72px; border-radius:50%; border:1px solid #B9C2E8; color:#8791C9; display:flex; flex-direction:column; align-items:center; justify-content:center; transform:rotate(-8deg); font-weight:700; font-size:10px; letter-spacing:.06em">REVIEWED<small style="font-family:'JetBrains Mono',monospace; font-size:7px; color:#A8B0D8; font-weight:400; letter-spacing:.04em">Q·MMXXVI</small></div>
       </div>
     </div>
   </section>
@@ -632,6 +650,35 @@ main.article figcaption{text-align:left; hyphens:manual}
         </div>
       </div>
       <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#6B655C; margin:16px 0 0">the public cases got caught because they were spectacular. the warehouse kind is quieter, and that is the whole problem.</p>
+    </div>
+  </section>
+
+
+  <section id="reading" style="background:#F6F4EE; border-bottom:1px solid #DAD6CC">
+    <div style="max-width:1360px; margin:0 auto; padding:clamp(3rem,6vw,5rem) 3rem">
+      <p style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#6B655C; margin:0 0 12px">Not just us</p>
+      <h2 style="font-weight:700; font-size:clamp(1.75rem,3vw,2.125rem); letter-spacing:-.015em; margin:0 0 14px">Other people are writing this down too.</h2>
+      <p style="margin:0 0 28px; max-width:52ch; color:#4B4F48">We did not invent the observation that these systems answer confidently and wrongly over real data. What we added is a number for it. Here is where the argument is being made by people with no stake in ours.</p>
+
+      <div class="lit">
+        <a class="lit-row" href="https://cacm.acm.org/blogcacm/if-you-think-you-can-do-real-world-text-to-sql/">
+          <span class="lit-src">CACM &middot; blogCACM</span>
+          <span class="lit-t">If You Think You Can Do Real-World Text-to-SQL</span>
+          <span class="lit-n">Benchmarks report accuracy in the eighties and nineties against schemas that do not exist in production, on data the models have already trained on. 20 July 2026.</span>
+        </a>
+        <a class="lit-row" href="https://arxiv.org/abs/2605.28787">
+          <span class="lit-src">Chen, Alrashed, Halevy &amp; Noy &middot; Google</span>
+          <span class="lit-t">Do Data Agents Need Semantic Metadata?</span>
+          <span class="lit-n">Different setting, same conclusion about what good behaviour looks like: an empty state beats a probabilistic guess. Their agent answers 40% more questions and is 65.7% less precise for it. arXiv:2605.28787, 21 July 2026.</span>
+        </a>
+        <a class="lit-row" href="https://doi.org/10.1145/3605098.3636065">
+          <span class="lit-src">Almohaimeed et al. &middot; ACM SAC</span>
+          <span class="lit-t">Ar-Spider: text-to-SQL in Arabic</span>
+          <span class="lit-n">Reports an 8.79% accuracy gap outside English. One of the few places the non-English question is measured rather than assumed. 2024.</span>
+        </a>
+      </div>
+
+      <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#6B655C; margin:22px 0 0">every one of these describes the problem. none of them puts a rate on your warehouse.</p>
     </div>
   </section>
 
