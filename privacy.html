@@ -43,6 +43,7 @@ html { scroll-behavior: smooth; }
       [data-mq="statue"] { opacity: .14 !important; }
     }
     @media (max-width: 48rem) {
+      [data-mq="hero"] { min-height: 0 !important; justify-content: flex-start !important; }
       [data-mq="hide"] { display: none !important; }
       [data-mq="row"] { grid-template-columns: 64px 1fr !important; }
       [data-mq="row"] a { grid-column: 2; justify-self: start; }
@@ -62,7 +63,6 @@ html { scroll-behavior: smooth; }
   line-height:1.9; min-height:6.5rem; transition:opacity .3s}
 .sim-q{color:#1C1A17}
 .sim-a{color:#9A3324}
-.sim-n{color:#6B655C}
 .sim-dots{display:flex; gap:.5rem; list-style:none; margin:1rem 0 0; padding:0}
 .sim-dots li{width:1.75rem; height:2px; background:#DAD6CC}
 .sim-dots li[aria-current="true"]{background:#9A3324}
@@ -163,8 +163,6 @@ html { scroll-behavior: smooth; }
 .sim-val::after{content:""; position:absolute; left:-2%; right:-2%; top:52%;
   height:.07em; border-radius:2px; background:#9A3324;
   transform:scaleX(0); transform-origin:left; animation:strikeIn .45s ease-out .5s forwards}
-.sim-n{font:400 14px/1.55 'JetBrains Mono',ui-monospace,monospace;
-  color:#6B655C; margin-top:.5rem}
 @keyframes strikeIn{to{transform:scaleX(1)}}
 @media (prefers-reduced-motion:reduce){
   .sim-val::after{animation:none; transform:scaleX(1)}
@@ -215,7 +213,7 @@ html { scroll-behavior: smooth; }
 @media (min-width:48rem) and (max-height:52rem){
   .sim-a{font-size:clamp(1.4rem,2.6vw,2rem)}
   .sim-truth{font-size:1.1rem}
-  .sim-q,.sim-n,.sim-why{font-size:13px; line-height:1.5}
+  .sim-q,.sim-why{font-size:13px; line-height:1.5}
   .sim{margin-bottom:1rem}
   .sim-verdict{margin-top:.6rem}
   .sim-said{padding:.6rem .75rem}
@@ -223,7 +221,7 @@ html { scroll-behavior: smooth; }
 }
 @media (min-width:48rem) and (max-height:44rem){
   .sim-a{font-size:1.3rem}
-  .sim-q,.sim-n,.sim-why{font-size:12px}
+  .sim-q,.sim-why{font-size:12px}
   .sim-why{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
   .sim{margin-bottom:.75rem}
 }
@@ -240,7 +238,6 @@ html { scroll-behavior: smooth; }
 /* One more step for very short windows. */
 @media (min-width:48rem) and (max-height:39rem){
   .sim-a{font-size:1.15rem}
-  .sim-n{display:none}
   .sim{margin-bottom:.5rem}
 }
 
@@ -591,7 +588,7 @@ main.article figcaption{text-align:left; hyphens:manual}</style>
     </p>
   </section>
 
-  <p class="stamp">© 2026 Ing. Barbora Šandová, MFDA · Page built 2026-08-24 08:34 UTC · 78ec3191</p>
+  <p class="stamp">© 2026 Ing. Barbora Šandová, MFDA · Page built 2026-08-24 08:44 UTC · b073e23b</p>
 </div>
 <section class="reading" aria-labelledby="reading-h">
   <p class="reading-kicker">Reading</p>
