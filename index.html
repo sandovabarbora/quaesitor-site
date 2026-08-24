@@ -740,8 +740,20 @@ main.article figcaption{text-align:left; hyphens:manual}
 
       <ol class="lit">
         <li class="lit-row">
+          <p class="lit-ref">Chen, P.B. <i>et al.</i> (2026) &lsquo;BEAVER: an enterprise benchmark for text-to-SQL&rsquo;, <i>arXiv</i>:2409.02038 [cs.DB]. Available at: <a href="https://arxiv.org/abs/2409.02038">arxiv.org</a> (Accessed: 24 August 2026).</p>
+          <p class="lit-why">9,128 question and query pairs from real private warehouses, 812 tables, 19 domains. State-of-the-art agentic frameworks on GPT-5.2 reach 10.8% accuracy, and 30.1% when handed oracle hints. The same class of model scores in the eighties on public benchmarks.</p>
+        </li>
+        <li class="lit-row">
           <p class="lit-ref">Stonebraker, M. and Chen, P.B. (2026) &lsquo;If you think you can do real-world text-to-SQL&rsquo;, <i>BLOG@CACM</i>, 20 July. Available at: <a href="https://cacm.acm.org/blogcacm/if-you-think-you-can-do-real-world-text-to-sql/">cacm.acm.org</a> (Accessed: 24 August 2026).</p>
-          <p class="lit-why">Benchmarks report accuracy in the eighties and nineties against schemas that do not exist in production, on data the models have already trained on.</p>
+          <p class="lit-why">The short form of the argument above: a benchmark built on a tidy public schema, on data the models have already trained on, measures something other than production.</p>
+        </li>
+        <li class="lit-row">
+          <p class="lit-ref">Davidson, J. (2026) &lsquo;Why text-to-SQL fails&rsquo;, <i>Omni</i>, 8 April. Available at: <a href="https://omni.co/blog/why-text-to-sql-fails">omni.co</a> (Accessed: 24 August 2026).</p>
+          <p class="lit-why">Names the shape of the failure as a plausible but incorrect answer, and puts a number on where it comes from: across 4,602 incorrect queries, 81.2% are schema-level errors. Also the objection that matters commercially, that verifying the answer means reading the generated SQL, which is the expertise the tool was bought to replace.</p>
+        </li>
+        <li class="lit-row">
+          <p class="lit-ref">Ghosh, N. (2026) &lsquo;Text-to-SQL the na&iuml;ve way: why most demos fail in production&rsquo;, 18 February. Available at: <a href="https://www.nirmalya.net/posts/2026/02/text-to-sql-naive-way/">nirmalya.net</a> (Accessed: 24 August 2026).</p>
+          <p class="lit-why">A worked example of one trap on a 35-table schema: row duplication returning 271,049 where 154,050 was correct, a 76% overstatement. In his words, nothing flags it.</p>
         </li>
         <li class="lit-row">
           <p class="lit-ref">Chen, S., Alrashed, T., Halevy, A. and Noy, N. (2026) &lsquo;Do data agents need semantic metadata? A comparative study in agentic data retrieval&rsquo;, <i>arXiv</i>:2605.28787 [cs.IR]. Available at: <a href="https://arxiv.org/abs/2605.28787">arxiv.org</a> (Accessed: 24 August 2026).</p>
