@@ -669,7 +669,7 @@ main.article figcaption{text-align:left; hyphens:manual}
 
 <p>Every benchmark of AI over a data warehouse reports accuracy. It is the number that gets quoted and put in datasheets, and for anyone actually deploying one of these systems it is close to useless on its own, because it cannot see the thing that will actually hurt you: the answer that ran without error, looks entirely plausible, and is wrong, with nothing downstream carrying a signal that it should not be trusted.</p>
 
-<p>Ask how many customers made a second purchase within thirty days of their first. The right query counts thirty days from the first purchase and returns 621. A model that anchors the window to the registration date instead returns 95. Both are valid SQL, both run, the answer is off by 85 per cent, and nobody notices, because 95 is a perfectly reasonable-looking number. That is a silent failure. It is not an edge case. It is the normal case, and it is the one accuracy averages away.</p>
+<p>Ask how many customers made a second purchase within thirty days of their first. The right query counts thirty days from the first purchase and returns 621. A model that anchors the window to the registration date instead returns 684, which it did in ninety-five attempts across our runs. Both are valid SQL, both run, and the answer is ten per cent too high. Nobody notices, and the reason nobody notices is that ten per cent is a perfectly ordinary-looking number. An answer off by eighty-five per cent gets queried. This one gets used. That is a silent failure. It is not an edge case. It is the normal case, and it is the one accuracy averages away.</p>
 
 <h2>Why the gap is still open</h2>
 <p>Three kinds of tool sit next to this problem, and none of them is in it.</p>
