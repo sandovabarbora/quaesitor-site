@@ -492,6 +492,55 @@ main.article figcaption{text-align:left; hyphens:manual}
 @media (max-width:48rem){
   .lit-row{grid-template-columns:1fr}
   .lit-n{grid-column:1}
+}
+
+
+/* The dissected report: section 2's object per DESIGN.md, a document with an
+   auditor's marginalia. It replaced a second question-and-answer card, which
+   was the hero's object repeated two screens later; the rule is one object per
+   section, and the hero already owns that one. This shows what the hero cannot:
+   six numbers at once, most of them wrong, on a page that ran without error.
+   The markup comes from render_report(), which was written for the old
+   stylesheet and had outgrown it: rl-strike is an empty element meant to be a
+   drawn line, not a text-decoration. */
+.doc{border:1px solid #DAD6CC; background:#F6F4EE; max-width:64rem}
+.doc-head{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+  padding:.9rem 1.25rem; border-bottom:1px solid #DAD6CC;
+  font:400 11px/1.4 'JetBrains Mono',ui-monospace,monospace; letter-spacing:.18em;
+  text-transform:uppercase}
+.doc-src{color:#4657D9}
+.doc-id{color:#6B655C; letter-spacing:.1em}
+.doc-rows{list-style:none; margin:0; padding:.5rem 0}
+
+.rl{display:grid; grid-template-columns:minmax(0,1fr) max-content minmax(0,17rem);
+  column-gap:1.5rem; align-items:baseline; padding:.7rem 1.25rem}
+.rl + .rl{border-top:1px solid #E4E0D6}
+.rl-label{font-size:15px; color:#1C1A17}
+.rl-unit{font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px;
+  letter-spacing:.12em; text-transform:uppercase; color:#6B655C; margin-left:.5rem}
+.rl-num{position:relative; font:700 1.15rem/1.2 'Space Grotesk',sans-serif;
+  font-variant-numeric:tabular-nums; justify-self:end; white-space:nowrap}
+.rl.bad .rl-num{color:#6B655C}
+/* The strike is drawn rather than declared, so it can carry the hazard colour
+   while the number keeps its own. */
+.rl-strike{position:absolute; left:-3%; right:-3%; top:52%; height:.08em;
+  background:#9A3324; border-radius:2px}
+
+.mark{display:block; font:400 12px/1.5 'JetBrains Mono',ui-monospace,monospace;
+  color:#4657D9}
+.mark p{margin:0}
+.mark b{color:#9A3324; font-weight:400}
+.mark-true{display:inline-block; font:700 .95rem/1.2 'Space Grotesk',sans-serif;
+  color:#1C1A17; margin-bottom:.15rem}
+.rl.ok .mark{color:#6B655C}
+
+.rl-verdict{margin:0; padding:1rem 1.25rem 0; border-top:1px solid #DAD6CC;
+  font:400 12px/1.6 'JetBrains Mono',ui-monospace,monospace; color:#1C1A17}
+
+@media (max-width:64rem){
+  /* The margin note stops being a margin and becomes a note under the line. */
+  .rl{grid-template-columns:minmax(0,1fr) max-content; row-gap:.4rem}
+  .mark{grid-column:1/-1}
 }</style>
 <div style="min-height:100vh; padding-bottom:80px">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">

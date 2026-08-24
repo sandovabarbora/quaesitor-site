@@ -492,6 +492,55 @@ main.article figcaption{text-align:left; hyphens:manual}
 @media (max-width:48rem){
   .lit-row{grid-template-columns:1fr}
   .lit-n{grid-column:1}
+}
+
+
+/* The dissected report: section 2's object per DESIGN.md, a document with an
+   auditor's marginalia. It replaced a second question-and-answer card, which
+   was the hero's object repeated two screens later; the rule is one object per
+   section, and the hero already owns that one. This shows what the hero cannot:
+   six numbers at once, most of them wrong, on a page that ran without error.
+   The markup comes from render_report(), which was written for the old
+   stylesheet and had outgrown it: rl-strike is an empty element meant to be a
+   drawn line, not a text-decoration. */
+.doc{border:1px solid #DAD6CC; background:#F6F4EE; max-width:64rem}
+.doc-head{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+  padding:.9rem 1.25rem; border-bottom:1px solid #DAD6CC;
+  font:400 11px/1.4 'JetBrains Mono',ui-monospace,monospace; letter-spacing:.18em;
+  text-transform:uppercase}
+.doc-src{color:#4657D9}
+.doc-id{color:#6B655C; letter-spacing:.1em}
+.doc-rows{list-style:none; margin:0; padding:.5rem 0}
+
+.rl{display:grid; grid-template-columns:minmax(0,1fr) max-content minmax(0,17rem);
+  column-gap:1.5rem; align-items:baseline; padding:.7rem 1.25rem}
+.rl + .rl{border-top:1px solid #E4E0D6}
+.rl-label{font-size:15px; color:#1C1A17}
+.rl-unit{font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px;
+  letter-spacing:.12em; text-transform:uppercase; color:#6B655C; margin-left:.5rem}
+.rl-num{position:relative; font:700 1.15rem/1.2 'Space Grotesk',sans-serif;
+  font-variant-numeric:tabular-nums; justify-self:end; white-space:nowrap}
+.rl.bad .rl-num{color:#6B655C}
+/* The strike is drawn rather than declared, so it can carry the hazard colour
+   while the number keeps its own. */
+.rl-strike{position:absolute; left:-3%; right:-3%; top:52%; height:.08em;
+  background:#9A3324; border-radius:2px}
+
+.mark{display:block; font:400 12px/1.5 'JetBrains Mono',ui-monospace,monospace;
+  color:#4657D9}
+.mark p{margin:0}
+.mark b{color:#9A3324; font-weight:400}
+.mark-true{display:inline-block; font:700 .95rem/1.2 'Space Grotesk',sans-serif;
+  color:#1C1A17; margin-bottom:.15rem}
+.rl.ok .mark{color:#6B655C}
+
+.rl-verdict{margin:0; padding:1rem 1.25rem 0; border-top:1px solid #DAD6CC;
+  font:400 12px/1.6 'JetBrains Mono',ui-monospace,monospace; color:#1C1A17}
+
+@media (max-width:64rem){
+  /* The margin note stops being a margin and becomes a note under the line. */
+  .rl{grid-template-columns:minmax(0,1fr) max-content; row-gap:.4rem}
+  .mark{grid-column:1/-1}
 }</style>
 <div style="min-height:100vh; overflow-x:clip">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
@@ -532,33 +581,65 @@ main.article figcaption{text-align:left; hyphens:manual}
   </section>
 
   <section id="report" style="border-bottom:1px solid #DAD6CC">
-    <div data-mq="cols" style="max-width:1360px; margin:0 auto; padding:clamp(3rem,6vw,5rem) 3rem; display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:56px; align-items:start">
-      <div style="animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-        <h2 style="font-weight:700; font-size:clamp(1.75rem,3vw,2.125rem); letter-spacing:-.015em; margin:0 0 14px">Error would have been fine.<br>It answered instead.</h2>
-        <p style="margin:0 0 24px; max-width:40ch">Every finding is a pair: the query your assistant wrote, and the one that answers the question the way your definition states it. They differ in exactly one place, so the gap between the two numbers belongs to that one thing. You get both, and check it yourself.</p>
-        <p style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#6B655C; margin:0; max-width:40ch">the trap has to run clean. a query that crashes is a failure you would have caught anyway. the ones worth measuring return a number, fluently, and flag nothing.</p>
-      </div>
-      <div style="position:relative; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-        <div style="background:#F6F4EE; border:1px solid #DAD6CC; padding:2.25rem 2.5rem 3.25rem">
-          <div style="display:flex; justify-content:space-between; border-bottom:1px solid #DAD6CC; padding-bottom:14px; margin-bottom:20px; font-family:'JetBrains Mono',monospace; font-size:11px">
-            <span style="letter-spacing:.22em; text-transform:uppercase; color:#4657D9">Review report · extract</span>
-            <span style="color:#6B655C">F-07 · silent failure</span>
-          </div>
-          <p style="font-weight:500; font-size:17px; margin:0 0 14px">“How many customers made a second purchase within 30 days of their first?”</p>
-          <div class="extract">
-            <span class="ex-k">assistant</span>
-            <span class="ex-v ex-bad">95</span>
-            <span class="ex-why">cohort anchored on the signup date</span>
-            <span class="ex-k">verified</span>
-            <span class="ex-v">621</span>
-            <span class="ex-why">anchored on the first purchase, as the definition says</span>
-            <span class="ex-k">divergence</span>
-            <span class="ex-v ex-sum">85%</span>
-            <span class="ex-why">both queries ran. nothing flagged it.</span>
-          </div>
-          <p style="font-size:14px; color:#6B655C; margin:18px 0 0; max-width:44ch">Every number here is reproducible from our repository. The fix names the exact line of SQL that has to change, and the retest is included.</p>
+    <div style="max-width:1360px; margin:0 auto; padding:clamp(3rem,6vw,5rem) 3rem">
+      <h2 style="font-weight:700; font-size:clamp(1.75rem,3vw,2.125rem); letter-spacing:-.015em; margin:0 0 14px; max-width:22ch; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">Error would have been fine.<br>It answered instead.</h2>
+      <p style="margin:0 0 32px; max-width:54ch; color:#4B4F48">This is one page of numbers from a real run, with the margin notes an auditor writes beside them. Not one of these queries failed.</p>
+
+      <div class="doc">
+        <div class="doc-head">
+          <span class="doc-src">Review report &middot; extract</span>
+          <span class="doc-id">retail pack &middot; benchmark_v0</span>
         </div>
-        <div style="position:absolute; right:18px; bottom:16px; width:72px; height:72px; border-radius:50%; border:1px solid #B9C2E8; color:#8791C9; display:flex; flex-direction:column; align-items:center; justify-content:center; transform:rotate(-8deg); font-weight:700; font-size:10px; letter-spacing:.06em">REVIEWED<small style="font-family:'JetBrains Mono',monospace; font-size:7px; color:#A8B0D8; font-weight:400; letter-spacing:.04em">Q·MMXXVI</small></div>
+        <ul class="doc-rows">
+            <li class="rl bad">
+              <span class="rl-label">Net revenue, 2025 <span class="rl-unit">CZK</span></span>
+              <span class="rl-num">105,803,673<i class="rl-strike"></i></span>
+              <aside class="mark">
+                <span class="mark-true">98,511,410</span>
+                <p>Returns were never deducted. <b>+7.4%</b></p>
+              </aside>
+            </li>
+            <li class="rl bad">
+              <span class="rl-label">Orders</span>
+              <span class="rl-num">10,462<i class="rl-strike"></i></span>
+              <aside class="mark">
+                <span class="mark-true">9,752</span>
+                <p>Cancelled orders kept their rows. <b>+7.3%</b></p>
+              </aside>
+            </li>
+            <li class="rl ok">
+              <span class="rl-label">Units returned</span>
+              <span class="rl-num">3,711</span>
+              <aside class="mark">
+                <p>Checked. Right in 30 runs of 31.</p>
+              </aside>
+            </li>
+            <li class="rl bad">
+              <span class="rl-label">Average order value <span class="rl-unit">CZK</span></span>
+              <span class="rl-num">3,877<i class="rl-strike"></i></span>
+              <aside class="mark">
+                <span class="mark-true">9,970</span>
+                <p>Averaged the line items, not the orders. <b>-61.1%</b></p>
+              </aside>
+            </li>
+            <li class="rl bad">
+              <span class="rl-label">Customers in the VIP segment</span>
+              <span class="rl-num">656<i class="rl-strike"></i></span>
+              <aside class="mark">
+                <span class="mark-true">695</span>
+                <p>Three spellings of one segment name. <b>-5.6%</b></p>
+              </aside>
+            </li>
+            <li class="rl bad">
+              <span class="rl-label">Completed orders, 2025</span>
+              <span class="rl-num">9,577<i class="rl-strike"></i></span>
+              <aside class="mark">
+                <span class="mark-true">9,669</span>
+                <p>Orders whose customer is missing from the dimension were dropped. <b>-1.0%</b></p>
+              </aside>
+            </li>
+            <p class="rl-verdict"><span>Five of these six numbers are wrong. Not one of them failed, and every report built on them inherits the error.</span></p>
+        </ul>
       </div>
     </div>
   </section>
