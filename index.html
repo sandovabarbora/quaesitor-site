@@ -450,7 +450,31 @@ main.article .dek,
 main.article .note,
 main.article .kicker,
 main.article .traps li,
-main.article figcaption{text-align:left; hyphens:manual}</style>
+main.article figcaption{text-align:left; hyphens:manual}
+
+
+/* The report extract. The two numbers are the entire point and they used to
+   sit mid-sentence at body size, each at a different horizontal position, so
+   the one comparison the card exists to make was the one thing the eye could
+   not do. Three columns, numbers right-aligned against each other in the
+   display face; the label says which query and the reason says why they
+   differ. Hazard red stays on the wrong number, which is what it is for. */
+.extract{display:grid; grid-template-columns:max-content max-content minmax(0,1fr);
+  column-gap:1.1rem; row-gap:.6rem; align-items:baseline; margin:1.1rem 0 0}
+.ex-k{font:400 11px/1 'JetBrains Mono',ui-monospace,monospace; letter-spacing:.16em;
+  text-transform:uppercase; color:#6B655C}
+.ex-v{font:700 1.5rem/1 'Space Grotesk',sans-serif; letter-spacing:-.015em;
+  color:#1C1A17; justify-self:end; font-variant-numeric:tabular-nums}
+.ex-v.ex-bad{color:#9A3324}
+.ex-v.ex-sum{font-size:1.05rem; color:#6B655C}
+.ex-why{font:400 13px/1.45 'JetBrains Mono',ui-monospace,monospace; color:#6B655C}
+@media (max-width:48rem){
+  /* Three columns will not fit; the reason drops to its own full-width row
+     rather than being squeezed into a column two words wide. */
+  .extract{grid-template-columns:max-content 1fr; row-gap:.35rem}
+  .ex-v{justify-self:start}
+  .ex-why{grid-column:1/-1; margin:0 0 .5rem}
+}</style>
 <div style="min-height:100vh; overflow-x:clip">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
     <div style="max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">
@@ -492,8 +516,8 @@ main.article figcaption{text-align:left; hyphens:manual}</style>
   <section id="report" style="border-bottom:1px solid #DAD6CC">
     <div data-mq="cols" style="max-width:1360px; margin:0 auto; padding:clamp(3rem,6vw,5rem) 3rem; display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:56px; align-items:start">
       <div style="animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
-        <h2 style="font-weight:700; font-size:clamp(1.75rem,3vw,2.125rem); letter-spacing:-.015em; margin:0 0 14px">Error would have been fine. It answered instead.</h2>
-        <p style="margin:0 0 12px; max-width:40ch">Every finding is a pair: the query your assistant wrote, and the one that answers the question the way your own definition states it. They differ in exactly one place, so the gap between the two numbers can be blamed on that one thing and not on a mixture of five. You get both queries, because the point is that you check the difference yourself instead of taking our word for it.</p>
+        <h2 style="font-weight:700; font-size:clamp(1.75rem,3vw,2.125rem); letter-spacing:-.015em; margin:0 0 14px">Error would have been fine.<br>It answered instead.</h2>
+        <p style="margin:0 0 24px; max-width:40ch">Every finding is a pair: the query your assistant wrote, and the one that answers the question the way your definition states it. They differ in exactly one place, so the gap between the two numbers belongs to that one thing. You get both, and check it yourself.</p>
         <p style="font-family:'JetBrains Mono',monospace; font-size:12px; color:#6B655C; margin:0; max-width:40ch">the trap has to run clean. a query that crashes is a failure you would have caught anyway. the ones worth measuring return a number, fluently, and flag nothing.</p>
       </div>
       <div style="position:relative; animation:fadeUp 1ms linear both; animation-timeline:view(); animation-range:entry 0% entry 45%">
@@ -503,10 +527,16 @@ main.article figcaption{text-align:left; hyphens:manual}</style>
             <span style="color:#6B655C">F-07 · silent failure</span>
           </div>
           <p style="font-weight:500; font-size:17px; margin:0 0 14px">“How many customers made a second purchase within 30 days of their first?”</p>
-          <div style="font-family:'JetBrains Mono',monospace; font-size:13px; line-height:1.8">
-            <div style="color:#9A3324">assistant: 95 customers, cohort anchored on the signup date</div>
-            <div style="color:#1C1A17">verified: 621, anchored on the first purchase, as the definition says</div>
-            <div style="color:#6B655C">divergence: 85% · both queries ran · nothing flagged it</div>
+          <div class="extract">
+            <span class="ex-k">assistant</span>
+            <span class="ex-v ex-bad">95</span>
+            <span class="ex-why">cohort anchored on the signup date</span>
+            <span class="ex-k">verified</span>
+            <span class="ex-v">621</span>
+            <span class="ex-why">anchored on the first purchase, as the definition says</span>
+            <span class="ex-k">divergence</span>
+            <span class="ex-v ex-sum">85%</span>
+            <span class="ex-why">both queries ran. nothing flagged it.</span>
           </div>
           <p style="font-size:14px; color:#6B655C; margin:18px 0 0; max-width:44ch">Every number here is reproducible from our repository. The fix names the exact line of SQL that has to change, and the retest is included.</p>
         </div>

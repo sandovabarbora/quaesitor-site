@@ -450,7 +450,31 @@ main.article .dek,
 main.article .note,
 main.article .kicker,
 main.article .traps li,
-main.article figcaption{text-align:left; hyphens:manual}</style>
+main.article figcaption{text-align:left; hyphens:manual}
+
+
+/* The report extract. The two numbers are the entire point and they used to
+   sit mid-sentence at body size, each at a different horizontal position, so
+   the one comparison the card exists to make was the one thing the eye could
+   not do. Three columns, numbers right-aligned against each other in the
+   display face; the label says which query and the reason says why they
+   differ. Hazard red stays on the wrong number, which is what it is for. */
+.extract{display:grid; grid-template-columns:max-content max-content minmax(0,1fr);
+  column-gap:1.1rem; row-gap:.6rem; align-items:baseline; margin:1.1rem 0 0}
+.ex-k{font:400 11px/1 'JetBrains Mono',ui-monospace,monospace; letter-spacing:.16em;
+  text-transform:uppercase; color:#6B655C}
+.ex-v{font:700 1.5rem/1 'Space Grotesk',sans-serif; letter-spacing:-.015em;
+  color:#1C1A17; justify-self:end; font-variant-numeric:tabular-nums}
+.ex-v.ex-bad{color:#9A3324}
+.ex-v.ex-sum{font-size:1.05rem; color:#6B655C}
+.ex-why{font:400 13px/1.45 'JetBrains Mono',ui-monospace,monospace; color:#6B655C}
+@media (max-width:48rem){
+  /* Three columns will not fit; the reason drops to its own full-width row
+     rather than being squeezed into a column two words wide. */
+  .extract{grid-template-columns:max-content 1fr; row-gap:.35rem}
+  .ex-v{justify-self:start}
+  .ex-why{grid-column:1/-1; margin:0 0 .5rem}
+}</style>
 <div style="min-height:100vh; padding-bottom:80px">
   <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
     <div style="max-width:1360px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 48px">
