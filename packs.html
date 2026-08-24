@@ -54,6 +54,12 @@ html { scroll-behavior: smooth; }
          the overflow instead of scrolling, which is why this looked fine to a
          scrollWidth check and broken to anybody holding a phone. */
       [data-mq="cols"] { grid-template-columns: minmax(0, 1fr) !important; }
+      /* The tier rows are their own three-column grid inside another grid, and
+         neither carried a data-mq hook. At 402px the description column came
+         out 68px wide and wrapped to seven lines of two words while the row
+         itself ran past the edge. Every grid in the offer stacks. */
+      #pricing [style*="grid"] { grid-template-columns: minmax(0, 1fr) !important; }
+      #pricing [style*="grid"] > * { min-width: 0; }
       /* Wide content scrolls in its own container and the page never does,
          which is section 7. A table is the only thing here that cannot be
          made narrower without losing a column. */
@@ -611,6 +617,31 @@ main.article figcaption{text-align:left; hyphens:manual}
 @media (max-width:48rem){
   .ab th:not(:first-child), .ab td:not(:first-child){width:5.5rem}
   .ab{font-size:14px}
+}
+
+
+@media (max-width:48rem){
+  /* Five columns cannot be read at 402px, and scrolling sideways is worse
+     than useless here because the question is the row label: scroll right and
+     you lose what the outcomes belong to. Each row becomes a block and every
+     cell carries its own column name. */
+  table.ab, table.ab tbody, table.ab tr, table.ab td { display: block; }
+  table.ab { overflow-x: visible; }
+  table.ab thead { display: none; }
+  .ab tr { padding: .9rem 0; border-bottom: 1px solid #DAD6CC; }
+  .ab td { border: 0; padding: 0; }
+  .ab td.ab-q { margin-bottom: .6rem; }
+  .ab td:not(.ab-q) {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1rem; padding: .35rem 0; border-top: 1px solid #E4E0D6;
+  }
+  .ab td:not(.ab-q)::before {
+    content: attr(data-col);
+    font: 400 11px/1.4 'JetBrains Mono', ui-monospace, monospace;
+    letter-spacing: .12em; text-transform: uppercase; color: #6B655C;
+    white-space: nowrap;
+  }
+  .ab-tots { gap: .35rem; flex-direction: column; }
 }</style>
 <div style="min-height:100vh">
 <nav style="position:sticky; top:0; z-index:50; background:rgba(239,235,223,.9); backdrop-filter:blur(10px); border-bottom:1px solid #DAD6CC">
