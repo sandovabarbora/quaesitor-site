@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" sizes="32x32" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAENElEQVR4nO2Vb2iVVRjAn+e8f++9ut17d3e921wbUY5IsiELNRNbWMvcH6lFs1yxLxWhuFyQChaIkcuYFOVozmZYg1rFPojOtqAitSUT0YUfxm3bvWsqFPffe+/7nvc974l7B4ttd7OIfSmfD4fDeTjP7zx/Dy4vXAaLKWRRrcNtwP8iB+J8CkScXgGAZ+SvdxGS9fwfABhjlmVZjHHbRiSyLCmKYqf3yDlPpVKWxRBBktLnC2CyAzgHVVV9vrw8r0d1qIZBQ+PhUDjsdDp1w5BEsazsbp/PZ1nWxMRvo6NjsixP4f8WgBCSTKYOtx6oqtoEAIqimKYZica+OTtw4GBrRcXq13bvXLHiLpfLZdt2JBL98dyFQ61toVAaP5eBc0cFIUTTtNOnvqpYuz4V/x0AJEkG4IIgDF26XFy83Of1cgDTpIgoiRIRyMhIsOHZpvHxkKqqsxhZAADImNXQUA+cB4OjFrP8fv8LjdvKy1chAmPp+59+9vnAt98hQk315trqJ5YsXdJ3tr/x+RcdDnVWMrIC0k5MTl4HAJ8vTxCEyckbgYD/h+/73Lm5Lpfr0Dtt+99826FInHOdWie72uvrt+p66qn6xqFLl12uGYHKkgNE1DRt+3PPbGt4uqioEBGu37j5Rc/X4dBEYUFBMpl8cN2aU73doigBAjWM/Pz8RCLhcjlXrrznp8GL05WdHUAISSQSrzbv2Le3hVIqywqIYtm99z20fl0kEk2lUgBQuekxAAFgKhQIYNk0RWRvUVEhY+nanReQqZ9kefmq5l2vRCJRRDx9pv/KleFAwP941aNud45pWpTSd1tbk8kkIgHgU++NxRJ+v+/8+UGHQ7VtPi8AEQ2Drl3zgCxLiPje+0cPvnVYlETTNHt6ek90tauq6nA4er7sHRwccruX2rZNKXU6XXV1Wz7q+Ng0aaY5ZjgxYxYhpltfVRXO094Eg6OallIVBQBGR8cMgzLGZFnet6fF681FJJIki6L4xv7XOzo7LpwbeKRyo6ZpgkDm9cC2uSiKw8PXCMFEIrl3T4vH4x7+5Vq+L6+paXtenleWJN0wKis3dB77oLu7h1JaV1e9tW5L/I+bgcCyeDyRiRssVKaIYFKr/eiR2idrk7G4osiGQWVZEkWRMdZ5/JOKitXl5fcz02Q2s20uyxK3eSwef+nlXWf6+j0eN2NsYQBaliXL8u7mHTU1mz0etyRJuq6HwxPHu04e6zxxZ2lpS8vOhzdu8HhyASASiQ3+fLHtyIdXrw7n5OTMsp690RCRMaZpyaKigtLSElVRorHYyEgwEom63bmGYei6XlpaUnJHMQeYCE8Efx0TRMHldM61Pm8nIyIhhFJqGJRzmwiCqihTUcqoUNcNSk0AmBrjmfxlGaXzAqYxacl01KyJn1Hgv/pwFr7Mb2X3P/Tpk9uAW8mih+hPjpcFGcpHmtwAAAAASUVORK5CYII=">
 <link rel="apple-touch-icon" type="image/png" href="data:image/png;base64,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">
-<title>qu&aelig;sitor*: privacy</title>
-<meta name="description" content="What this site collects, what a review touches, and what it deliberately is not.">
-<link rel="canonical" href="https://quaesitor.eu/privacy">
-<meta property="og:type" content="website">
-<meta property="og:title" content="What this site collects, what a review touches, and what it deliberately is not">
-<meta property="og:description" content="What this site collects, what a review touches, and what it deliberately is not.">
-<meta property="og:url" content="https://quaesitor.eu/privacy">
+<title>qu&aelig;sitor*: the question packs</title>
+<meta name="description" content="Five question packs, each bound to the warehouse it was written against: retail, SaaS, the TPC-DS standard, real taxi trip records, and a CRM that disagrees with an ERP.">
+<link rel="canonical" href="https://quaesitor.eu/packs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Five question packs, each bound to the warehouse it was written against: retail, SaaS, the">
+<meta property="og:description" content="Five question packs, each bound to the warehouse it was written against: retail, SaaS, the TPC-DS standard, real taxi trip records, and a CRM that disagrees with an ERP.">
+<meta property="og:url" content="https://quaesitor.eu/packs">
 <meta property="og:site_name" content="quaesitor">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "headline": "What this site collects, what a review touches, and what it deliberately is not", "description": "What this site collects, what a review touches, and what it deliberately is not.", "url": "https://quaesitor.eu/privacy", "inLanguage": "en", "isPartOf": {"@type": "WebSite", "name": "quaesitor", "url": "https://quaesitor.eu"}, "publisher": {"@type": "Organization", "name": "Ing. Barbora Šandová, MFDA", "url": "https://quaesitor.eu", "address": {"@type": "PostalAddress", "addressLocality": "Prague", "addressCountry": "Czech Republic"}, "identifier": "17423830"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Five question packs, each bound to the warehouse it was written against: retail, SaaS, the TPC-DS standard, re", "description": "Five question packs, each bound to the warehouse it was written against: retail, SaaS, the TPC-DS standard, real taxi trip records, and a CRM that disagrees with an ERP.", "url": "https://quaesitor.eu/packs", "inLanguage": "en", "isPartOf": {"@type": "WebSite", "name": "quaesitor", "url": "https://quaesitor.eu"}, "publisher": {"@type": "Organization", "name": "Ing. Barbora Šandová, MFDA", "url": "https://quaesitor.eu", "address": {"@type": "PostalAddress", "addressLocality": "Prague", "addressCountry": "Czech Republic"}, "identifier": "17423830"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -468,149 +468,104 @@ main.article figcaption{text-align:left; hyphens:manual}</style>
     </div>
   </nav>
   <main class="article" style="max-width:820px; margin:0 auto; padding:clamp(3rem,6vw,5rem) 3rem">
-<!-- credits-page -->
-<div class="wrap">
-  <a class="back" href="/">&larr; qu&aelig;sitor</a>
 
-  <h1>Privacy, and what this practice is not.</h1>
-  <p class="stand">
-    Two different things live on this page. What happens to your data — on the
-    site and during an engagement — and what our verdict does and does not
-    stand for. Both are short, because there is not much to declare.
-  </p>
+    <p class="kicker">The packs</p>
+    <h1>Five question packs, and why each one ships with its own warehouse</h1>
+    <p class="lede">A trap is not the same trap in every business, and a pack is
+    bound to the warehouse it was written against. Asking subscription questions
+    of a retail warehouse produces nonsense that reads like a catastrophic
+    finding. Selecting a pack selects both.</p>
 
-  <section>
-    <h2>Who we are</h2>
-    <p class="entity">
-      Ing. Barbora Šandová, MFDA<br>
-      Company ID (IČO) 17423830<br>
-      Prague, Czech Republic<br>
-      Sole trader registered in the Czech Trade Licensing Register
-    </p>
-    <p>
-      Enquiries, the thirty minute call, and any request about your own data
-      all reach <a href="mailto:barbora@quaesitor.eu">barbora@quaesitor.eu</a>, and
-      it is answered by the person who signs the work. We are the controller
-      for anything you send there.
-    </p>
-  </section>
+    <p>The counts below are read from the question files at build time, so this
+    page cannot claim coverage the suite does not have. What it deliberately
+    does not show is the questions themselves or the verified queries behind
+    them: those are the work the audit is paid for.</p>
 
-  <section>
-    <h2>What the website collects</h2>
-    <p>
-      Nothing. There are no cookies, no analytics, no tracking pixels and no
-      embedded third parties. Every font, image and script is inside the page
-      file, so opening it makes no request to anyone but the server that served
-      it. There is no form to submit, so there is nothing here that could
-      collect anything by accident either.
-    </p>
-    <p>
-      Our host records the requests it serves, as any web server does. We do
-      not read those logs to build a picture of who visited, and nothing on the
-      page adds to them.
-    </p>
-  </section>
+    <div class="packs">  <div class="pack">
+    <p class="pack-n">26</p>
+    <p class="pack-lab">failure modes</p>
+    <h3>Orders and retail</h3>
+    <p class="pack-sub">Orders, items, returns, currencies, late-arriving rows</p>
+    <p class="pack-tr">among them: active customer, cohort definition, currency mixing</p>
+  </div>
+  <div class="pack">
+    <p class="pack-n">10</p>
+    <p class="pack-lab">failure modes</p>
+    <h3>Two systems that disagree</h3>
+    <p class="pack-sub">CRM against ERP: one customer in three key formats, one country in three spellings</p>
+    <p class="pack-tr">among them: dirty categories, dirty categories count, encoding mismatch</p>
+  </div>
+  <div class="pack">
+    <p class="pack-n">9</p>
+    <p class="pack-lab">failure modes</p>
+    <h3>Subscriptions and SaaS</h3>
+    <p class="pack-sub">Plans, invoices, seats, trials, cancellations, plan changes</p>
+    <p class="pack-tr">among them: account vs subscription, annual not amortised, cancel at period end</p>
+  </div>
+  <div class="pack">
+    <p class="pack-n">10</p>
+    <p class="pack-lab">failure modes</p>
+    <h3>Transport and mobility</h3>
+    <p class="pack-sub">Real trip records: disputed fares, zero-distance journeys, tips a cash meter never sees</p>
+    <p class="pack-tr">among them: impossible duration, null semantics, outlier contamination</p>
+  </div>
+  <div class="pack">
+    <p class="pack-n">10</p>
+    <p class="pack-lab">failure modes</p>
+    <h3>The TPC-DS standard</h3>
+    <p class="pack-sub">Three sales channels, snowflake dimensions, type-2 history</p>
+    <p class="pack-tr">among them: active customer, fan out join, grain mismatch</p>
+  </div></div>
 
-  <section>
-    <h2>If you write to us</h2>
-    <p>
-      What you send by email is processed to answer you, on the basis of our
-      legitimate interest in replying to an enquiry (GDPR Art. 6(1)(f)). It
-      arrives in a mailbox on this domain with no scheduling service in
-      between, so who asks for a call is not visible to a third party. Kept
-      while the conversation is live and up to two years after, then deleted.
-    </p>
-    <ul>
-      <li>Access, correction, erasure, restriction, objection and portability</li>
-      <li>Complaint to the Czech Data Protection Authority (ÚOOÚ)</li>
-      <li>No profiling, no automated decisions, no sale or transfer</li>
-    </ul>
-  </section>
+    <h2>The two we built</h2>
 
-  <section>
-    <h2>During a review</h2>
-    <p>
-      The suite runs against your warehouse, in your infrastructure, under your
-      credentials, and no data of yours reaches a model account of ours. Where
-      an engagement puts us in contact with personal data it runs under a
-      processing agreement signed before any access is granted, and every
-      sub-processor is named in it.
-    </p>
-    <p>
-      What we keep afterwards is the questions, the queries and the results —
-      the material the report is built from. If any of it carries personal
-      data, the processing agreement says how long it is held and when it is
-      destroyed, and that agreement takes precedence over this page.
-    </p>
-  </section>
+    <p><b>Orders and retail</b> is the largest pack, and it is the one most
+    businesses recognise: orders, items, returns, currencies and late-arriving
+    rows, in a warehouse built here. It is where the taxonomy at
+    <a href="/traps">the traps</a> came from.</p>
 
-  <section>
-    <h2>What this is not</h2>
-    <p>
-      This is a technical review of what an AI system answers over your data. It
-      is not a statutory audit under Act 93/2009 Coll. — we are not registered
-      auditors, and nothing we issue stands in for an auditor's report or an
-      opinion on your financial statements. It is not an accredited
-      certification: no certificate is issued and no accreditation is claimed.
-      Where the AI Act requires a conformity assessment for a high-risk system,
-      that is reserved for a notified body and is not what this is.
-    </p>
-    <p>
-      What we issue is a verification statement: our own finding, signed and
-      dated, naming what was measured, what the result was, and what it does
-      not cover. Its value is that the measurement behind it can be repeated by
-      anyone holding the suite — not that a regulator stands behind it.
-    </p>
-  </section>
+    <p><b>Subscriptions and SaaS</b> covers plans, invoices, seats, trials,
+    cancellations and plan changes. Its failure modes differ in kind rather than
+    in degree: a cancelled seat that still bills, a plan change counted twice in
+    the month it moved. Neither of those has an equivalent in a retail
+    warehouse, which is the argument for keeping the packs apart.</p>
 
-  <section>
-    <h2>Credits</h2>
-    <p>
-      The garden fresco is from the Villa of Livia, public domain. Type is set
-      in Archivo and JetBrains Mono, both under the SIL Open Font License 1.1.
-      The figure on the cover of the front page is generated, not photographed,
-      and says so there because a site about checking claims should not quietly
-      make one.
-    </p>
-  </section>
+    <h2>The objection, and the three packs that answer it</h2>
 
-  <section>
-    <h2>Copyright</h2>
-    <p>
-      © 2026 Ing. Barbora Šandová, MFDA. All rights reserved. The text, design and
-      code of this site are ours; the fresco and the other plates are public
-      domain and the typefaces are licensed as above. Rights in the deliverables
-      of an engagement — the report, the queries, the suite — are set by the
-      contract for that engagement and not by this page.
-    </p>
-  </section>
+    <p>Those two invite a fair objection, and it is the one we would raise
+    ourselves: we designed the warehouses and we chose the failures. A suite
+    that plants its own traps and then finds them proves less than it appears
+    to. The next three exist for that reason, because nobody here designed any
+    of them.</p>
 
-  <section>
-    <h2>The figures published here</h2>
-    <p>
-      Every figure on this site comes from a run whose fingerprint is recorded
-      with it, and the report they come from is published. They describe the
-      models, warehouses and question sets named, on the dates given. They are
-      not a statement about any other deployment, including one running the same
-      model, and nothing here is advice about what to do with yours.
-    </p>
-    <p>
-      If you find that a verified query behind one of them is wrong, tell us.
-      That is the most useful thing anyone can do for this method, and it will
-      be corrected in public.
-    </p>
-  </section>
+    <p><b>The TPC-DS standard</b> is a schema standardised in the 1990s, with
+    three sales channels, snowflake dimensions and type-2 history. DuckDB
+    generates it with one command, which means anyone can stand the warehouse up
+    in a minute and ask their own model the same questions without taking our
+    word for any of it.</p>
 
-  <section>
-    <h2>Governing law</h2>
-    <p>
-      This page and its use are governed by Czech law. An engagement is
-      governed by its own contract, which prevails over anything written here.
-    </p>
-  </section>
+    <p><b>Transport and mobility</b> uses real New York taxi trip records:
+    disputed fares, journeys of zero distance, tips a cash meter never sees.
+    Nothing in it was arranged. The mess is what was recorded, and the traps
+    were found rather than planted.</p>
 
-  <p class="stamp">© 2026 Ing. Barbora Šandová, MFDA · Page built 2026-08-24 09:06 UTC · 24055cae</p>
-</div>
+    <p><b>Two systems that disagree</b> puts a CRM against an ERP, with one
+    customer appearing in three key formats and one country in three spellings.
+    This is the shape most companies are actually in, and it is the only pack
+    where the right answer is genuinely contested before any model is asked.</p>
+
+    <h2>Why the warehouse travels with the pack</h2>
+
+    <p>A question and its verified query are only meaningful against the data
+    they were written for. Ship the questions without the warehouse and the
+    reference answer becomes a number nobody can reproduce, which is the exact
+    failure this work exists to measure. Every pack therefore carries its
+    warehouse, its builder and the digest of both, and every run report records
+    which of them it ran against.</p>
+
+    <p>The method behind all of it, layer by layer, is at
+    <a href="/method">the method</a>.</p>
+
 <section class="reading" aria-labelledby="reading-h">
   <p class="reading-kicker">Reading</p>
   <h2 id="reading-h">Published measurements, and the argument behind them.</h2>
