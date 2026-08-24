@@ -806,36 +806,17 @@ main.article figcaption{text-align:left; hyphens:manual}
     <div style="max-width:1360px; margin:0 auto; padding:clamp(3rem,6vw,5rem) 3rem">
       <p style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#6B655C; margin:0 0 12px">The evidence, and the gap in it</p>
       <h2 style="font-weight:700; font-size:clamp(1.75rem,3vw,2.125rem); letter-spacing:-.015em; margin:0 0 14px">None of this is our claim to make.</h2>
-      <p style="margin:0 0 28px; max-width:52ch; color:#4B4F48">Four things this work depends on have already been established by people with no stake in it: that benchmark accuracy does not transfer to a real warehouse, that the failure arrives looking plausible, that verifying it means reading the SQL, and that declining beats guessing. What none of them does is run the measurement on your data. That is the whole of what we add.</p>
+      <p style="margin:0 0 28px; max-width:52ch; color:#4B4F48">Four things this work depends on were established by people with no stake in it: that benchmark accuracy does not transfer to a real warehouse, that the failure arrives looking plausible, that catching it means reading the SQL, and that declining beats guessing. Two of them are below. All four, with who established what, are at <a href="/evidence">the evidence</a>.</p>
 
-      <ol class="lit">
-        <li class="lit-row">
+      <ol class="lit"><li class="lit-row">
           <p class="lit-ref">Chen, P.B. <i>et al.</i> (2026) &lsquo;<a class="lit-title" href="https://arxiv.org/abs/2409.02038">BEAVER: an enterprise benchmark for text-to-SQL</a>&rsquo;, <i>arXiv</i>:2409.02038 [cs.DB]. Available at: <a href="https://arxiv.org/abs/2409.02038">arxiv.org</a> (Accessed: 24 August 2026).</p>
           <p class="lit-why"><b>Establishes that a benchmark number does not transfer.</b> The same class of model that scores in the eighties on public benchmarks reaches 10.8% on 9,128 question and query pairs taken from real private warehouses, across 812 tables and 19 domains, and 30.1% even when handed oracle hints. Whatever accuracy a vendor quotes you was not measured on your schema, and this is how far apart the two numbers can be.</p>
-        </li>
-        <li class="lit-row">
-          <p class="lit-ref">Stonebraker, M. and Chen, P.B. (2026) &lsquo;<a class="lit-title" href="https://cacm.acm.org/blogcacm/if-you-think-you-can-do-real-world-text-to-sql/">If you think you can do real-world text-to-SQL</a>&rsquo;, <i>BLOG@CACM</i>, 20 July. Available at: <a href="https://cacm.acm.org/blogcacm/if-you-think-you-can-do-real-world-text-to-sql/">cacm.acm.org</a> (Accessed: 24 August 2026).</p>
-          <p class="lit-why"><b>The same finding, argued rather than tabulated,</b> by one of the authors above. A benchmark built on a tidy public schema, on data the models have already trained on, measures something other than production.</p>
-        </li>
-        <li class="lit-row">
+        </li><li class="lit-row">
           <p class="lit-ref">Davidson, J. (2026) &lsquo;<a class="lit-title" href="https://omni.co/blog/why-text-to-sql-fails">Why text-to-SQL fails</a>&rsquo;, <i>Omni</i>, 8 April. Available at: <a href="https://omni.co/blog/why-text-to-sql-fails">omni.co</a> (Accessed: 24 August 2026).</p>
           <p class="lit-why"><b>Establishes the shape of the failure and why it survives review.</b> Across 4,602 incorrect queries, 81.2% are schema-level errors, and the result arrives as a plausible but incorrect answer rather than an error. Catching it means reading the generated SQL, which is the expertise the tool was bought to replace, and that is the reason this work has to be done by somebody outside the team.</p>
-        </li>
-        <li class="lit-row">
-          <p class="lit-ref">Ghosh, N. (2026) &lsquo;<a class="lit-title" href="https://www.nirmalya.net/posts/2026/02/text-to-sql-naive-way/">Text-to-SQL the na&iuml;ve way: why most demos fail in production</a>&rsquo;, 18 February. Available at: <a href="https://www.nirmalya.net/posts/2026/02/text-to-sql-naive-way/">nirmalya.net</a> (Accessed: 24 August 2026).</p>
-          <p class="lit-why"><b>Establishes that the traps are real rather than invented for a benchmark.</b> One of ours, worked through independently on a 35-table schema: row duplication returns 271,049 where 154,050 is correct, a 76% overstatement, and in his words nothing flags it.</p>
-        </li>
-        <li class="lit-row">
-          <p class="lit-ref">Chen, S., Alrashed, T., Halevy, A. and Noy, N. (2026) &lsquo;<a class="lit-title" href="https://arxiv.org/abs/2605.28787">Do data agents need semantic metadata? A comparative study in agentic data retrieval</a>&rsquo;, <i>arXiv</i>:2605.28787 [cs.IR]. Available at: <a href="https://arxiv.org/abs/2605.28787">arxiv.org</a> (Accessed: 24 August 2026).</p>
-          <p class="lit-why"><b>Establishes that declining is the correct behaviour, not a shortfall.</b> A different setting entirely, and the same conclusion: an empty state beats a probabilistic guess, with their broader agent answering 40% more questions and being 65.7% less precise for it. Their argument is that richer context is the fix, which is the one claim here our own measurements complicate rather than support.</p>
-        </li>
-        <li class="lit-row">
-          <p class="lit-ref">Almohaimeed, S., Al Ghanim, M., Almohaimeed, S. and Wang, L. (2024) &lsquo;<a class="lit-title" href="https://doi.org/10.1145/3605098.3636065">Ar-Spider: text-to-SQL in Arabic</a>&rsquo;, in <i>Proceedings of the 39th ACM/SIGAPP Symposium on Applied Computing</i>. New York: ACM. doi:<a href="https://doi.org/10.1145/3605098.3636065">10.1145/3605098.3636065</a>.</p>
-          <p class="lit-why"><b>Establishes that the language a question is asked in is a measurable variable,</b> with an 8.79% accuracy gap outside English. One of the few places it is measured rather than assumed, which is why we measure it too rather than claiming the answer.</p>
-        </li>
-      </ol>
+        </li></ol>
 
-      <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#6B655C; margin:22px 0 0">each of these establishes a piece of it. none of them runs on your warehouse, and that is the only thing we do.</p>
+      <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#6B655C; margin:22px 0 0">each of these establishes a piece of the problem. none of them runs on your warehouse, and that is the only thing we do.</p>
     </div>
   </section>
 
@@ -867,7 +848,9 @@ main.article figcaption{text-align:left; hyphens:manual}
   <p class="reading-kicker">Reading</p>
   <h2 id="reading-h">Published measurements, and the argument behind them.</h2>
   <ul class="reading-list">
-    <li><a href="/abstention">The query ran and the answer was zero</a>
+    <li><a href="/evidence">None of this is our claim to make</a>
+      <span>what other people established, and the one thing none of them did</span></li>
+      <li><a href="/abstention">The query ran and the answer was zero</a>
       <span>ten questions past the edge of the data, and what each model did with them</span></li>
       <li><a href="/traps">Twenty-six ways a number comes back wrong</a>
       <span>the taxonomy, with the divergence each fault actually causes</span></li>
