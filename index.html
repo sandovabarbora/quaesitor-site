@@ -734,38 +734,38 @@ main.article figcaption{text-align:left; hyphens:manual}
 
   <section id="reading" style="background:#F6F4EE; border-bottom:1px solid #DAD6CC">
     <div style="max-width:1360px; margin:0 auto; padding:clamp(3rem,6vw,5rem) 3rem">
-      <p style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#6B655C; margin:0 0 12px">Not just us</p>
-      <h2 style="font-weight:700; font-size:clamp(1.75rem,3vw,2.125rem); letter-spacing:-.015em; margin:0 0 14px">Other people are writing this down too.</h2>
-      <p style="margin:0 0 28px; max-width:52ch; color:#4B4F48">We did not invent the observation that these systems answer confidently and wrongly over real data. What we added is a number for it. Here is where the argument is being made by people with no stake in ours.</p>
+      <p style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#6B655C; margin:0 0 12px">The evidence, and the gap in it</p>
+      <h2 style="font-weight:700; font-size:clamp(1.75rem,3vw,2.125rem); letter-spacing:-.015em; margin:0 0 14px">None of this is our claim to make.</h2>
+      <p style="margin:0 0 28px; max-width:52ch; color:#4B4F48">Four things this work depends on have already been established by people with no stake in it: that benchmark accuracy does not transfer to a real warehouse, that the failure arrives looking plausible, that verifying it means reading the SQL, and that declining beats guessing. What none of them does is run the measurement on your data. That is the whole of what we add.</p>
 
       <ol class="lit">
         <li class="lit-row">
           <p class="lit-ref">Chen, P.B. <i>et al.</i> (2026) &lsquo;BEAVER: an enterprise benchmark for text-to-SQL&rsquo;, <i>arXiv</i>:2409.02038 [cs.DB]. Available at: <a href="https://arxiv.org/abs/2409.02038">arxiv.org</a> (Accessed: 24 August 2026).</p>
-          <p class="lit-why">9,128 question and query pairs from real private warehouses, 812 tables, 19 domains. State-of-the-art agentic frameworks on GPT-5.2 reach 10.8% accuracy, and 30.1% when handed oracle hints. The same class of model scores in the eighties on public benchmarks.</p>
+          <p class="lit-why"><b>Establishes that a benchmark number does not transfer.</b> The same class of model that scores in the eighties on public benchmarks reaches 10.8% on 9,128 question and query pairs taken from real private warehouses, across 812 tables and 19 domains, and 30.1% even when handed oracle hints. Whatever accuracy a vendor quotes you was not measured on your schema, and this is how far apart the two numbers can be.</p>
         </li>
         <li class="lit-row">
           <p class="lit-ref">Stonebraker, M. and Chen, P.B. (2026) &lsquo;If you think you can do real-world text-to-SQL&rsquo;, <i>BLOG@CACM</i>, 20 July. Available at: <a href="https://cacm.acm.org/blogcacm/if-you-think-you-can-do-real-world-text-to-sql/">cacm.acm.org</a> (Accessed: 24 August 2026).</p>
-          <p class="lit-why">The short form of the argument above: a benchmark built on a tidy public schema, on data the models have already trained on, measures something other than production.</p>
+          <p class="lit-why"><b>The same finding, argued rather than tabulated,</b> by one of the authors above. A benchmark built on a tidy public schema, on data the models have already trained on, measures something other than production.</p>
         </li>
         <li class="lit-row">
           <p class="lit-ref">Davidson, J. (2026) &lsquo;Why text-to-SQL fails&rsquo;, <i>Omni</i>, 8 April. Available at: <a href="https://omni.co/blog/why-text-to-sql-fails">omni.co</a> (Accessed: 24 August 2026).</p>
-          <p class="lit-why">Names the shape of the failure as a plausible but incorrect answer, and puts a number on where it comes from: across 4,602 incorrect queries, 81.2% are schema-level errors. Also the objection that matters commercially, that verifying the answer means reading the generated SQL, which is the expertise the tool was bought to replace.</p>
+          <p class="lit-why"><b>Establishes the shape of the failure and why it survives review.</b> Across 4,602 incorrect queries, 81.2% are schema-level errors, and the result arrives as a plausible but incorrect answer rather than an error. Catching it means reading the generated SQL, which is the expertise the tool was bought to replace, and that is the reason this work has to be done by somebody outside the team.</p>
         </li>
         <li class="lit-row">
           <p class="lit-ref">Ghosh, N. (2026) &lsquo;Text-to-SQL the na&iuml;ve way: why most demos fail in production&rsquo;, 18 February. Available at: <a href="https://www.nirmalya.net/posts/2026/02/text-to-sql-naive-way/">nirmalya.net</a> (Accessed: 24 August 2026).</p>
-          <p class="lit-why">A worked example of one trap on a 35-table schema: row duplication returning 271,049 where 154,050 was correct, a 76% overstatement. In his words, nothing flags it.</p>
+          <p class="lit-why"><b>Establishes that the traps are real rather than invented for a benchmark.</b> One of ours, worked through independently on a 35-table schema: row duplication returns 271,049 where 154,050 is correct, a 76% overstatement, and in his words nothing flags it.</p>
         </li>
         <li class="lit-row">
           <p class="lit-ref">Chen, S., Alrashed, T., Halevy, A. and Noy, N. (2026) &lsquo;Do data agents need semantic metadata? A comparative study in agentic data retrieval&rsquo;, <i>arXiv</i>:2605.28787 [cs.IR]. Available at: <a href="https://arxiv.org/abs/2605.28787">arxiv.org</a> (Accessed: 24 August 2026).</p>
-          <p class="lit-why">Different setting, same conclusion about what good behaviour looks like: an empty state beats a probabilistic guess. Their broader agent answers 40% more questions and is 65.7% less precise for it.</p>
+          <p class="lit-why"><b>Establishes that declining is the correct behaviour, not a shortfall.</b> A different setting entirely, and the same conclusion: an empty state beats a probabilistic guess, with their broader agent answering 40% more questions and being 65.7% less precise for it. Their argument is that richer context is the fix, which is the one claim here our own measurements complicate rather than support.</p>
         </li>
         <li class="lit-row">
           <p class="lit-ref">Almohaimeed, S., Al Ghanim, M., Almohaimeed, S. and Wang, L. (2024) &lsquo;Ar-Spider: text-to-SQL in Arabic&rsquo;, in <i>Proceedings of the 39th ACM/SIGAPP Symposium on Applied Computing</i>. New York: ACM. doi:<a href="https://doi.org/10.1145/3605098.3636065">10.1145/3605098.3636065</a>.</p>
-          <p class="lit-why">Reports an 8.79% accuracy gap outside English. One of the few places the non-English question is measured rather than assumed.</p>
+          <p class="lit-why"><b>Establishes that the language a question is asked in is a measurable variable,</b> with an 8.79% accuracy gap outside English. One of the few places it is measured rather than assumed, which is why we measure it too rather than claiming the answer.</p>
         </li>
       </ol>
 
-      <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#6B655C; margin:22px 0 0">every one of these describes the problem. none of them puts a rate on your warehouse.</p>
+      <p style="font-family:'JetBrains Mono',monospace; font-size:11px; color:#6B655C; margin:22px 0 0">each of these establishes a piece of it. none of them runs on your warehouse, and that is the only thing we do.</p>
     </div>
   </section>
 
