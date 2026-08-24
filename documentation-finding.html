@@ -489,6 +489,12 @@ main.article figcaption{text-align:left; hyphens:manual}
   padding-left:1.6rem; text-indent:-1.6rem}
 .lit-ref i{font-style:italic}
 .lit-ref a{color:#4657D9}
+/* The title is the click target. The whole row is deliberately not one: this
+   is a bibliography and somebody will want to select a reference and copy it,
+   which a stretched link would break. */
+.lit-title{font-weight:600; text-decoration:underline; text-underline-offset:3px;
+  text-decoration-thickness:1px; text-decoration-color:#B9C2E8}
+.lit-title:hover{text-decoration-color:#4657D9}
 .lit-why{margin:.6rem 0 0; padding-left:1.6rem; font-size:14px; line-height:1.55;
   color:#5E6259; max-width:62ch}
 
@@ -726,7 +732,7 @@ main.article figcaption{text-align:left; hyphens:manual}
   <p>* Model claude-sonnet-5, Czech, 26 questions, three repeats each.
   Run on 2026-08-12 and twice on 2026-08-20.
   Every pair shared its questions, warehouse, prompt.</p>
-  <p>Page built 2026-08-24 11:28 UTC from the run reports, digest <span class="mono">063c9cf4</span>.
+  <p>Page built 2026-08-24 11:30 UTC from the run reports, digest <span class="mono">a4894325</span>.
   Every figure above is injected from those reports at build time; the build
   fails rather than publish a sentence the runs no longer support.</p>
 </footer>
