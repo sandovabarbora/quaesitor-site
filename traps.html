@@ -44,6 +44,11 @@ html { scroll-behavior: smooth; }
     }
     @media (max-width: 48rem) {
       [data-mq="hero"] { min-height: 0 !important; justify-content: flex-start !important; }
+      /* The frame and its foot cost the call to action its place above the
+         fold at 390px. The frame stays; its padding pays for it. */
+      .sim { padding: .8rem .85rem !important; }
+      .sim-label { padding-bottom: .55rem !important; margin-bottom: .7rem !important; }
+      .sim-prov { margin-top: .7rem !important; padding-top: .55rem !important; }
       [data-mq="hide"] { display: none !important; }
       [data-mq="row"] { grid-template-columns: 64px 1fr !important; }
       [data-mq="row"] a { grid-column: 2; justify-self: start; }
@@ -192,18 +197,27 @@ html { scroll-behavior: smooth; }
   align-items:start; border-left:0; padding:0; max-width:52ch; margin-top:.9rem}
 .sim-avatar{width:34px; height:34px; border-radius:50%; flex:none;
   border:1px solid rgba(28,26,23,.2)}
-.sim-said{display:grid; gap:.3rem; background:#F6F4EE; border:1px solid #DAD6CC;
-  padding:.75rem .9rem}
+.sim-said{display:grid; gap:.3rem}
 .sim-said .sim-who{color:#4657D9}
 .sim-said .sim-truth{font-size:clamp(1.15rem,1.8vw,1.45rem)}
 
 /* The cases share one grid cell, so the block is always as tall as the longest
    and the call to action below it never moves. Only the live one is painted. */
-.sim-case{grid-area:1/1; opacity:0; visibility:hidden; transition:opacity .3s}
+.sim-case{grid-area:2/1; opacity:0; visibility:hidden; transition:opacity .3s}
 .sim-case.is-on{opacity:1; visibility:visible}
-.sim{display:grid}
-.sim > .sim-case{grid-area:1/1}
-.sim-dots{grid-area:2/1; align-self:end}
+/* One frame around the whole exhibit. The reply used to be the only bounded
+   thing on it, which put the hierarchy inside out: the reaction was contained
+   and the thing it reacted to was not. Four rows: label, the stacked cases,
+   the dots, the provenance foot. */
+.sim{display:grid; border:1px solid #DAD6CC; background:#F6F4EE;
+  padding:1.1rem 1.25rem}
+.sim > .sim-case{grid-area:2/1}
+.sim-label{grid-area:1/1; font:400 11px/1.3 'JetBrains Mono',ui-monospace,monospace;
+  letter-spacing:.22em; text-transform:uppercase; color:#6B655C;
+  border-bottom:1px solid #DAD6CC; padding-bottom:.75rem; margin-bottom:1rem}
+.sim-dots{grid-area:3/1; align-self:end}
+.sim-prov{grid-area:4/1; font:400 11px/1.5 'JetBrains Mono',ui-monospace,monospace;
+  color:#6B655C; border-top:1px solid #DAD6CC; margin-top:1rem; padding-top:.7rem}
 .sim-dots li.on{background:#9A3324}
 
 /* Short viewports. The hero has to land its question, its wrong answer, the
@@ -211,6 +225,13 @@ html { scroll-behavior: smooth; }
    around 650px to give. The type and the gaps step down rather than the
    content being cut. */
 @media (min-width:48rem) and (max-height:52rem){
+  /* The frame costs vertical space this viewport does not have. It keeps its
+     border, which is what makes the exhibit one object, and gives back the
+     padding and the provenance foot, which are the parts a 13" laptop can do
+     without while the question, the wrong answer and the verdict cannot. */
+  .sim{padding:.7rem .8rem}
+  .sim-label{padding-bottom:.5rem; margin-bottom:.6rem}
+  .sim-prov{display:none}
   .sim-a{font-size:clamp(1.4rem,2.6vw,2rem)}
   .sim-truth{font-size:1.1rem}
   .sim-q,.sim-why{font-size:13px; line-height:1.5}
