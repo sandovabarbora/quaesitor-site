@@ -558,18 +558,27 @@ main.article figcaption{text-align:left; hyphens:manual}
   <main class="article" style="max-width:820px; margin:0 auto; padding:clamp(3rem,6vw,5rem) 3rem">
 
     <p class="kicker">The packs</p>
-    <h1>Five question packs, and why each one ships with its own warehouse</h1>
+    <h1>Five warehouses, and one pack that asks for what none of them holds</h1>
     <p class="lede">A trap is not the same trap in every business, and a pack is
     bound to the warehouse it was written against. Asking subscription questions
     of a retail warehouse produces nonsense that reads like a catastrophic
     finding. Selecting a pack selects both.</p>
 
-    <p>The counts below are read from the question files at build time, so this
-    page cannot claim coverage the suite does not have. What it deliberately
+    <p>Five of the six are industry packs, each bound to a warehouse of its own.
+    The sixth shares the retail warehouse and asks the opposite kind of question,
+    described at the end. The counts below are read from the question files at
+    build time, so this page cannot claim coverage the suite does not have. What it deliberately
     does not show is the questions themselves or the verified queries behind
     them: those are the work the audit is paid for.</p>
 
     <div class="packs">  <div class="pack">
+    <p class="pack-n">10</p>
+    <p class="pack-lab">failure modes</p>
+    <h3>Questions with no answer</h3>
+    <p class="pack-sub">Margin with no cost column, categories with no product table, delivery times with no delivery date</p>
+    <p class="pack-tr">among them: no acquisition channel, no cost column, no delivery timestamps</p>
+  </div>
+  <div class="pack">
     <p class="pack-n">26</p>
     <p class="pack-lab">failure modes</p>
     <h3>Orders and retail</h3>
@@ -641,6 +650,28 @@ main.article figcaption{text-align:left; hyphens:manual}
     customer appearing in three key formats and one country in three spellings.
     This is the shape most companies are actually in, and it is the only pack
     where the right answer is genuinely contested before any model is asked.</p>
+
+    <h2>The pack with no answers in it</h2>
+
+    <p>Every pack above asks whether a returned number is right. One asks whether
+    a number should have been returned at all. Its ten questions name things the
+    retail warehouse does not hold: a gross margin, in a schema that records the
+    price a thing sold for and never what it cost; a best-selling category, where
+    only a product id exists and no product table; an average delivery time, with
+    no delivery date anywhere. Declining is the correct answer and any figure is a
+    failure, however sensible it looks.</p>
+
+    <p>Seven of the ten keep a tempting column within reach, which is the part
+    worth measuring. Margin sits next to a discount percentage. Payment method
+    sits next to a currency. Acquisition channel sits next to a customer segment
+    that means something else entirely. The remaining three have nothing to
+    confuse, and act as a control: a model that only declines there is refusing on
+    how exotic the question sounds rather than on what the schema carries.</p>
+
+    <p>The claim these questions rest on is a negative one, and negative claims
+    decay. A test holds each of them to the live schema, so the day somebody adds
+    a cost column the suite says so instead of going on scoring every answer as a
+    silent failure.</p>
 
     <h2>Why the warehouse travels with the pack</h2>
 
