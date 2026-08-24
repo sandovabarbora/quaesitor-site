@@ -44,16 +44,47 @@ html { scroll-behavior: smooth; }
       [data-mq="statue"] { opacity: .14 !important; }
     }
     @media (max-width: 48rem) {
+      /* 3rem of side padding is a quarter of a 402px screen. The layout
+         containers give it back; the reading measure is set by the type, not
+         by the gutter. */
+      nav > div, section > div, main.article {
+        padding-left: 1.25rem !important; padding-right: 1.25rem !important;
+      }
+      /* 1fr cannot shrink below min-content, so a card with 30px of its own
+         padding forced the column wider than the screen and the page clipped
+         the overflow instead of scrolling, which is why this looked fine to a
+         scrollWidth check and broken to anybody holding a phone. */
+      [data-mq="cols"] { grid-template-columns: minmax(0, 1fr) !important; }
+      /* Wide content scrolls in its own container and the page never does,
+         which is section 7. A table is the only thing here that cannot be
+         made narrower without losing a column. */
+      table { display: block; max-width: 100%; overflow-x: auto; }
       [data-mq="hero"] { min-height: 0 !important; justify-content: flex-start !important; }
       /* The frame and its foot cost the call to action its place above the
          fold at 390px. The frame stays; its padding pays for it. */
       .sim { padding: .8rem .85rem !important; }
       .sim-label { padding-bottom: .55rem !important; margin-bottom: .7rem !important; }
       .sim-prov { margin-top: .7rem !important; padding-top: .55rem !important; }
-      [data-mq="hide"] { display: none !important; }
+      /* The bar navigates on a phone. It used to hide every link and keep the
+         call to action, which left the other pages unreachable from the top of
+         the screen while the loudest element on it sold something. The button
+         appears twice more further down; the links appear nowhere else. */
+      [data-mq="hide"] { display: inline !important; font-size: 13px; }
+      nav a[href="#pricing"] { display: none !important; }
+      nav a[href^="mailto"] { display: none !important; }
+      nav > div > div { gap: 16px !important; }
       [data-mq="row"] { grid-template-columns: 64px 1fr !important; }
       [data-mq="row"] a { grid-column: 2; justify-self: start; }
       [data-mq="wrap"] { flex-wrap: wrap !important; }
+      /* The call to action wrapped onto three lines and pushed the bar to
+         92px, because logo and button together came to exactly the width the
+         padding left them. */
+      nav a[href^="mailto"] {
+        font-size: 13px !important; padding: 9px 14px !important;
+        white-space: nowrap;
+      }
+      nav a[href="/"] span:last-child { font-size: 17px !important; }
+      nav a[href="/"] > span:first-child { width: 30px !important; height: 30px !important; }
     }
 
 /* The mark is one image used twice. Inlined here rather than in the markup so
@@ -765,7 +796,7 @@ main.article figcaption{text-align:left; hyphens:manual}
   <p>* Model claude-sonnet-5, Czech, 26 questions, three repeats each.
   Run on 2026-08-12 and twice on 2026-08-20.
   Every pair shared its questions, warehouse, prompt.</p>
-  <p>Page built 2026-08-24 11:35 UTC from the run reports, digest <span class="mono">1424652e</span>.
+  <p>Page built 2026-08-24 12:13 UTC from the run reports, digest <span class="mono">5a0c0dff</span>.
   Every figure above is injected from those reports at build time; the build
   fails rather than publish a sentence the runs no longer support.</p>
 </footer>
