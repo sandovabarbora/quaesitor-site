@@ -629,7 +629,7 @@ main.article figcaption{text-align:left; hyphens:manual}
 
     <p class="kicker">The evidence</p>
     <h1>None of this is our claim to make</h1>
-    <p class="lede">Four things this work depends on were established by people
+    <p class="lede">Eight things this work depends on were established by people
     with no stake in it. We did not discover that these systems answer
     confidently and wrongly over real data, and a service that implied otherwise
     would be worth less, not more. What follows is who established what, and the
@@ -675,6 +675,15 @@ main.article figcaption{text-align:left; hyphens:manual}
           <p class="lit-why"><b>Establishes that the traps are real rather than invented for a benchmark.</b> One of ours, worked through independently on a 35-table schema: row duplication returns 271,049 where 154,050 is correct, a 76% overstatement, and in his words nothing flags it.</p>
         </li></ol>
 
+    <h2>That it is the majority of what goes wrong, not an edge case</h2>
+
+    <p>Silent failure is easy to dismiss as a corner case that careful teams
+    avoid. Somebody has now counted. A taxonomy validated against fifty
+    real-world incidents, taken from court documents and regulatory filings
+    rather than from anecdote, finds that most of them were silent.</p>
+
+    <ol class="lit"><li class="lit-row"><p class="lit-ref">Bajaj, P. (2026) &lsquo;<a class="lit-title" href="https://arxiv.org/abs/2608.02786">Evaluation blindness: how silent measurement failures corrupt AI systems from training to deployment</a>&rsquo;, <i>arXiv</i>:2608.02786. Available at: <a href="https://arxiv.org/abs/2608.02786">arxiv.org</a> (Accessed: 24 August 2026).</p><p class="lit-why"><b>Establishes that silent failure is the majority case, not the edge case.</b> A six-class taxonomy validated against <b>50</b> real-world incidents drawn from court documents and regulatory filings finds <b>53%</b> of verifiable public failures were silent, with one whole category silent by structural definition.</p></li></ol>
+
     <h2>That catching it means reading the SQL</h2>
 
     <p>This is the commercial fact, and it is why the work cannot be handed back
@@ -708,7 +717,21 @@ main.article figcaption{text-align:left; hyphens:manual}
     <ol class="lit"><li class="lit-row">
           <p class="lit-ref">Chen, S., Alrashed, T., Halevy, A. and Noy, N. (2026) &lsquo;<a class="lit-title" href="https://arxiv.org/abs/2605.28787">Do data agents need semantic metadata? A comparative study in agentic data retrieval</a>&rsquo;, <i>arXiv</i>:2605.28787 [cs.IR]. Available at: <a href="https://arxiv.org/abs/2605.28787">arxiv.org</a> (Accessed: 24 August 2026).</p>
           <p class="lit-why"><b>Establishes that declining is the correct behaviour, not a shortfall.</b> A different setting entirely, and the same conclusion: an empty state beats a probabilistic guess, with their broader agent answering 40% more questions and being 65.7% less precise for it. Their argument is that richer context is the fix, which is the one claim here our own measurements complicate rather than support.</p>
-        </li></ol>
+        </li><li class="lit-row"><p class="lit-ref">Zhu, X., Wang, Z., Mei, K., Xu, W., Guo, M., Yang, B., Fan, J. and Metaxas, D.N. (2026) &lsquo;<a class="lit-title" href="https://arxiv.org/abs/2605.18792">Trust or abstain? A self-aware RAG approach</a>&rsquo;, <i>arXiv</i>:2605.18792. Available at: <a href="https://arxiv.org/abs/2605.18792">arxiv.org</a> (Accessed: 24 August 2026).</p><p class="lit-why">Builds the decision as four cells rather than two, trusting the model, trusting the context, trusting either, or abstaining, and reports risk&ndash;coverage curves over roughly <b>69,000</b> query-context instances. The same shape of matrix this suite scores against.</p></li></ol>
+
+    <h2>That a model agreeing with itself is not evidence it is right</h2>
+
+    <p>The cheapest way to check an answer is to ask again and see whether the
+    same thing comes back. If that worked, none of this would need a service.</p>
+
+    <p>It does not work, and two independent measurements now say so. In
+    retrieval, a large share of errors show no disagreement at all across
+    repeated sampling. In our own runs, restricting answers to those where all
+    three attempts agreed leaves the error rate at <b>84.9%</b> against
+    <b>85.1%</b> across everything, while costing twenty points of coverage.
+    Agreement is free to measure and worth almost nothing.</p>
+
+    <ol class="lit"><li class="lit-row"><p class="lit-ref">Julka, S. (2026) &lsquo;<a class="lit-title" href="https://arxiv.org/abs/2606.22728">When confidence takes the wrong path: diagnosing retrieval-state lock-in in RAG</a>&rsquo;, <i>arXiv</i>:2606.22728. Available at: <a href="https://arxiv.org/abs/2606.22728">arxiv.org</a> (Accessed: 24 August 2026).</p><p class="lit-why"><b>Establishes that self-agreement is not evidence of correctness.</b> Of the errors measured there, <b>42%</b> under knowledge-graph retrieval and <b>59%</b> under dense retrieval showed zero dispersion across five samples: the system agreed with itself every time and was wrong every time. He calls it agreement blindness.</p></li></ol>
 
     <h2>That the language of the question is a measurable variable</h2>
 
@@ -721,6 +744,15 @@ main.article figcaption{text-align:left; hyphens:manual}
           <p class="lit-ref">Almohaimeed, S., Al Ghanim, M., Almohaimeed, S. and Wang, L. (2024) &lsquo;<a class="lit-title" href="https://doi.org/10.1145/3605098.3636065">Ar-Spider: text-to-SQL in Arabic</a>&rsquo;, in <i>Proceedings of the 39th ACM/SIGAPP Symposium on Applied Computing</i>. New York: ACM. doi:<a href="https://doi.org/10.1145/3605098.3636065">10.1145/3605098.3636065</a>.</p>
           <p class="lit-why"><b>Establishes that the language a question is asked in is a measurable variable,</b> with an 8.79% accuracy gap outside English. One of the few places it is measured rather than assumed, which is why we measure it too rather than claiming the answer.</p>
         </li></ol>
+
+    <h2>That the bill arrives at the organisation, not the pipeline</h2>
+
+    <p>A wrong number is an engineering event for about a day. After that it is
+    a decision somebody made, a figure somebody published, and a question
+    somebody cannot answer when asked where it came from. The accumulating
+    version of that has a name and a proposed measure.</p>
+
+    <ol class="lit"><li class="lit-row"><p class="lit-ref">Korolev, Y. (2025) &lsquo;<a class="lit-title" href="https://doi.org/10.65114/aide.gmry6g41">The year of silent failures: AI technical debt and the crisis of verification</a>&rsquo;, <i>Journal of Human&ndash;AI Decision-Making Systems</i>. doi:<a href="https://doi.org/10.65114/aide.gmry6g41">10.65114/aide.gmry6g41</a>.</p><p class="lit-why"><b>Establishes that the cost lands on the organisation, not the pipeline.</b> Names the accumulating gap between what an organisation produces and what it can still verify, explain and reproduce, and proposes measuring it. The engineering failure is upstream; this is where it is eventually paid for.</p></li></ol>
 
     <h2>What none of them does</h2>
 
