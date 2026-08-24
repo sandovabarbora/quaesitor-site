@@ -788,6 +788,35 @@ main.article figcaption{text-align:left; hyphens:manual}
 
     <ol class="lit"><li class="lit-row"><p class="lit-ref">Korolev, Y. (2025) &lsquo;<a class="lit-title" href="https://doi.org/10.65114/aide.gmry6g41">The year of silent failures: AI technical debt and the crisis of verification</a>&rsquo;, <i>Journal of Human&ndash;AI Decision-Making Systems</i>. doi:<a href="https://doi.org/10.65114/aide.gmry6g41">10.65114/aide.gmry6g41</a>.</p><p class="lit-why"><b>Establishes that the cost lands on the organisation, not the pipeline.</b> Names the accumulating gap between what an organisation produces and what it can still verify, explain and reproduce, and proposes measuring it. The engineering failure is upstream; this is where it is eventually paid for.</p></li></ol>
 
+    <h2>And the objection: that a semantic layer fixes it</h2>
+
+    <p>The fair reading of the work below is that this problem has a product
+    answer. Give the model your metric definitions rather than just your tables
+    and accuracy rises by seventeen to twenty-three points across three frontier
+    models. If that closed the gap, there would be nothing here worth buying.</p>
+
+    <p>It does not close it. It moves roughly half of the wrong answers into the
+    right column and leaves <b>about a third of every answer still wrong</b>.
+    Sixty-eight per cent is not the accuracy at which people check; it is the
+    accuracy at which they stop. That is the argument at
+    <a href="/why">why this exists</a>, and this benchmark installs it rather
+    than refuting it.</p>
+
+    <p>The second thing is what the benchmark did not measure. It reports
+    accuracy and does not classify the errors, so it cannot say whether the
+    remaining third became easier or harder to notice. Our own replications say
+    that is exactly where the risk moves: documentation left correctness
+    unchanged and made the surviving errors more plausible. Nobody has run that
+    measurement on a semantic layer.</p>
+
+    <p>And a semantic layer is itself a claim. Somebody wrote those definitions.
+    Whether they match the data, and whether the model used them rather than
+    going around them, is unverified by construction: the layer is the thing
+    doing the checking. The benchmark below used a document its authors wrote
+    for a clean public dataset, which is the most favourable case there is.</p>
+
+    <ol class="lit"><li class="lit-row"><p class="lit-ref">Rumiantsau, M. (2026) &lsquo;<a class="lit-title" href="https://cube.dev/blog/why-semantic-layers-make-llm-analytics-reliable-a-paired-benchmark-across-three-frontier-models">Why semantic layers make LLM analytics reliable: a paired benchmark across three frontier models</a>&rsquo;, <i>Cube</i>, 28 April. Available at: <a href="https://cube.dev/blog/why-semantic-layers-make-llm-analytics-reliable-a-paired-benchmark-across-three-frontier-models">cube.dev</a> (Accessed: 24 August 2026).</p><p class="lit-why"><b>The strongest objection to this service, and it is a measured one.</b> One hundred questions, three models, each asked twice: schema alone against schema plus a four-kilobyte semantic layer. Accuracy rose from <b>50.5%</b> to <b>67.7%</b>, <b>46.5%</b> to <b>68.7%</b>, and <b>45.5%</b> to <b>68.7%</b>.</p></li></ol>
+
     <h2>What none of them does</h2>
 
     <p>Every one of these establishes a piece of the problem. Not one of them
