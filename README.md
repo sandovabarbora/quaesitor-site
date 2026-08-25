@@ -3,10 +3,17 @@
 Landing page for qu&aelig;sitor — independent review of AI answers over a data
 warehouse.
 
-Self-contained HTML files. Images, scripts and JetBrains Mono are inlined. The
-one external request each page makes is the Space Grotesk stylesheet from
-Google Fonts; every page declares a fallback stack, so a blocked request
-degrades the type rather than the page.
+Self-contained HTML files. Images, scripts and both faces — JetBrains Mono and
+Space Grotesk — are inlined as data URIs. A page makes no request to anyone but
+the server that served it, which is what `privacy.html` promises.
+
+That was not true until 2026-08-25. Space Grotesk was linked from Google Fonts
+and preconnected, so every visitor's IP reached Google, and JetBrains Mono was
+named in the stylesheet without ever being supplied. This README described the
+Google Fonts request correctly while the privacy notice denied it; the notice
+is the document with legal weight, so the code was changed to match it rather
+than the other way round. `method/tests/test_no_external_requests.py` reads
+these deployed files and fails if any of it comes back.
 
 | File | What it is |
 |---|---|

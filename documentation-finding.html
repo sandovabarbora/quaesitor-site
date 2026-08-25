@@ -15,9 +15,12 @@
 <meta property="og:site_name" content="quaesitor">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Documentation did not make the answers right", "description": "Documentation did not make the answers right. It made them believable: implausible answers went to zero and the silent-failure rate went up.", "url": "https://quaesitor.eu/documentation-finding", "inLanguage": "en", "isPartOf": {"@type": "WebSite", "name": "quaesitor", "url": "https://quaesitor.eu"}, "publisher": {"@type": "Organization", "name": "Ing. Barbora Šandová, MFDA", "url": "https://quaesitor.eu", "address": {"@type": "PostalAddress", "addressLocality": "Prague", "addressCountry": "Czech Republic"}, "identifier": "17423830"}}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- Deliberately empty of font links. Space Grotesk and JetBrains Mono
+     are both inlined by the build, in _style.css, so a page makes no
+     request to anyone but the server that served it. The privacy notice
+     says exactly that, and for a while it was the only place that did.
+     Anything added here that names a third-party host makes that notice
+     false; tests/test_no_external_requests.py stops it. -->
 
 <style>/* The 2026-08-20 brand package, ported. Carried over from the design tool's
    <helmet> block verbatim so the visual world is the designer's, not a
@@ -25,6 +28,45 @@
    tokens is the next pass, together with DESIGN.md 4 and 6.
    Fonts are Space Grotesk and JetBrains Mono, the pairing the site already
    uses: only the discarded Quaesitor Website.dc.html draft moved to Spectral. */
+/* Both faces travel in the file, and this is the stylesheet the deployed site
+   actually uses. Until now neither did: Space Grotesk was linked from Google
+   Fonts by _head.html, and JetBrains Mono was named but never supplied, so it
+   fell through to ui-monospace on any machine that did not happen to have it.
+   The privacy notice said every font was inside the page file. It was not,
+   and the linked stylesheet sent each visitor's IP address to Google, which
+   is the thing that notice exists to promise does not happen.
+
+   The inlining machinery already existed in _style.css and was only ever
+   spliced into the older templates. This is the same mechanism, in the
+   stylesheet that ships.
+
+   Space Grotesk is SIL OFL, so it may be served from here; Latin and Latin
+   Extended only, because Czech needs the second and nobody needs the
+   Vietnamese subset. The unicode-range stays on each face even though both
+   are in the file: it is what selects the face for a given character. */
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;
+  src:url(data:font/woff2;base64,__FONT_400__) format("woff2")}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;
+  src:url(data:font/woff2;base64,__FONT_700__) format("woff2")}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;
+  src:url(data:font/woff2;base64,__SG_400_LATIN__) format("woff2");
+  unicode-range:__SG_400_LATIN_RANGE__}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400;font-display:swap;
+  src:url(data:font/woff2;base64,__SG_400_LATIN_EXT__) format("woff2");
+  unicode-range:__SG_400_LATIN_EXT_RANGE__}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+  src:url(data:font/woff2;base64,__SG_500_LATIN__) format("woff2");
+  unicode-range:__SG_500_LATIN_RANGE__}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500;font-display:swap;
+  src:url(data:font/woff2;base64,__SG_500_LATIN_EXT__) format("woff2");
+  unicode-range:__SG_500_LATIN_EXT_RANGE__}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;
+  src:url(data:font/woff2;base64,__SG_700_LATIN__) format("woff2");
+  unicode-range:__SG_700_LATIN_RANGE__}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:700;font-display:swap;
+  src:url(data:font/woff2;base64,__SG_700_LATIN_EXT__) format("woff2");
+  unicode-range:__SG_700_LATIN_EXT_RANGE__}
+
 html { scroll-behavior: smooth; }
     body { margin: 0; background: #EFEBDF; color: #1C1A17; font-family: 'Space Grotesk', sans-serif; font-size: 16px; line-height: 1.55; }
     a { color: #4657D9; text-decoration: none; }
@@ -830,7 +872,7 @@ main.article figcaption{text-align:left; hyphens:manual}
   <p>* Model claude-sonnet-5, Czech, 26 questions, three repeats each.
   Run on 2026-08-12 and twice on 2026-08-20.
   Every pair shared its questions, warehouse, prompt.</p>
-  <p>Page built 2026-08-25 10:24 UTC from the run reports, digest <span class="mono">07d908ea</span>.
+  <p>Page built 2026-08-25 10:45 UTC from the run reports, digest <span class="mono">3f58d938</span>.
   Every figure above is injected from those reports at build time; the build
   fails rather than publish a sentence the runs no longer support.</p>
 </footer>
