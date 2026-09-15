@@ -1,0 +1,11 @@
+{
+  // quaesitor.eu is retired: the worker serves _redirects (301 → https://bsandova.com/).
+  // Deploy by hand from a logged-in machine: npx wrangler deploy
+  "name": "quaesitor-site",
+  "compatibility_date": "2026-09-11",
+  "assets": { "directory": "." },
+  "routes": [
+    { "pattern": "quaesitor.eu", "custom_domain": true },
+    { "pattern": "*.quaesitor.eu/*", "zone_name": "quaesitor.eu" }
+  ]
+}
